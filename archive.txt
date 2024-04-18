@@ -1,0 +1,303 @@
+commit f32f7f874adda4daa205a9cf71ab61b948225a2e
+Author: Jason Boenjamin <jasonboe510@gmail.com>
+Date:   Wed Apr 17 21:08:37 2024 -0700
+
+    removed team intro mp4
+
+commit 5773509709d7032cf1f5f779164908281ad75c4e
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 21:03:37 2024 -0700
+
+    Delete admin/videos/teamintro.mp4
+
+commit d2ca4b4cb540f83f2216573cb66cd2d3a29f6d45
+Author: sji005 <siji@ucsd.edu>
+Date:   Wed Apr 17 19:55:35 2024 -0700
+
+    fixed my name
+
+commit 6dca28cf87f6816e5f14d6cda27a65eaa24365ca
+Author: sji005 <siji@ucsd.edu>
+Date:   Wed Apr 17 19:55:10 2024 -0700
+
+    fixed my name
+
+commit 84bd1995a29fc4dfad6a144b52a7bdeb26d78342
+Author: sji005 <siji@ucsd.edu>
+Date:   Wed Apr 17 19:50:48 2024 -0700
+
+    added my signature to the teamate agreement
+
+commit bfa23ccd464a5a0f9983783a13279b8d30238d02
+Author: Andrew Lara <130115948+drewlar@users.noreply.github.com>
+Date:   Wed Apr 17 18:55:19 2024 -0700
+
+    Team Contract Signature Upload
+    
+    Uploaded PDF of my signature on a copy of the team contract.
+
+commit a314d33466047723ea2cc7c5c0b0b300041e2037
+Author: jag039 <122563262+jag039@users.noreply.github.com>
+Date:   Wed Apr 17 18:49:34 2024 -0700
+
+    Add files via upload
+
+commit 5adfbdd0eeeb4c29d23cf38d817b8f73e00be604
+Author: henrytiet <97487846+henrytiet@users.noreply.github.com>
+Date:   Wed Apr 17 18:19:02 2024 -0700
+
+    Add files via upload
+
+commit 586f4e0d59f6cab798de25df44a347b11aba38b6
+Author: Paul Peng <102704162+Gr33nCamper@users.noreply.github.com>
+Date:   Wed Apr 17 17:54:17 2024 -0700
+
+    Add files via upload
+    
+    Add Paul Peng's signed agreement to Shelldiver team rules
+
+commit 3281dc743e4527ddfa04833f7ebb1a94901d2444
+Author: Paul Peng <102704162+Gr33nCamper@users.noreply.github.com>
+Date:   Wed Apr 17 17:53:29 2024 -0700
+
+    Delete admin/misc/rules-PaulPeng.pdf
+
+commit 6ccfac36ae1abc7cc8455e06c63b05b6a2575138
+Author: gir-ma <146867663+gir-ma@users.noreply.github.com>
+Date:   Wed Apr 17 17:48:19 2024 -0700
+
+    Add files via upload
+    
+    Girma uploaded the agreement form
+
+commit e71192b80a84ba9013625db286b659bb88d050a9
+Author: Paul Peng <102704162+Gr33nCamper@users.noreply.github.com>
+Date:   Wed Apr 17 17:41:31 2024 -0700
+
+    Add Paul Peng's signed agreement of team rules
+    
+    see title
+
+commit 3b653579cd03047d1bde9f568265e5c44fbc7346
+Author: Kris Chen <147010005+Kriiiiss@users.noreply.github.com>
+Date:   Wed Apr 17 17:36:39 2024 -0700
+
+    Add files via upload
+    
+    Add rule file
+
+commit 092af2a492ebdd01e6a25ff00e8344a96f72f9bf
+Author: Char1iee <47782807+Char1iee@users.noreply.github.com>
+Date:   Wed Apr 17 17:16:49 2024 -0700
+
+    Add files via upload
+
+commit 0168db4b6dd9c48f9a1ec082630877709e1789d3
+Author: Lance Tran <100641817+thelancetran@users.noreply.github.com>
+Date:   Wed Apr 17 16:54:58 2024 -0700
+
+    Added group contract sig
+
+commit c68fd82e39d847b5a4e244cd186edae7471363b6
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Wed Apr 17 16:39:42 2024 -0700
+
+    Add files via upload
+
+commit 4ab431888ca7471837f748bba219ff9a5cd1131a
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 16:36:15 2024 -0700
+
+    Add files via upload
+
+commit 36715fda2e77cd1e9df72f7ac867125d99b6c784
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Wed Apr 17 16:31:12 2024 -0700
+
+    Update rules.md
+
+commit 246230c33e4a31c771fb8aa4e775bc6052db3376
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Wed Apr 17 16:25:28 2024 -0700
+
+    Update rules.md
+
+commit 9546a1450e5bc3e2b914f92dde0441e650f1d15b
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 15:38:27 2024 -0700
+
+    Update rules.md
+
+commit 57dd5701becf0c7cb8886616e841ac8d955566cb
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 15:37:12 2024 -0700
+
+    Update rules.md
+
+commit 51137d3866cab474e1c965b54d296cd93e3c8a27
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 15:36:22 2024 -0700
+
+    Update rules.md
+
+commit 61c74e974da6d32afb795c5a010ace992540ac7e
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Wed Apr 17 15:24:45 2024 -0700
+
+    Update rules.md
+    
+    filling in structure of team document: going off of format of https://ohiostate.pressbooks.pub/feptechcomm/chapter/7-project-communications/
+
+commit 69e66492d954bc7d77dfa245b915f69845b4d031
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Wed Apr 17 15:20:04 2024 -0700
+
+    Update rules.md
+
+commit b88441e0f18834a7588e1a8afea01ae49bcd26f9
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Wed Apr 17 14:25:51 2024 -0700
+
+    Create rules.md
+
+commit ba5a6da2dfe871ec874c7bee9b56b736dfdf4591
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Mon Apr 15 17:25:11 2024 -0700
+
+    Update team.md
+
+commit 8722a6ac9008bba954f2c37ce2c5b13a3a1b860c
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Mon Apr 15 17:24:35 2024 -0700
+
+    Update team.md
+
+commit 595f45e89c61299ed9714e81ea0aa27132741478
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Mon Apr 15 17:23:38 2024 -0700
+
+    Update team.md
+
+commit 6d4b2950689848668fcd4d1cfd365079e129e167
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Mon Apr 15 17:22:27 2024 -0700
+
+    Update team.md
+
+commit 0f08a448d0c4658bfc5c9b54495d0f3682c101b2
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Mon Apr 15 17:21:10 2024 -0700
+
+    Update team.md
+
+commit c251c98683cfdb1d5a37a1ece6903d8315c7838d
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Mon Apr 15 17:19:58 2024 -0700
+
+    Add files via upload
+
+commit 8f0bd5d3bf71210c6abd0fe19fd36e0ee596ebbd
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Mon Apr 15 17:15:04 2024 -0700
+
+    Update team.md
+
+commit 26946dd72ce19b500d7f810ef0816cc505f3d7aa
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Mon Apr 15 16:32:23 2024 -0700
+
+    Update team.md
+    
+    added user page links for each user in team
+
+commit b313ad9c83a35ae87b43458993f47898b28fe2ee
+Author: Jason Boenjamin <jasonboe510@gmail.com>
+Date:   Mon Apr 15 16:29:59 2024 -0700
+
+    Added teamintro.mp4 to admin/videos
+
+commit ba7d1da34d1dab8d38e20f34b1ed45d4aeebbbf5
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Mon Apr 15 16:11:35 2024 -0700
+
+    Create placeholder
+    
+    placeholder for video
+
+commit 2eb42961ba4643be9bc9efff034dd4285932d0f9
+Author: Andrew Pegg <andrewcomputsci2019@gmail.com>
+Date:   Mon Apr 15 16:00:58 2024 -0700
+
+    branding added
+
+commit 5ba6522de06686e59a8bfa2c51bebacd30883249
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Sun Apr 14 20:56:45 2024 -0700
+
+    Update team.md
+    
+    The initial team page, is still missing introductions
+
+commit 08481a47fbe73616fddce8e14bebc7d561527169
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Sun Apr 14 09:49:59 2024 -0700
+
+    Create team.md
+
+commit fd4335a78c6231ad2b61af327a7ebd5a725b2193
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Sat Apr 13 23:50:34 2024 -0700
+
+    Update 04122024-kickoff.md
+    
+    Added details to the last 6 bulletin points and updated final remarks
+
+commit 85b7d93c5939cb5aeb31e83cd6ed7f85fbecbff2
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Sat Apr 13 15:11:25 2024 -0700
+
+    Update 04122024-kickoff.md
+
+commit 7e0e4e9be627cb45d291c38bbdfd9d6dedaa107d
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Fri Apr 12 22:06:48 2024 -0700
+
+    Update 04122024-kickoff.md
+
+commit 2efbec1eb4328cf965a2a07fe745584f0bc24ef4
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Fri Apr 12 21:33:41 2024 -0700
+
+    Update 04122024-kickoff.md
+    
+    started work to finalize kickoff notes
+
+commit da25baccf6264864eaf6394f2960d081fc192d97
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Fri Apr 12 20:47:49 2024 -0700
+
+    Update 04122024-kickoff.md
+
+commit 20cc17aa13a29dd68aca68985b566471b99d9ed1
+Author: Jason Boenjamin <90885906+jason-boenjamin@users.noreply.github.com>
+Date:   Fri Apr 12 20:47:10 2024 -0700
+
+    Update 04122024-kickoff.md
+
+commit f94d0139d60c794ee0901540f8277c01c14fa092
+Author: Andrew Pegg <andrewcomputsci2019@gmail.com>
+Date:   Fri Apr 12 20:08:48 2024 -0700
+
+    meeting minutes
+
+commit 21398584b6356b32b702df865c6bb88ef7cff5a7
+Author: Andrew Pegg <andrewcomputsci2019@gmail.com>
+Date:   Fri Apr 12 19:31:22 2024 -0700
+
+    init repo
+
+commit 4873954c1a6cc14ac700ad42ffb9ee0e77fb8605
+Author: Andrew Pegg <54915639+andrewcomputsci2019@users.noreply.github.com>
+Date:   Fri Apr 12 19:21:02 2024 -0700
+
+    Initial commit
