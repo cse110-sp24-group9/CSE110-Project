@@ -39,6 +39,7 @@
         - if all the way then collapse
         - box with up arrow will show up
             - if box is clicked revert task list to default size
+  
 ![Sidebar-view](./Assets/sidebar-views.drawio.png)
 ## Journal Entry:
 
