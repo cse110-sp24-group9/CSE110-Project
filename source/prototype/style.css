@@ -1,0 +1,56 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+}
+
+#top-bar{ /*maybe*/
+    border: 1px solid black;
+}
+
+#content{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 20% 30% 50%;
+
+}
+ #content > div {
+    border: 1px solid black;
+    display: grid;
+ }
+#content > div > div{
+    border: 1px solid black;
+}
+
+#side-bar {
+    grid-template-rows: repeat(3,calc(100%/3));
+    grid-template-columns: 100%;
+}
+
+#journal-entries, #canvas{
+    grid-template-rows: 5% 90% 5%;
+    grid-template-columns: 100%;
+}
+
+#task-list {
+    height: 100%;
+    width: 100%;
+    justify-items: center;
+}
+ iframe {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 0px;
+}
+
+
