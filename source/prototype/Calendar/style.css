@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*the calendar itself*/
+.calendar{
+    /* width size 380 */
+    width: 100%; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.monthYear {
+    text-align: center;
+    font-weight: 600;
+    width: 150px;
+}
+/*affects buttons, such as the next/last month buttons*/
+.header button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+
+}
+/*affects how the days are displayed(This makes it so that the names of the days appear next to each other in a row rather than in a column)*/
+.days{
+    display: grid;
+    grid-template-columns: repeat(7,14%);
+    color: #999FA6;
+    font-weight: 500;
+}
+
+/* affects the text that tells you the day(i.e. Monday, Tuesday, etc*/
+.day {
+    font-size: auto;
+    text-align: center;
+    padding: 5px;
+    color: #999FA6;
+    font-weight: 5000;
+    height: 10%;
+}
+
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7, 14%);
+    grid-template-rows: repeat(5,20%);
+    font-size: auto;
+    gap: 1%;
+}
+/* date affects the boxes for each day*/
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1%;
+    margin: 5%;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 100/7%;
+    height: auto;
+    transition: 0.2s;
+}
+/* the intent with selected is to make it so that when we click on a date, the day will be selected and stay red. current test color was blue to see if I could get it to work*/
+/*i could not*/
+.date.selected{
+    background-color:rgb(28, 3, 250);
+}
+
+.date:hover,
+.date.active {
+    background: rgb(255, 89, 89);
+    color: white;
+    height: auto;
+}
+/*inactive days are the days outside of the current month but still displayed to fill out the calendar*/
+.date.inactive {
+    color: #d2d2d2;
+
+}
+
+.date.inactive:hover {
+    color: white;
+    height: auto;
+
+}
+
+.header button:hover {
+    background: rgb(255, 89, 89);
+    color: white;
+    height: auto;
+
+}
+
+/*when clicking a date, it will turn slightly redder than when hovered over*/
+/* visited only works with links, so, i can only get focus to work*/
+.date:visited{
+    background: rgb(5, 201, 5);
+    color: white;
+}  
+.date:focus{
+    background: rgb(255, 89, 89);
+    color: white;
+}  
+.date:active{
+    background: rgb(255, 40, 40);
+    color: white;
+}
