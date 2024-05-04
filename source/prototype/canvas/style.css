@@ -1,0 +1,148 @@
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5% 90% 5%;
+}
+
+body > div {
+  border: 1px solid black;
+}
+/*Tool Bar start*/
+#toolbar {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 100%;
+}
+    /*Left  Items*/
+#left-items{
+  display: flex;
+  justify-content: start;
+  padding: 5px;
+}
+    /*Middle  Items*/
+#middle-items{
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+#mode-info > span{
+  font-size: x-large;
+}
+    /*Right  Items*/
+#right-items{
+    display: flex;
+    justify-content: end;
+    padding: 5px;
+}
+#trash, #star, #pen {
+    background-color: white;
+    border: none;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+#trash:hover, #star:hover, #pen:hover {
+    background-color: lightgray;
+}
+#trash:active, #star:active, #pen:active {
+    background-color: rgb(180, 180, 180);
+}
+
+svg {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+/* Canvas Box*/
+#canvas-box{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5% 95%;
+}
+#canvas-box > div{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+#label-bar{
+ display: flex;
+}
+#label-box{
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+#label{
+    border-radius: 5px;
+    width: 100%;
+    background-color: #ddd;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 16px;
+    align-content: center;
+}
+#label > button{
+    position:absolute;
+    opacity: 0%;
+    cursor: pointer;
+}
+#label-box > input[type="checkbox"]{
+    position: absolute;
+    opacity:0%;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + #label{
+    background-color: gold;
+}
+#add {
+    height: 100%;
+    width: 100%;
+}
+#text-box {
+  position: relative;
+  height: 100%;
+  padding: 5%;
+}
+#text-box > textarea{
+  border: none;
+ font-size: larger  ;
+  height: 90%;
+  width: 90%;
+}
+/*Info Bar*/
+#info-bar{
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+#info-bar > span {
+  font-size: small;
+  font-style: italic;
+  color:gray
+}
+
+

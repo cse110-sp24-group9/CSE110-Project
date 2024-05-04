@@ -39,7 +39,7 @@ body {
     grid-template-columns: 100%;
 }
 
-#journal-entries, #canvas{
+#canvas{
     grid-template-rows: 5% 90% 5%;
     grid-template-columns: 100%;
 }
