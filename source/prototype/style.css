@@ -39,10 +39,6 @@ body {
     grid-template-columns: 100%;
 }
 
- #canvas{
-    grid-template-rows: 5% 90% 5%;
-    grid-template-columns: 100%;
-}
 
 #task-list {
     height: 100%;
