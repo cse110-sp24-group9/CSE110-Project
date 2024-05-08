@@ -1,0 +1,13 @@
+{
+  "name": "cse110-project",
+  "version": "1.0.0",
+  "description": "CSE 110 GROUP PROJECT",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "ShellDivers",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
