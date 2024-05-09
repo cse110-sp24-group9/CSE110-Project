@@ -1,51 +1,57 @@
-html{
-    height:100%;
+html {
+    height: 100%;
     width: 100%;
     overflow: hidden;
     margin: 0px;
 }
 
-body{
+body {
     margin: 0px;
-    height:100%;
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-rows: 5% 90% 5%;
-
 }
 
-body > div{
-    border: 1px solid black;
+body>div {
+    /* border: 1px solid black; */
 }
 
 /* Tool-bar section */
-#tool-bar{
+#tool-bar {
     display: grid;
     grid-template-columns: 80% 10% 10%;
+    background-color: rgb(249, 249, 249);
 }
 
-#searchJournal, #filter, #newEntry{
+#searchJournal,
+#filter,
+#newEntry {
     margin: 7px;
     cursor: pointer;
+    border: none;
 }
 
-#filter, #newEntry{
+#filter,
+#newEntry {
     border: 0px;
     background-color: rgba(0, 0, 255, 0);
 }
 
-#filter:hover, #newEntry:hover{
+#filter:hover,
+#newEntry:hover {
     background-color: lightgray;
     border-radius: 5px;
 }
 
-#filter:active, #newEntry:active{
+#filter:active,
+#newEntry:active {
     background-color: rgb(180, 180, 180);
     border-radius: 5px;
 }
 
 /* Journal-List section */
-.journal-entry{
+.journal-entry {
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -54,51 +60,80 @@ body > div{
     cursor: pointer;
 }
 
-.journal-entry:hover{
-    background-color: lightgray;
+.journal-entry:hover {
+    background-color: rgb(230, 230, 230);
     border-radius: 5px;
     border-color: 1px solid black;
 }
 
-#top{
+#top {
     display: grid;
     grid-template-columns: 5% 80% 15%;
 }
 
-#favorite{
+#favorite {
     font-size: small;
 }
 
-#info{
+#info {
     padding-left: 5%;
+    color: rgb(100, 100, 100);
 }
 
-#bottom{
+#bottom {
     padding-left: 5%;
     display: grid;
     grid-template-columns: 95% 5%;
 }
 
-#tags{
+#tags {
     display: flex;
     margin-right: 5px;
 }
 
-#tags > div{
+#tags>div {
     margin-right: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
     
-    background-color: azure;
+    border-radius: 5px;
+    width: 70px;
 }
 
 /* Info Bar Section  */
-#info-bar{
+#info-bar {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    background-color: rgb(235, 235, 235);
     justify-content: center;
-    margin: auto;
+    text-align: center;
     border-color: rgba(0, 0, 255, 0);
     font-size: larger;
     color: gray;
     font-style: italic;
+}
+
+#favorite{
+    color: rgb(255, 217, 0);
+}
+
+#label-box{
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+#label{
+    border-radius: 5px;
+    width: 100%;
+    background-color: #ddd;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 16px;
+    align-content: center;
 }
