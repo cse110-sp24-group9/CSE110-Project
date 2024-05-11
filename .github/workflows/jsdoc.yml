@@ -30,7 +30,7 @@ jobs:
         run: |
           git add ./docs/\*
           git commit -am "#Auto Generated" || echo "Nothing to Do"
-          git push --f
+          git push
 
               
               
