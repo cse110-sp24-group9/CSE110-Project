@@ -18,10 +18,18 @@
         "showInheritedInNav": true
     },
     "opts": {
-        "destination": "./docs/",
         "encoding": "utf8",
-        "private": true,
+        "readme": "./README.md",
+        "destination": "docs/",
         "recurse": true,
-        "template": "./node_modules/minami"
+        "verbose": true,
+        "template": "./node_modules/clean-jsdoc-theme",
+        "theme_opts": {
+            "default_theme": "dark"
+        }
+    },
+    "markdown": {
+        "hardwrap": false,
+        "idInHeadings": true
     }
 }
