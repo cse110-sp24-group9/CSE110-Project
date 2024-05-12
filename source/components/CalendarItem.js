@@ -8,6 +8,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 
 /**
+ * The Calendar web component implementation file
  * @author Andrew Pegg
  * @alias calendar-component
  * @extends {HTMLElement}
@@ -21,31 +22,32 @@ export default class CalendarItem extends HTMLElement{
     /**
      * @type {ShadowRoot}
      * @private
-     * @property
      * @summary the shadow root of the Calendar Component
      */
     #shadow
     /**
      * @type {HTMLElement}
-     * @property
      * @private
      * @summary the html grid for the days of the month
      */
     #daysGrid
     /**
      * @type {HTMLElement}
-     * @property
      * @private
      * @summary the text element for the title of the calendar specify the month and year
      */
     #currentDate
     /**
      * @type {HTMLButtonElement}
-     * @property
      * @private
      * @summary the buttons that allow for the generation of the previous and next month
      */
     #prevNextIcon
+    /**
+     * @event day-changed-event
+     * @type {CustomEvent}
+     * @property {number} time
+     */
     /**
      * @constructor
      * @version 0.1.0
@@ -54,27 +56,17 @@ export default class CalendarItem extends HTMLElement{
      */
     constructor(){
         super();
-        console.log("custom component");
         this.#shadow = this.attachShadow({mode: "open"});
         /**
          * @type {HTMLTemplateElement}
          */
         const tmpl =  document.getElementById('calendar_template');
+
         this.#shadow.appendChild(tmpl.content);
-        /**
-         * @type {HTMLElement}
-         */
         this.#daysGrid = this.#shadow.querySelector('.day_grid');
-        /**
-         * @type {HTMLElement}
-         */
         this.#currentDate = this.#shadow.querySelector(".title_bar span");
-        
-        /**
-         * @type {NodeListOf.HTMLElement}
-         */
         this.#prevNextIcon = this.#shadow.querySelectorAll(".title_bar button");
-        
+
         this.#renderCalendar();
         this.#setupButtons();
     }
@@ -98,12 +90,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = "inactive";
             dayEle.innerText = (lastDateofLastMonth - i + 1);
+            /**
+             * @fires day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth,-i+1).valueOf()}
+                });
+                this.dispatchEvent(event);
             }
             spanList.push(dayEle);
         }
@@ -119,12 +121,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = isToday;
             dayEle.innerText = (i);
+            /**
+             * @fires day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth,i).valueOf()}
+                });
+                this.dispatchEvent(event);
             }
             spanList.push(dayEle);
         }
@@ -133,12 +145,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = "inactive";
             dayEle.innerText = (i - lastDayofMonth + 1);
+            /**
+             * @fires day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth+1,i - lastDayofMonth + 1).valueOf()}
+                });
+                this.dispatchEvent(event);
             }
             spanList.push(dayEle);
         }
