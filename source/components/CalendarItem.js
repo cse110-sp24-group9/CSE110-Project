@@ -75,16 +75,16 @@ export default class CalendarItem extends HTMLElement{
          */
         this.#prevNextIcon = this.#shadow.querySelectorAll(".title_bar button");
         
-        this.renderCalendar();
-        this.setupButtons();
+        this.#renderCalendar();
+        this.#setupButtons();
     }
     /**
      * @function
-     * @public
-     * @name renderCalendar
+     * @private
+     * @alias renderCalendar
      * @summary renders the calendar to the screen
      */
-    renderCalendar() { 
+    #renderCalendar() { 
         let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month, in terms of week days
         // zero indexed, ie 0 = sun, 1 = mon ... 6 = sat
         lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month, ie 31
@@ -160,7 +160,14 @@ export default class CalendarItem extends HTMLElement{
             }
         }
     }
-    setupButtons(){
+    /**
+     * @private
+     * @function
+     * @author Andrew Pegg
+     * @alias setupButtons
+     * @summary sets up the buttons so that once clicked they update the calendar in the direction they are assigned to
+     */
+    #setupButtons(){
         this.#prevNextIcon.forEach(icon => { // getting prev and next icons
             icon.addEventListener("click", () => { // adding click event on both icons
                 // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
@@ -174,7 +181,7 @@ export default class CalendarItem extends HTMLElement{
                     // seems redundant, should be able to just removed this
                     date = new Date(); 
                 }
-                this.renderCalendar(); // calling renderCalendar function, with updated dates
+                this.#renderCalendar(); // calling renderCalendar function, with updated dates
             });
         });
     }
