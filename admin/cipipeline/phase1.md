@@ -1,30 +1,19 @@
-#CICD Pipeline
-
-
-phase1.md - a short 2 page (roughly) status on the pipeline in terms of what is currently functional (and what is planned or in progress). Embed your diagram in the markdown file.
-phase1.mp4 - a no more than 2 min video demonstration of the pipeline
-
-CI/CD pipeline phase 1 should be a vetting phase where you try and implement as many of the following ideas as possible, based on their relevance to your project:
-
-Linting and code style enforcement (may happen in pipeline and/or in editor)
-Code quality via tool  (ex. Codeclimate, Codacy, etc.)
-Code quality via human review (ex. Pull Requests)
-Unit tests via automation (ex. Jest, Tape, Ava, Cypress, Mocha/Chai, etc.)
-Documentation generation via automation (ex. JSDocs)
-Other testing including e2e (end to end) and pixel testing is also possible so you may decide to use an environment that does numerous things.
+# CICD Pipeline
 
 ## Introduction
-For ShellDiver's Phase 1 CI/CD Pipeline, we have incorporated ESLint for linting and code-style enforcement. Additionally, we have enforced Pull Requests for all branches and issues so that no one can commit to the main branch themselves. We have also added in Jest for unit testing, as we learned in lab 5. Also, we have documentation generation by implementing JSDocs. These are what we have already implemented for phase 1. For phase 2, we plan to incorporate a third-party code quality via tools, such as Codeclimate or Codacy (although we don't like either.). After lab 6, we will incorporate e2e, end-to-end, and pixel testing after lab6. 
+
+Welcome to the initial phase of ShellDiver's CI/CD Pipeline, where we have established a foundational framework aimed at enhancing the quality and reliability of our software development process. At this stage, our pipeline incorporates a series of automated and manual checks designed to streamline development workflows and ensure that our codebase remains clean and efficient. Currently, we have successfully integrated ESLint for stringent linting and code-style enforcement. This will help maintain a consistent coding standard across the project. Pull requests are mandatory and instilled in all contributions to the main branch. This fosters a collaborative review culture and minimizes integration issues. We have also applied Jest for unit testing, as we have learned in lab 5, to catch bugs early in the development cycle. Additionally, our pipeline automatically generates documentation through JSDocs to keep all project stakeholders aligned. This first phase serves as the groundwork for more sophisticated tools and processes we plan to implement in Phase 2. We plan to incorporate third-party code quality via tools, such as Codeclimate or Codacy (although we don't like either.). After lab 6, we will incorporate e2e, end-to-end, and pixel testing after lab6.
+
 
 ## Phase 1 CI/CD Pipeline walkthrough
 
 ![image](phase1.drawio.png)
 
-- First, the developr will begin devoloping.
+- First, the developer will begin developing.
 - Next, it will go through ESLINT Static Code analysis
 - Then it will check for errors
   - If there are errors, the developer will fix the errors and go back to Step 2
-  - Otherwise the developer will create JSDoc COmmments
+  - Otherwise, the developer will create JSDoc comments
 - After the Developer creates JSDoc Comments, the developer will create JEST Test
 - We ask, does it pass the test locally
   - If not, fix the code and go back to step 2
@@ -34,7 +23,7 @@ For ShellDiver's Phase 1 CI/CD Pipeline, we have incorporated ESLint for linting
 - Go through GitHub actions
 - Test code using Jest Unit Test
   - If the code does NOT pass, fix the code, and go back to step 2
-  - If the code does, pass go through human review
+  - If the code does, pass through human review
 - A team member will review the code
   - If there are issues, fix the code and go back to step 2
   - If there are no issues, Merge the Pull Request to the Main Branch
@@ -42,3 +31,6 @@ For ShellDiver's Phase 1 CI/CD Pipeline, we have incorporated ESLint for linting
 - Which renders JSDoc documentation
 - Add into Main Branch
 - Pipeline Finish
+
+
+This structured approach, [reference](phase1.drawio.png), not only enhances or development practices but also ensures that our application remains robust and maintainable. As we look forward to Phase 2, our focus will shift towards integrating additional tools for code quality assessments and expanding our testing capabilities to include e2e, end-to-end, and pixel tests after the upcoming lab 6. This progression will continue to solidify our commitment to delivering high-quality software efficiently and effectively.
