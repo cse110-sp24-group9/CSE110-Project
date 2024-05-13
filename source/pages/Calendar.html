@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CALENDAR WIDGET VIEW</title>
+    <script type="module" src="../components/CalendarItem.js"></script>
+  </head>
+  <body>
+    <template id="calendar_template">
+        <link rel="stylesheet" href="../styles/Calendar.css">
+        <div class="Calendar_Container">
+            <div class="flex title_bar">
+                <button id="prev">
+                    &lt;
+                </button>
+                <span></span>
+                <button id="nextBtn">
+                    <!-- <i class="fa-solid fa-chevron-right"></i> --><!--lib dep-->
+                    &gt;
+                </button>
+            </div>
+            <ul class="week_list">
+              <li>Sun</li>
+              <li>Mon</li>
+              <li>Tue</li>
+              <li>Wed</li>
+              <li>Thu</li>
+              <li>Fri</li>
+              <li>Sat</li>
+            </ul>
+            <div class="grid day_grid">
+            </div>
+          </div>
+    </template>
+    <calendar-component></calendar-component>
+    </script>
+  </body>
+</html>
