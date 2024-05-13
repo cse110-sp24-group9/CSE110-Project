@@ -1,0 +1,187 @@
+/** {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}*/
+html {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body {
+height: 100%;
+width: 100%;
+ display: flex; 
+align-items: left;
+justify-content: left;
+overflow-y:auto;
+}
+
+.tasklist-template {
+width: 100%;
+height: 100%;
+display: grid;
+grid-template-columns: 1fr;
+flex-direction: column;
+padding: 10px;
+background: white;
+border-radius: 10px;
+}
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  grid-row-start: 1;
+}
+
+.header > button {
+flex: 10%;
+border-radius: 50%;
+border: none;
+width: 100%;
+font-size:100%;
+aspect-ratio: 1 / 1;
+}
+
+.header >button:hover {
+  background-color: lightgray;
+}
+
+.header > button:active{
+  background-color: gray;
+}
+
+.header > h1 {
+flex: 80%;
+text-align: center;
+margin: 1%;
+}
+
+.list {
+position: relative;
+display: grid;
+height: 100%;
+grid-template-columns: 100%;
+grid-auto-rows:auto;
+justify-items: center;
+align-items: center;
+flex: 100%;
+grid-row-start: 2;
+}
+
+
+.task-entry {
+width: 80%;
+display:grid;
+grid-template-columns: 10% 80% 10%;
+grid-template-rows: 100%;
+margin: 2%;
+}
+
+
+.task-entry > input[type="text"] {
+width: 90%;
+font-size: inherit;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+border: solid;
+border-color: white;
+border-bottom-color: black;
+border-width: 2px;
+}
+
+.task-entry > input[type="text"]:hover {
+  background-color: lightgray;
+}
+
+.checkbox{
+  display: block;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  width: 50%;
+  border: solid;
+  aspect-ratio: 1 / 1 ;
+  margin: 1%;
+}
+.task-entry > button{
+  display: block;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  width: 50%;
+  border: solid;
+  aspect-ratio: 1 / 1 ;
+  margin: 1%;
+}
+.checkbox > input[type="checkbox"] {
+z-index: 1;
+cursor: pointer;
+position: absolute;
+opacity: 0%;
+cursor: pointer;
+width: 100%;
+height: 100%;
+margin: 0%;
+}
+
+.checkmark {
+  opacity: 0%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover {
+background-color: lightgray;
+}
+
+/* Show the checkmark when checked */
+.checkbox input[type="checkbox"]:checked ~ .checkmark {
+  opacity: 100%;
+}
+
+.checkbox .checkmark{
+  background-color: black;
+  z-index: 0;
+  align-self: center;
+  width: 100%;
+  aspect-ratio: 1 /1 ;
+}
+
+#AddTask {
+height: 100px;
+width: 80%;
+background-color: #555;
+margin-left:10%;
+margin-right: 10%;
+margin-top: 2%;
+margin-bottom: 2%;
+clear:both;
+justify-content: center;
+align-items: center;
+display: block;
+grid-row-start: 3;
+}
+/* Style the checkmark/indicator 
+.checkbox .checkmark {
+z-index: 0;
+align-self: center;
+justify-self: center;
+position: absolute;
+margin: 20%;
+width: 20%;
+height: 50%;
+border: solid black;
+border-width: 0 3px 3px 0;
+transform: rotate(45deg);
+}
+*/
