@@ -13,9 +13,6 @@ body {
   grid-template-rows: 5% 90% 5%;
 }
 
-body > div {
-  border: 1px solid black;
-}
 /*Tool Bar start*/
 #toolbar {
   width: 100%;
@@ -23,12 +20,7 @@ body > div {
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: 100%;
-}
-    /*Left  Items*/
-#left-items{
-  display: flex;
-  justify-content: start;
-  padding: 5px;
+  background-color: #F2F2F4;  
 }
     /*Middle  Items*/
 #middle-items{
@@ -46,7 +38,7 @@ body > div {
     padding: 5px;
 }
 #trash, #star, #pen {
-    background-color: white;
+     background-color: #F2F2F4;
     border: none;
     height: 100%;
     aspect-ratio: 1/1;
@@ -81,6 +73,7 @@ svg {
 }
 #label-bar{
  display: flex;
+ background-color: rgb(244, 244, 244);
 }
 #label-box{
     display: flex;
@@ -132,17 +125,17 @@ input[type="checkbox"]:checked + #label{
  font-size: larger  ;
   height: 90%;
   width: 90%;
+ box-shadow: 10px 5px 5px #F2F2F4; 
 }
 /*Info Bar*/
 #info-bar{
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-}
-#info-bar > span {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
   font-size: small;
   font-style: italic;
-  color:gray
+  color:gray;
+  background-color: #F2F2F4;
 }
 
 

@@ -1,24 +1,24 @@
 html {
     height: 100%;
     width: 100%;
-    overflow: hidden;
     margin: 0px;
+    overflow:hidden;
 }
 body {
-    height: 100%;
+    height: 90%;
     width: 90%;
     padding: 5%;
     margin: 0px;
     display: flexbox;
-    overflow: visible;
     background-color: rgb(244, 244, 244);
+    overflow: auto;
 }
 
 #event-entry {
-    padding: 1px 5% 1px 5%;
+    padding: 1px 2.5% 1px 2.5%;
     position: relative;
     border-radius: 5px;
-    width: 90%;
+    width: 95%;
     height: 30px;
     display: grid;
     grid-template-columns: 70% 30%;
@@ -40,6 +40,7 @@ body {
 #time {
     text-align: right;
     align-content: center;
+    font-size: small;
 }
 
 #add-box {
@@ -49,6 +50,8 @@ body {
   width: 90%;
   text-align: center;
   background-color: white;
+  font-size: x-large;
+  border-radius: 5px;
 }
 
 #add-box:hover {
@@ -69,6 +72,13 @@ body {
 .event-type2 {
     background-color: 	#ffdfba;
 }
+
 .event-type3 {
     background-color: #ffffba;
+}
+.event-type4 {
+    background-color: #bcffba;
+}
+.event-type5 {
+    background-color: #baf2ff;
 }

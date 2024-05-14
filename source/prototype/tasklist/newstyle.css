@@ -1,73 +1,24 @@
 html {
     height: 100%;
     width: 100%;
-    overflow: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow:hidden;
 }
 body {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: left;
-  justify-content: left;
-}
-
-.tasklist {
-  width: 100%;
-  height: 100%;
+  height: 90%;
+  width: 90%;
+  margin: 0px;
+  padding: 5%;
+  background-color: #f2f2f5;
+  overflow: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background: white;
-  border-radius: 10px;
 }
 
-
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-items: center;
-    align-items: center;
-}
-
-.header > button {
-  flex: 10%;
-  border-radius: 50%;
-  border: none;
+#task-entry {
+  border-radius: 5px;
   width: 100%;
-  font-size:100%;
-  aspect-ratio: 1 / 1;
-}
-
-.header >button:hover {
-    background-color: lightgray;
-}
-
-.header > button:active{
-    background-color: gray;
-}
-
-.header > h1 {
- flex: 80%;
- text-align: center;
- margin: 1%;
-}
-
-.list {
-  position: relative;
-  display: grid;
-  height: 100%;
-  grid-template-columns: 100%;
-  grid-auto-rows:auto;
-  justify-items: center;
-  align-items: center;
-  flex: 100%;
-}
-
-
-.task-entry {
-  width: 100%;
+  height: 25px;
   display: grid;
   grid-template-columns: 10% 90%;
   grid-template-rows: 100%;
@@ -75,14 +26,13 @@ body {
 }
 
 
-.task-entry > input[type="text"] {
-  width: 90%;
+#info {
+  margin: 5px;
+  text-align: left;
+  align-content: center;
   font-size: inherit;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  border: solid;
-  border-color: white;
-  border-bottom-color: black;
-  border-width: 2px;
+  border-bottom: 1px solid black;
 }
 .task-entry > input[type="text"]:hover {
     background-color: lightgray;
@@ -148,3 +98,22 @@ body {
   transform: rotate(45deg);
 }
 */
+
+#add-box {
+  border: 1px solid black;
+  position:fixed;
+  bottom: 5px;
+  width: 90%;
+  text-align: center;
+  background-color: white;
+  font-size: x-large;
+  border-radius: 5px;
+}
+
+#add-box:hover {
+  background-color: lightgrey;
+}
+
+#add-box:active {
+    background-color: grey;
+}
