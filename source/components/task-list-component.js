@@ -1,5 +1,5 @@
-//not used yet, as I don't think it works, and is also not in the task-list html yet
-export default class TaskListComponent extends HTMLElement{
+     //
+     export default class TaskListItem extends HTMLElement{
     /**
      * @type {ShadowRoot}
      * @private
@@ -18,42 +18,54 @@ export default class TaskListComponent extends HTMLElement{
      * @type {HTMLButtonElement}
      * @property
      * @private
-     * @summary the text element to write the Task
+     * @summary the button to add a Task
      */
     #addTaskButton
 
-
     constructor(){
         super();
+        console.log("custom component");
         this.#shadow = this.attachShadow({mode: "open"});
         /**
          * @type {HTMLTemplateElement}
          */
-        const tmpl =  document.getElementById('tasklist-template');
+
+        const tmpl =  document.getElementById('task-list_template');
         this.#shadow.appendChild(tmpl.content);
         /**
          * @type {HTMLButtonElement}
          */
-        this.#addTaskButton = this.#shadow.querySelector('.AddTask');
-
-                /**
+        console.log(tmpl.id);
+        this.#addTaskButton = this.#shadow.querySelector('.addbtn');     
+        /**
          * @type {HTMLDivElement}
          */
-                this.#task_list = this.#shadow.querySelector(".list");
-        
-        this.#setUpList();
+        this.#task_list = this.#shadow.querySelector(".list");
+        console.log(this.#task_list)
         this.#setupButtons();
     }
 
-    #setUpList(){
-        //will have to set up how the list itself works
-    }
-    //set up the add task button
+
     #setupButtons(){
         this.#addTaskButton.addEventListener('click', () => {
-            createNewTask();
-            listElement.insertAdjacentHTML('beforeend', taskElement);
-            i++;
+            var newListElement = document.createElement('article');
+            newListElement.className = 'task-entry';
+            newListElement.innerHTML = `
+                <div class="checkbox">
+                    <input type="checkbox">
+                    <div class="checkmark"></div>
+                </div>
+                <input type="text" class="task-text">
+                <button class="minusbtn">-</button>
+            `;
+            this.#task_list.appendChild(newListElement);
+          
+            const minusbtn = newListElement.querySelector('.minusbtn')
+            minusbtn.addEventListener('click', function() {
+            newListElement.remove();
+        });
         });
     }
+    
 }
+customElements.define('task-list-component',TaskListItem);

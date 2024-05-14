@@ -2,19 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <script type="module" src="../components/task-list-component.js"></script>
     <link rel="stylesheet" href="../styles/task-list.css">
     <title>Task List</title>
   </head>
   <body>
-    <article class="tasklist-template">
-      <button class="AddTask" id="AddTask">Add New Task</button>
+    <template id="task-list_template">
+      <link rel="stylesheet" href="../styles/task-list.css">
+    <article class="tasklist">
       <div class="header">
         <h1 id="title">Task List</h1>
+         <button class="addbtn">
+            +
+        </button>
       </div>
       <div class="list" id="list">
-        <script src="../components/task-list.js"></script>
       </div>
     </article>
+  </template>
+  <task-list-component></task-list-component>
   </body>
 
 </html>
