@@ -41,7 +41,7 @@ box-shadow: 0 0 10px rgba(0,0,0,0.3);
   align-items: center;
 }
 
-#addbtn {
+.addbtn {
 flex: 10%;
 border-radius: 50%;
 border: none;
