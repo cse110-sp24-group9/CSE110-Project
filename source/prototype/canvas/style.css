@@ -8,34 +8,41 @@ body {
   width: 100%;
   height: 100%;
   margin: 0px;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 5% 90% 5%;
+  display: flex;
+  flex-direction: column;
 }
 
 /*Tool Bar start*/
 #toolbar {
+  flex-shrink: 0;
+  height: 40px;
   width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
-  grid-template-rows: 100%;
+  display: flex;
+  flex-direction: row;
   background-color: #F2F2F4;  
+}
+
+#toolbar > div {
+    height: 100%;
+}
+#left-items {
+    flex-grow: 1;
+    position: relative;
 }
     /*Middle  Items*/
 #middle-items{
+  flex-grow: 2;
   align-content: center;
   justify-content: center;
   text-align: center;
-}
-#mode-info > span{
   font-size: x-large;
 }
     /*Right  Items*/
 #right-items{
+    flex-grow: 1;
     display: flex;
     justify-content: end;
-    padding: 5px;
+    padding-right: 5px;
 }
 #trash, #star, #pen {
      background-color: #F2F2F4;
@@ -55,22 +62,19 @@ body {
 }
 
 svg {
-    height: 100%;
     aspect-ratio: 1/1;
 }
 /* Canvas Box*/
 #canvas-box{
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 5% 95%;
-}
-#canvas-box > div{
-    width: 100%;
-    height: 100%;
+  margin: 10%;
+  flex-grow: 1;
+  height: 80%;
+  width: 80%;
+  resize: none;
 }
 #label-bar{
+ flex-shrink: 0;
+ height: 40px;
  display: flex;
  background-color: rgb(244, 244, 244);
 }
@@ -88,11 +92,13 @@ svg {
     border: none;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     margin: 4px 2px;
     border-radius: 16px;
     align-content: center;
     color:#00000080;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 #label > button{
     position:absolute;
@@ -152,18 +158,22 @@ input[type="checkbox"]:checked + #label {
 }
 #text-box {
   position: relative;
-  height: 100%;
   padding: 5%;
+  flex-basis: 100%;
 }
 #text-box > textarea{
-  border: none;
+  border: 1px solid rgb(233, 233, 233);
  font-size: larger  ;
   height: 90%;
   width: 90%;
  box-shadow: 10px 5px 5px #F2F2F4; 
+ resize: none;
 }
 /*Info Bar*/
 #info-bar{
+  flex-shrink: 0;
+  height: 40px;
+  width: 100%;
   justify-content: center;
   align-content: center;
   text-align: center;
