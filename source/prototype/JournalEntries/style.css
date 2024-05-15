@@ -11,6 +11,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-rows: 5% 90% 5%;
+    grid-template-columns: 100%;
 }
 
 body>div {
@@ -27,7 +28,6 @@ body>div {
 #searchJournal,
 #filter,
 #newEntry {
-    margin: 7px;
     cursor: pointer;
     border: none;
 }
@@ -52,11 +52,16 @@ body>div {
 
 /* Journal-List section */
 .journal-entry {
-    margin: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    position: relative;
+    width: 90%;
+    margin: 2.5%;
+    margin-bottom: 0%;
+    padding: 2.5%;
+    padding-bottom: 0%;
+    height: 75px;
     border-bottom: 1px solid black;
-    padding: 3px;
     cursor: pointer;
 }
 
@@ -66,24 +71,53 @@ body>div {
     border-color: 1px solid black;
 }
 
-#top {
+.journal-entry > div {
     display: grid;
-    grid-template-columns: 5% 80% 15%;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3,calc(100%/3));
 }
+
+#left-info {
+    position: relative;
+}
+
+#middle-info {
+    flex-basis: 100%;
+}
+#right-info {
+    position: relative;
+}
+
 
 #favorite {
     font-size: small;
+    margin-right: 5px;
+}
+
+#emotion {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+
+}
+
+#time {
+    text-align: right;
+}
+
+#title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #info {
-    padding-left: 5%;
     color: rgb(100, 100, 100);
-}
-
-#bottom {
-    padding-left: 5%;
-    display: grid;
-    grid-template-columns: 95% 5%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #tags {

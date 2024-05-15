@@ -12,15 +12,29 @@
             <button type="button" id="filter" onclick="drop()">≡</button>         
             <button tyoe="button" id="newEntry" onclick="newEntry()">✎</button>
         </div>
-
-
-        <div id="journal-list"></div>
+        <div id="journal-list">
+          <article class='journal-entry'>
+            <div id='left-info'>
+              <div id='favorite'>★</div>
+            </div>
+            <div id="middle-info">
+              <div id='title' style='font-weight:bold;'>Task Completed</div>
+              <div id='info'>Completed dev journal prototype</div>
+              <div id='tags'>
+                <div id='label-box'>
+                  <div id='label'>Task</div>
+                </div>
+              </div>
+            </div>
+            <div id="right-info">
+              <div id='time'>10:50pm</div>
+              <div id='emotion'>😄</div>
+            </div>
+          </article>
+        </div>
         <div id="info-bar">
             <span id="info-b">0 Entries</span>
         </div>
         <script src="main.js"></script>
     </body>
-
-
-
 </html>

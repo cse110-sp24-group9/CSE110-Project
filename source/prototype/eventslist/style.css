@@ -2,16 +2,16 @@ html {
     height: 100%;
     width: 100%;
     margin: 0px;
-    overflow:hidden;
+    overflow:auto;
 }
 body {
     height: 90%;
     width: 90%;
     padding: 5%;
+  padding-bottom: 0px;
     margin: 0px;
     display: flexbox;
     background-color: rgb(244, 244, 244);
-    overflow: auto;
 }
 
 #event-entry {
@@ -20,13 +20,13 @@ body {
     border-radius: 5px;
     width: 95%;
     height: 30px;
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: 100%;
+    display: flex;
+    flex-direction: row;
     margin-bottom: 5px;
 }
 
 #title {
+    flex-basis: 100%;
     position: relative;
     overflow: hidden;
     white-space: nowrap;

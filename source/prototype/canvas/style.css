@@ -69,7 +69,6 @@ svg {
 #canvas-box > div{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
 }
 #label-bar{
  display: flex;
@@ -86,7 +85,6 @@ svg {
 #label{
     border-radius: 5px;
     width: 100%;
-    background-color: #ddd;
     border: none;
     text-align: center;
     text-decoration: none;
@@ -94,6 +92,7 @@ svg {
     margin: 4px 2px;
     border-radius: 16px;
     align-content: center;
+    color:#00000080;
 }
 #label > button{
     position:absolute;
@@ -108,9 +107,45 @@ svg {
     margin: 0px;
     cursor: pointer;
 }
-input[type="checkbox"]:checked + #label{
-    background-color: gold;
+/* 
+Start Of seperate labels and their differenet colors 
+    Will be pastel colors but with half opacity
+    Selected will have full opacity
+*/
+.label-1 {
+  background-color: #ffb3bb50 ;
 }
+.label-2{
+    background-color: 	#ffdfba50;
+
+}
+.label-3 {
+    background-color: #ffffba50;
+}
+.label-4 {
+
+    background-color: #bcffba50;
+}
+input[type="checkbox"]:checked + .label-1 {
+  background-color: #ffb3ba ;
+}
+input[type="checkbox"]:checked + .label-2{
+    background-color: 	#ffdfba;
+
+}
+input[type="checkbox"]:checked + .label-3 {
+    background-color: #ffffba;
+}
+input[type="checkbox"]:checked + .label-4 {
+
+    background-color: #bcffba;
+}
+
+input[type="checkbox"]:checked + #label {
+    color:#000000;
+}
+
+
 #add {
     height: 100%;
     width: 100%;
