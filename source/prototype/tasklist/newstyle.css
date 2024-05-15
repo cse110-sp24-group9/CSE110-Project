@@ -35,6 +35,9 @@ body {
   font-size: inherit;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border-bottom: 1px solid black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .task-entry > input[type="text"]:hover {
     background-color: lightgray;
