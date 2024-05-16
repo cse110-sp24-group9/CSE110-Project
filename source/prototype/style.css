@@ -18,18 +18,59 @@ body {
     flex-direction: row;
 
 }
- #content > div {
-    display: grid;
- }
-#content > div > div{
-    border-top: 1px solid black;
-}
 
 #side-bar {
-    grid-template-rows: repeat(3,calc(100%/3));
-    grid-template-columns: 100%;
+    display: flex;
+    flex-direction: column;
     flex-basis: 20%;
 }
+#tool-bar {
+    height: 40px;
+    flex-shrink: 0;
+  background-color: #F2F2F4;  
+}
+
+#sidebar-button, #setting-button {
+    background-color: #F2F2F4;
+    height: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    border: none;
+    border: 0px;
+    flex-shrink: 0;
+}
+
+#sidebar-button:hover, #setting-button:hover  {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#sidebar-button:active, #setting-button:active {
+    background-color: rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+svg {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+
+#calendar {
+    height: 265px;
+    flex-shrink: 0;
+}
+
+#event-list {
+    flex-grow: 1;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+#task-list {
+    flex-grow: 1;
+}
+
+
 
 #journal-entries {
     flex-basis: 30%;
