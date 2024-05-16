@@ -28,6 +28,7 @@ body {
     height: 40px;
     flex-shrink: 0;
   background-color: #F2F2F4;  
+  display: flex;
 }
 
 #sidebar-button, #setting-button {
