@@ -30,6 +30,8 @@ svg {
 #searchJournal {
     flex-grow: 1;
     margin: 1%;
+    overflow: hidden;
+
 }
 
 #filter,
@@ -39,6 +41,7 @@ svg {
     border: none;
     border: 0px;
     background-color: rgba(0, 0, 255, 0);
+    flex-shrink: 0;
 }
 
 #filter:hover,
@@ -56,8 +59,14 @@ svg {
 /* Journal-List section */
 #journal-list {
   flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: row;
 }
 .journal-entry {
+    flex-shrink: 0;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -77,65 +86,83 @@ svg {
     border-color: 1px solid black;
 }
 
-.journal-entry > div {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(3,calc(100%/3));
+#side-info {
+    flex-shrink: 0;
+}
+#favorite{
+    color: rgb(255, 217, 0);
 }
 
-#left-info {
+#main-info {
+    width: 90%;
+    height: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: repeat(3,calc(100%/3));
+    grid-template-columns: 100%;
+}
+
+#top-info {
+    padding: 0% 2.5% 0% 2.5%;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 10px
 }
 
 #middle-info {
-    flex-basis: 100%;
+    padding: 0% 2.5% 0% 2.5%;
+    align-content: center;
 }
-#right-info {
+
+#bottom-info {
+    padding: 0% 2.5% 0% 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+#title {
+    font-weight: bold;
+    flex-grow: 1;
     position: relative;
-}
-
-
-#favorite {
-    font-size: small;
-    margin-right: 5px;
-}
-
-#emotion {
-    grid-row-start: 2;
-    grid-row-end: 4;
-    position: absolute;
-    bottom: 1px;
-    right: 1px;
-
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    align-content: center;
 }
 
 #time {
     text-align: right;
+    align-content: center;
 }
 
-#title {
-    white-space: nowrap;
+#preview {
+    position: relative;
+    text-align: left;
     overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-#info {
-    color: rgb(100, 100, 100);
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    align-content: center;
 }
 
-#tags {
-    display: flex;
-    margin-right: 5px;
+#label-bar {
+    flex-grow: 1;
+    align-content: center;
 }
 
-#tags>div {
-    margin-right: 5px;
-    
-    border-radius: 5px;
+#label {
+    text-align: center;
     width: 70px;
+    border-radius: 5px ;
+    background-color: #ffb3bb50;
+    color: #00000090;
+}
+
+#emotion {
+    justify-content: center;
+    text-align: center;
 }
 
 /* Info Bar Section  */
@@ -150,28 +177,4 @@ svg {
   font-style: italic;
   color:gray;
   background-color: #F2F2F4;
-}
-#favorite{
-    color: rgb(255, 217, 0);
-}
-
-#label-box{
-    display: flex;
-    position: relative;
-    width: 70px;
-    height: 100%;
-    justify-content: center;
-    align-content: center;
-}
-#label{
-    border-radius: 5px;
-    width: 100%;
-    background-color: #ddd;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    border-radius: 16px;
-    align-content: center;
 }

@@ -36,6 +36,8 @@ body {
   justify-content: center;
   text-align: center;
   font-size: x-large;
+  white-space: nowrap;
+  overflow: hidden;
 }
     /*Right  Items*/
 #right-items{
