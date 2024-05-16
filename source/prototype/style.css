@@ -24,6 +24,14 @@ body {
     flex-direction: column;
     flex-basis: 20%;
 }
+
+#main-content {
+    width: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3,repeat(100%/3));
+}
 #tool-bar {
     height: 40px;
     flex-shrink: 0;
@@ -58,23 +66,16 @@ svg {
 
 
 #calendar {
-    flex-grow: 1;
-    flex-shrink: 0;
 }
 
 #event-list {
-    flex-grow: 1;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-}
-#task-list {
-    flex-grow: 1;
 }
 
 
 
 #journal-entries {
-    flex-basis: 30%;
     border: 1px solid black;
     border-bottom: none;
     border-top: none;
