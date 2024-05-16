@@ -58,7 +58,7 @@ svg {
 
 
 #calendar {
-    height: 265px;
+    flex-grow: 1;
     flex-shrink: 0;
 }
 
