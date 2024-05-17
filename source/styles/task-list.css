@@ -1,0 +1,168 @@
+
+html {
+  height: 100%;
+}
+body {
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: rgb(240, 170, 200);
+background: radial-gradient(
+  circle,
+rgba(240, 170, 200, 1) 0%,
+rgba(150, 190, 230, 1) 100%
+);
+}
+
+.tasklist {
+/* Commented out to make it scale properly */
+/* width: 30%;
+height: 100%; */
+display: flex;
+flex-direction: column;
+padding: 10px;
+background: white;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+/* add .minus for cleanliness btn - Jason */
+.addbtn, .minusbtn {
+flex: 10%;
+border-radius: 50%;
+border: none;
+width: 100%;
+font-size:100%;
+aspect-ratio: 1 / 1;
+}
+
+#addbtn:hover, .minusbtn:hover {
+  background-color: lightgray;
+}
+
+.addbtn:active, .minusbtn:active {
+  background-color: gray;
+}
+
+.header > h1 {
+flex: 80%;
+text-align: center;
+margin: 1%;
+}
+
+.list {
+position: relative;
+display: grid;
+height: 100%;
+grid-template-columns: 100%;
+grid-auto-rows:auto;
+justify-items: center;
+align-items: center;
+flex: 100%;
+}
+
+
+.task-entry {
+width: 100%;
+display: grid;
+grid-template-columns: 10% 75% 15%;
+grid-template-rows: 100%;
+margin: 2%;
+}
+
+
+.task-entry > input[type="text"] {
+width: 90%;
+font-size: inherit;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+border: solid;
+border-color: white;
+border-bottom-color: black;
+border-width: 2px;
+/* 
+Author Jason Boenjamin, Henry Tiet
+added transition */
+transition: text-decoration 
+0.3s ease;
+}
+.task-entry > input[type="text"]:hover {
+  background-color: lightgray;
+}
+
+.checkbox{
+  display: block;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  width: 50%;
+  border: solid;
+  aspect-ratio: 1 / 1 ;
+  margin: 1%;
+}
+
+.checkbox > input[type="checkbox"] {
+z-index: 1;
+cursor: pointer;
+position: absolute;
+opacity: 0%;
+cursor: pointer;
+width: 100%;
+height: 100%;
+margin: 0%;
+}
+
+.checkmark {
+  opacity: 0%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox:hover {
+background-color: lightgray;
+}
+
+/* Show the checkmark when checked */
+.checkbox input[type="checkbox"]:checked ~ .checkmark {
+opacity: 100%;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .task-entry {
+opacity: 50%;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark {
+z-index: 0;
+align-self: center;
+justify-self: center;
+/* change position to relative */
+position: relative;
+margin: auto;
+width: 20%;
+height: 50%;
+border: solid black;
+border-width: 0 3px 3px 0;
+transform: rotate(45deg);
+
+
+}
+
+
+.strikethrough {
+text-decoration: line-through;
+ /*  
+Author : Jason Boenjamin, Henry Tiet
+added transition 
+ */
+transition: text-decoration 1.3s ease;
+}
+
