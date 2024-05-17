@@ -8,10 +8,10 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 
 /**
+ * The Calendar web component implementation file
  * @author Andrew Pegg
  * @alias calendar-component
  * @extends {HTMLElement}
- * @since 0.0.0
  * @version 0.1.0
  * @type {CalendarItem}
  * @summary the calendar web component js implementation class
@@ -19,70 +19,72 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
  */              
 export default class CalendarItem extends HTMLElement{
     /**
+     * The shadow root of the calendarItem 
      * @type {ShadowRoot}
      * @private
-     * @property
      * @summary the shadow root of the Calendar Component
+     * @since 0.1.0
      */
     #shadow
     /**
+     * The grid html element that holds the days 
      * @type {HTMLElement}
-     * @property
      * @private
      * @summary the html grid for the days of the month
+     * @since 0.1.0
      */
     #daysGrid
     /**
+     * Title element of the calendar for now
      * @type {HTMLElement}
-     * @property
      * @private
      * @summary the text element for the title of the calendar specify the month and year
+     * @since 0.1.0
      */
     #currentDate
     /**
      * @type {HTMLButtonElement}
-     * @property
      * @private
      * @summary the buttons that allow for the generation of the previous and next month
+     * @since 0.1.0
      */
     #prevNextIcon
     /**
+     * @event calendar-component#day-changed-event
+     * @type {CustomEvent}
+     * @property {number} time
+     */
+    /**
      * @constructor
-     * @version 0.1.0
+     * @since 0.1.0
      * @author Andrew Pegg
      * @summary Creates, renders, and sets up interactability with the calendar component
+     * @since 0.1.0
      */
     constructor(){
         super();
-        console.log("custom component");
         this.#shadow = this.attachShadow({mode: "open"});
         /**
          * @type {HTMLTemplateElement}
          */
         const tmpl =  document.getElementById('calendar_template');
+
         this.#shadow.appendChild(tmpl.content);
-        /**
-         * @type {HTMLElement}
-         */
         this.#daysGrid = this.#shadow.querySelector('.day_grid');
-        /**
-         * @type {HTMLElement}
-         */
         this.#currentDate = this.#shadow.querySelector(".title_bar span");
-        
-        /**
-         * @type {NodeListOf.HTMLElement}
-         */
         this.#prevNextIcon = this.#shadow.querySelectorAll(".title_bar button");
-        
+
         this.#renderCalendar();
         this.#setupButtons();
     }
     /**
+     * The function responsible for rendering the days to screen by adding span items to the day grid
+     * Days from the previous month are marked with inactive tag, as well as, the days for next month
      * @function
      * @private
      * @alias renderCalendar
      * @summary renders the calendar to the screen
+     * @since 0.1.0
      */
     #renderCalendar() { 
         let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month, in terms of week days
@@ -98,12 +100,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = "inactive";
             dayEle.innerText = (lastDateofLastMonth - i + 1);
+            /**
+             * @fires calendar-component#day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth,-i+1).valueOf()}
+                });
+                this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
         }
@@ -119,12 +131,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = isToday;
             dayEle.innerText = (i);
+            /**
+             * @fires calendar-component#day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth,i).valueOf()}
+                });
+                this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
         }
@@ -133,12 +155,22 @@ export default class CalendarItem extends HTMLElement{
             let dayEle = document.createElement('span');
             dayEle.className = "inactive";
             dayEle.innerText = (i - lastDayofMonth + 1);
+            /**
+             * @fires calendar-component#day-changed-event
+             */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
                 if(activeEle){
                     activeEle.classList.toggle('selected');
                 }
                 dayEle.classList.add('selected');
+                let event = new CustomEvent('day-changed-event', {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true,
+                    detail: {time: new Date(currYear,currMonth+1,i - lastDayofMonth + 1).valueOf()}
+                });
+                this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
         }
@@ -166,6 +198,7 @@ export default class CalendarItem extends HTMLElement{
      * @author Andrew Pegg
      * @alias setupButtons
      * @summary sets up the buttons so that once clicked they update the calendar in the direction they are assigned to
+     * @since 0.1.0
      */
     #setupButtons(){
         this.#prevNextIcon.forEach(icon => { // getting prev and next icons
@@ -185,7 +218,13 @@ export default class CalendarItem extends HTMLElement{
             });
         });
     }
-    
+    /**
+     * 
+     * @param {CustomEvent} event the event to be dispatched by this web component
+     */
+    #dispatchCustomEvent(event){
+        this.dispatchEvent(event);
+    }
 }
 
 customElements.define('calendar-component',CalendarItem);

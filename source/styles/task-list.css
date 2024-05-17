@@ -1,10 +1,4 @@
-/** {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}*/
+
 html {
   height: 100%;
 }
@@ -40,8 +34,8 @@ box-shadow: 0 0 10px rgba(0,0,0,0.3);
   justify-items: center;
   align-items: center;
 }
-
-.addbtn {
+/* add .minus for cleanliness btn - Jason */
+.addbtn, .minusbtn {
 flex: 10%;
 border-radius: 50%;
 border: none;
@@ -50,29 +44,12 @@ font-size:100%;
 aspect-ratio: 1 / 1;
 }
 
-.minusbtn {
-flex: 10%;
-border-radius: 50%;
-border: none;
-width: 100%;
-font-size:100%;
-aspect-ratio: 1 / 1;
-}
-
-#addbtn:hover {
+#addbtn:hover, .minusbtn:hover {
   background-color: lightgray;
 }
 
-.minusbtn:hover {
-background-color: lightgray;
-}
-
-#addbtn:active {
+.addbtn:active, .minusbtn:active {
   background-color: gray;
-}
-
-.minusbtn:active {
-background-color: gray;
 }
 
 .header > h1 {
@@ -110,6 +87,11 @@ border: solid;
 border-color: white;
 border-bottom-color: black;
 border-width: 2px;
+/* 
+Author Jason Boenjamin, Henry Tiet
+added transition */
+transition: text-decoration 
+0.3s ease;
 }
 .task-entry > input[type="text"]:hover {
   background-color: lightgray;
@@ -174,6 +156,13 @@ transform: rotate(45deg);
 
 }
 
+
 .strikethrough {
 text-decoration: line-through;
+ /*  
+Author : Jason Boenjamin, Henry Tiet
+added transition 
+ */
+transition: text-decoration 1.3s ease;
 }
+
