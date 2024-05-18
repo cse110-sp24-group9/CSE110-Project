@@ -11,30 +11,105 @@ body {
   margin: 0px;
   padding: 5%;
   padding-bottom: 0px;
-
   background-color: #f2f2f5;
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 5%;
+}
+
+#list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 #task-entry {
   border-radius: 5px;
   width: 100%;
-  height: 25px;
-  display: grid;
-  grid-template-columns: 10% 90%;
-  grid-template-rows: 100%;
-  margin: 2%;
+  height: 30px;
+  display: flex;
+  margin-bottom: 2%;
+  gap: 1%;
+  position: relative;
+  justify-content: center;
+}
+
+#main-box {
+    display: flex;
+    flex-grow: 1;
+    border-bottom: 1px solid black;
+    height: 100%;
+    align-items: center;
+}
+#main-box:hover {
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
+#main-box:hover > #remove {
+    opacity: 100%;
+}
+
+#remove {
+    align-content: center;
+    position: relative;
+    height: 75%;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    border-radius: 100%;
+    opacity: 0%;
+}
+
+#remove > button {
+    opacity: 0%;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+}
+#remove > #background {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+#remove > button:hover + #background {
+  background-color: lightgray;
+}
+
+#remove > button:active + #background {
+  background-color: lightgoldenrodyellow;
+}
+
+#task-entry.add {
+  justify-content: center;
+  border: 1px solid black;
+  position:sticky;
+  bottom: 5px;
+  background-color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#task-entry.add:hover {
+  background-color: lightgrey;
+}
+
+#task-entry.add:active {
+    background-color: grey;
 }
 
 
 #info {
-  margin: 5px;
+  flex-grow: 1;
   text-align: left;
   align-content: center;
   font-size: inherit;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  border-bottom: 1px solid black;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -44,16 +119,17 @@ body {
 }
 
 .checkbox{
+    margin-right: 1%;
+    margin-left: 1%;
     display: block;
     justify-self: center;
     align-self: center;
     justify-content: center;
     align-content: center;
     position: relative;
-    width: 50%;
-    border: solid;
+    border: 1px solid black;
+    height: 50%;
     aspect-ratio: 1 / 1 ;
-    margin: 1%;
 }
 
 .checkbox > input[type="checkbox"] {
@@ -104,21 +180,3 @@ body {
 }
 */
 
-#add-box {
-  border: 1px solid black;
-  position:fixed;
-  bottom: 5px;
-  width: 90%;
-  text-align: center;
-  background-color: white;
-  font-size: x-large;
-  border-radius: 5px;
-}
-
-#add-box:hover {
-  background-color: lightgrey;
-}
-
-#add-box:active {
-    background-color: grey;
-}
