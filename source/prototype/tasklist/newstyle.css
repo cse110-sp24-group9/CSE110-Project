@@ -104,7 +104,7 @@ body {
 }
 
 
-#info {
+.info {
   flex-grow: 1;
   text-align: left;
   align-content: center;
@@ -180,3 +180,6 @@ body {
 }
 */
 
+.strikethrough {
+  text-decoration: line-through;
+}
