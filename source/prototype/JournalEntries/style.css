@@ -148,6 +148,7 @@ svg {
 }
 
 #label-bar {
+    /* Optimal flex growth is lower around 0.2*/
     flex-grow: 1;
     align-content: center;
 }

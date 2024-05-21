@@ -1,43 +1,47 @@
 const journalEntryList = [
     '<article class="journal-entry">\
-            <div id="left-info">\
+            <div id="side-info">\
               <div id="favorite">★</div>\
             </div>\
-            <div id="middle-info">\
-              <div id="title" style="font-weight:bold;">Task Completed</div>\
-              <div id="info">Completed dev journal prototype</div>\
-              <div id="tags">\
-                <div id="label-box">\
+            <div id="main-info">\
+              <div id="top-info">\
+                <div id="title"><span>Task Completed</span></div>\
+                <div id="time"><span>10:50pm</span></div>\
+              </div>\
+              <div id="middle-info">\
+                <div id="preview"><span>Completed dev journal prototype</span></div>\
+              </div>\
+              <div id="bottom-info">\
+                <div id="label-bar">\
                   <div id="label">Task</div>\
                 </div>\
+                <div id="emotion">😄</div>\
               </div>\
             </div>\
-            <div id="right-info">\
-              <div id="time">10:50pm</div>\
-              <div id="emotion">😄</div>\
-            </div>\
-          </article>',
+      </arcicle>',
     '<article class="journal-entry">\
-            <div id="left-info">\
-              <div id="favorite">★</div>\
-            </div>\
-            <div id="middle-info">\
-              <div id="title" style="font-weight:bold;">Design Team Meeting</div>\
-              <div id="info">Today I discussed with my design team information about</div>\
-              <div id="tags">\
-                <div id="label-box">\
-                  <div id="label">CSE110</div>\
-                </div>\
-                <div id="label-box">\
-                  <div id="label">Draft2</div>\
-                </div>\
-              </div>\
-            </div>\
-            <div id="right-info">\
-              <div id="time">10:50pm</div>\
-              <div id="emotion">😄</div>\
-            </div>\
-          </article>']
+      <div id="side-info">\
+        <div id="favorite">★</div>\
+      </div>\
+      <div id="main-info">\
+        <div id="top-info">\
+          <div id="title"><span>Design Team Meetin</span></div>\
+          <div id="time"><span>10:50pm</span></div>\
+        </div>  \
+        <div id="middle-info">\
+          <div id="preview"><span>Today I discussed with my design team information about</span></div>\
+        </div>\
+        <div id="bottom-info">\
+          <div id="label-bar">\
+            <div id="label">CSE 110</div>\
+          </div>\
+          <div id="label-bar">\
+            <div id="label">Draft 2</div>\
+          </div>\
+          <div id="emotion">😄</div>\
+        </div>\
+    </arcicle>'
+]
 
 let entriesNum = 0;
 
