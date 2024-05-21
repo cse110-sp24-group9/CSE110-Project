@@ -1,4 +1,6 @@
-html {
+/* This is the old style for task list */
+
+/* html {
     height: 100%;
     width: 100%;
     overflow: auto;
@@ -116,12 +118,12 @@ body {
     opacity: 0%;
 }
 
-/* On mouse-over, add a grey background color */
+On mouse-over, add a grey background color
 .checkbox:hover {
   background-color: lightgray;
 }
 
-/* Show the checkmark when checked */
+Show the checkmark when checked
 .checkbox input[type="checkbox"]:checked ~ .checkmark {
     opacity: 100%;
 }
@@ -134,7 +136,7 @@ body {
     aspect-ratio: 1 /1 ;
 }
 
-/* Style the checkmark/indicator 
+Style the checkmark/indicator 
 .checkbox .checkmark {
   z-index: 0;
   align-self: center;
