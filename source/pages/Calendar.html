@@ -35,6 +35,11 @@
           </div>
     </template>
     <calendar-component></calendar-component>
+    <script>
+      const calendar = document.querySelector('calendar-component');
+      calendar.addEventListener('hydrated',(event)=>{
+          calendar.setAttribute('hydrated',"true");
+      });
     </script>
   </body>
 </html>
