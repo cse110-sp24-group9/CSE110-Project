@@ -9,7 +9,7 @@ describe('Basic user flow for Calendar', () => {
     beforeAll(async () => {
         page = await browser.newPage();
         console.log('Navigating to Calendar page...');
-        await page.goto('http://127.0.0.1:3000/source/pages/Calendar.html', { waitUntil: 'networkidle2' });
+        await page.goto('http://localhost:3000/pages/Calendar.html', { waitUntil: 'networkidle2' });
         console.log('Page loaded');
 
         calendarComponent = await page.$('calendar-component');
