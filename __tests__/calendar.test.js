@@ -10,10 +10,10 @@ describe('Basic user flow for Calendar', () => {
 
     it('test that calendar component loads', async () => {
         /* 
-            need to look into method to load the selector once the calendar has actually
-            hydrated onto the page, right now its not waiting for the days to load
+            kinda a nuance thing here, waiting for the component to have all the information
+            loaded to page before testing children content.
         */
-        const calendar = await page.waitForSelector('calendar-component');
+        const calendar = await page.waitForSelector('calendar-component[hydrated="true"]');
         const shadow =  await calendar.getProperty('shadowRoot');
         let chilldrenNumber = await shadow.$$('span');
         console.log(chilldrenNumber.length);
