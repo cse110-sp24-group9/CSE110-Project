@@ -162,6 +162,17 @@ describe('Basic user flow for Calendar', () => {
 
 
     // correct number of active days
+    it('testing current active days inside the calendar', async () => {
+        const monthGrid = await page.$('calendar-component >>> .day_grid');
+        const numberOfDays = (await monthGrid.$$('span')).length;
+        const inactiveDays = (await monthGrid.$$('.inactive')).length;
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const numberMonthDays = new Date(currYear, currMonth + 1, 0).getDate();
+        expect((numberOfDays - inactiveDays) === numberMonthDays).toBe(true)
+    })
 
     // first day in correct day of week position
 
