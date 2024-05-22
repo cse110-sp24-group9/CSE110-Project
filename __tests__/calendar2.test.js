@@ -172,11 +172,44 @@ describe('Basic user flow for Calendar', () => {
         currMonth = date.getMonth();
         const numberMonthDays = new Date(currYear, currMonth + 1, 0).getDate();
         expect((numberOfDays - inactiveDays) === numberMonthDays).toBe(true)
-    })
+    });
 
     // first day in correct day of week position
+    it('testing first day is in the correct position ', async () => {
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
+        const spanList = await page.$$('calendar-component >>> .day_grid span');
+        for(let i = 0; i < spanList.length; i++){
+           let texItem = await spanList[i].getProperty('textContent');
+           if(texItem == 1){
+                expect(i%7 == firstDayofMonth).toBe(true);
+                return;
+           }
+        }
+        expect(true).toBe(false);
+    })
 
     // last day in correct day of week position
+    it('testing last day of month is inside correct week position', async () => {
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const lastDayofMonth = new Date(currYear, currMonth, 0).getDay();
+        const lastDateofMonth = new Date(currYear, currMonth, 0).getDay();
+        const spanList = await page.$$('calendar-component >>> .day_grid span');
+        for(let i = 0; i < spanList.length; i++){
+           let texItem = await spanList[i].getProperty('textContent');
+           if(texItem == lastDateofMonth){
+                expect(i%7 == lastDayofMonth).toBe(true);
+                return;
+           }
+        }
+        expect(true).toBe(false);
+    })
 
     // should load the calendar
 
