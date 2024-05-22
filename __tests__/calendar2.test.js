@@ -161,7 +161,7 @@ describe('Basic user flow for Calendar', () => {
     // hovering over a day highlights it
 
 
-    // correct number of active days
+    // correct number of active days, ie number of days inside the month
     it('testing current active days inside the calendar', async () => {
         const monthGrid = await page.$('calendar-component >>> .day_grid');
         const numberOfDays = (await monthGrid.$$('span')).length;
