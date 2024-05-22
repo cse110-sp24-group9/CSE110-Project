@@ -62,12 +62,11 @@ describe('Basic user flow for Calendar', () => {
         currentDay = date.getDate(),
         currYear = date.getFullYear(),
         currMonth = date.getMonth();
-        const firstDayofMonth = new Date(currYear, currMonth, 0).getDay();
+        const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
         const spanList = await page.$$('calendar-component >>> .day_grid span');
         for(let i = 0; i < spanList.length; i++){
            let texItem = await (await spanList[i].getProperty('textContent')).jsonValue();
            if(texItem == 1){
-                console.log('reached the first day of month')
                 expect(i%7 == firstDayofMonth).toBe(true);
                 return;
            }
@@ -82,13 +81,13 @@ describe('Basic user flow for Calendar', () => {
         currYear = date.getFullYear(),
         currMonth = date.getMonth();
         const lastDayofMonth = new Date(currYear, currMonth+1, 0).getDay();
-        const lastDateofMonth = new Date(currYear, currMonth+1, 0).getDay();
+        const lastDateofMonth = new Date(currYear, currMonth+1, 0).getDate();
         const spanList = await page.$$('calendar-component >>> .day_grid span');
         for(let i = 0; i < spanList.length; i++){
            let texItem = await (await spanList[i].getProperty('textContent')).jsonValue();
            if(texItem == lastDateofMonth){
-                console.log("reached last day of month: " +  (i%7 == lastDayofMonth))
-                expect(i%7 == lastDayofMonth).toBe(true);
+                expect((i%7) === lastDayofMonth).toBe(true);
+                return;
            }
         }
         expect(true).toBe(false);
