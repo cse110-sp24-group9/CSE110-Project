@@ -1,3 +1,24 @@
+// initialize months table
+const months = {
+    January: 0,
+    February: 1,
+    March: 2,
+    April: 3,
+    May: 4,
+    June: 5,
+    July: 6,
+    August: 7,
+    September: 8,
+    October: 9,
+    November: 10,
+    December: 11
+};
+
+// mod function to handle cyclic property of calendar
+function mod(n) {
+    return ((n % 12) + 12) % 12;
+}
+
 describe('Basic user flow for Calendar', () => {
     let page;
     let calendarComponent;
@@ -26,85 +47,121 @@ describe('Basic user flow for Calendar', () => {
         expect(textContent).not.toBe('');
     });
 
-    // Test to check if the calendar goes to the next month when clicking the right arrow
-    it('should go to the next month when clicking the right arrow', async () => {
-        const initialMonth = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('Initial month:', initialMonth);
+    // calendar month goes forward when clicking RIGHT arrow
+    it('Testing next month RIGHT arrow button', async () => {
+        console.log('right arrow button moves to next month...');
 
-        const rightArrowButton = await shadowRoot.evaluateHandle(root => root.querySelector('#nextBtn'));
-        await rightArrowButton.click();
+        // access calendar Web-Component and get the shadow root
+        const calendarComp = await page.$('calendar-component');
+        const shadowCalendar = await calendarComp.getProperty('shadowRoot');
 
-        // Wait for some time to allow the calendar to update
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the timeout as needed
+        // get span element (Month Year) and extract just Month name
+        const titleSpan = await shadowCalendar.$('span');
+        const textContent = await page.evaluate(el => el.textContent, titleSpan); // eval JSHandle
+        const monthName = textContent.split(' ')[0];
+        const monthNum = months[monthName];
 
-        const newMonth = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('New month:', newMonth);
+        // click next button
+        const button = await shadowCalendar.$('#nextBtn');
+        await button.click();
 
-        expect(newMonth).not.toBe(initialMonth);
-    });
+        // get new Month name after clicking next button
+        const nextTitleSpan = await shadowCalendar.$('span');
+        const nextTextContent = await page.evaluate(el => el.textContent, nextTitleSpan);
+        const nextMonthName = nextTextContent.split(' ')[0];
 
-    // Test to check if the calendar goes to the previous month when clicking the left arrow
-    it('should go to the previous month when clicking the left arrow', async () => {
-        const initialMonth = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('Initial month:', initialMonth);
+        expect(mod(monthNum + 1)).toBe(months[nextMonthName]);
+    }, 15000);
 
-        const leftArrowButton = await shadowRoot.evaluateHandle(root => root.querySelector('#prev'));
-        await leftArrowButton.click();
+    // calendar month goes backward when click LEFT arrow
+    it('Testing prev month LEFT arrow button', async () => {
+        console.log('left arrow button moves to prev month...');
 
-        // Wait for some time to allow the calendar to update
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the timeout as needed
+        // access calendar Web-Component and get the shadow root
+        const calendarComp = await page.$('calendar-component');
+        const shadowCalendar = await calendarComp.getProperty('shadowRoot');
 
-        const newMonth = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('New month:', newMonth);
+        // get span element (Month Year) and extract just Month name
+        const titleSpan = await shadowCalendar.$('span');
+        const textContent = await page.evaluate(el => el.textContent, titleSpan); // eval JSHandle
+        const monthName = textContent.split(' ')[0];
+        const monthNum = months[monthName];
 
-        expect(newMonth).not.toBe(initialMonth);
-    });
+        // click prev button
+        const button = await shadowCalendar.$('#prev');
+        await button.click();
+
+        // get new Month name after clicking prev button
+        const prevTitleSpan = await shadowCalendar.$('span');
+        const prevTextContent = await page.evaluate(el => el.textContent, prevTitleSpan);
+        const prevMonthName = prevTextContent.split(' ')[0];
+
+        expect(mod(monthNum - 1)).toBe(months[prevMonthName]);
+    }, 15000);
 
     // year increases by 1 after December
-    it('should increase the year by 1 after December', async () => {
-        const initialYear = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('Initial year and month:', initialYear);
+    it('Testing year increasing after December', async () => {
+        console.log('year increments after December...');
 
-        const rightArrowButton = await shadowRoot.evaluateHandle(root => root.querySelector('#nextBtn'));
+        // access calendar Web-Component and get the shadow root
+        const calendarComp = await page.$('calendar-component');
+        const shadowCalendar = await calendarComp.getProperty('shadowRoot');
 
-        // Click the right arrow button 12 times to move from December to January of the next year
-        for (let i = 0; i < 12; i++) {
-            await rightArrowButton.click();
-            await new Promise(resolve => setTimeout(resolve, 1000));
+        // get span element (Month Year) and extract:
+        //  month name: to determine how many times to click next button to reach next year
+        //  year: to compare
+        const titleSpan = await shadowCalendar.$('span');
+        const textContent = await page.evaluate(el => el.textContent, titleSpan); // eval JSHandle
+        const monthName = textContent.split(' ')[0];
+        const monthNum = months[monthName];
+        const year = textContent.split(' ')[1];
+
+        // click next button until we reach next January (should be new year)
+        const tilNextJan = 12 - monthNum;
+        const button = await shadowCalendar.$('#nextBtn');
+        for (let i = 0; i < tilNextJan; i++) {
+            await button.click();
         }
 
-        const newYear = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('New year and month:', newYear);
+        // get new year value after clicking next button
+        const newTitleSpan = await shadowCalendar.$('span');
+        const newTextContent = await page.evaluate(el => el.textContent, newTitleSpan);
+        const newYear = newTextContent.split(' ')[1];
 
-        // Extract the years from the text content
-        const initialYearValue = parseInt(initialYear.split(' ')[1], 10);
-        const newYearValue = parseInt(newYear.split(' ')[1], 10);
-
-        expect(newYearValue).toBe(initialYearValue + 1);
-    });
+        expect(Number(year) + 1).toBe(Number(newYear));
+    }, 15000);
 
     // year decreases by 1 before January
-    it('should decrease the year by 1 before January', async () => {
-        const initialYear = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('Initial year and month:', initialYear);
+    it('Testing year decreasing before January', async () => {
+        console.log('year decrements before January...');
 
-        const leftArrowButton = await shadowRoot.evaluateHandle(root => root.querySelector('#prev'));
+        // access calendar Web-Component and get the shadow root
+        const calendarComp = await page.$('calendar-component');
+        const shadowCalendar = await calendarComp.getProperty('shadowRoot');
 
-        // Click the left arrow button 12 times to move from January to December of the previous year
-        for (let i = 0; i < 12; i++) {
-            await leftArrowButton.click();
-            await new Promise(resolve => setTimeout(resolve, 1000));
+        // get span element (Month Year) and extract:
+        //  month name: to determine how many times to click prev button to reach prev year
+        //  year: to compare
+        const titleSpan = await shadowCalendar.$('span');
+        const textContent = await page.evaluate(el => el.textContent, titleSpan); // eval JSHandle
+        const monthName = textContent.split(' ')[0];
+        const monthNum = months[monthName];
+        const year = textContent.split(' ')[1];
+
+        // click prev button until we reach last January (should be old year)
+        const tilLastJan = monthNum + 1;
+        const button = await shadowCalendar.$('#prev');
+        for (let i = 0; i < tilLastJan; i++) {
+            await button.click();
         }
 
-        const newYear = await titleBarSpan.evaluate(element => element.textContent);
-        console.log('New year and month:', newYear);
+        // get new year value after clicking next button
+        const newTitleSpan = await shadowCalendar.$('span');
+        const newTextContent = await page.evaluate(el => el.textContent, newTitleSpan);
+        const oldYear = newTextContent.split(' ')[1];
 
-        // Extract the years from the text content
-        const initialYearValue = parseInt(initialYear.split(' ')[1], 10);
-        const newYearValue = parseInt(newYear.split(' ')[1], 10);
-
-        expect(newYearValue).toBe(initialYearValue - 1);
-    });
+        expect(Number(year) - 1).toBe(Number(oldYear));
+    }, 15000);
     
     // current day is highlighted
     it('should highlight the current day', async () => {

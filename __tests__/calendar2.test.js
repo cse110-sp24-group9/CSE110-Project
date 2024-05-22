@@ -26,6 +26,23 @@ describe('Basic user flow for Calendar', () => {
     
     // ***** TEST CASES *****
 
+    // current day is highlighted
+    it('Testing that current day is highlighted', async () => {
+        console.log('current day is highlighted...');
+
+        // get the date
+        const date = new Date();
+        const day = date.getDate();
+
+        // get calendar grid
+        // get active day (curr day)
+        const monthGrid = await page.$('calendar-component >>> .day_grid');
+        const activeDay = await monthGrid.$('.active');
+        const displayDay = await page.evaluate(el => el.textContent, activeDay);
+
+        expect(displayDay == day).toBe(true);
+    }, 15000);
+
     // calendar month goes backward when click LEFT arrow
     it('Testing prev month LEFT arrow button', async () => {
         console.log('left arrow button moves to prev month...');
@@ -142,39 +159,7 @@ describe('Basic user flow for Calendar', () => {
         expect(Number(year) - 1).toBe(Number(oldYear));
     }, 15000);
 
-    // current day is highlighted
-    it('Testing that current day is highlighted', async () => {
-        console.log('current day is highlighted...');
-
-        // access calendar Web-Component and get the shadow root
-        const calendarComp = await page.$('calendar-component');
-        const shadowCalendar = await calendarComp.getProperty('shadowRoot');
-
-        // get span element (Month Year) and extract:
-        //  month name: to determine how many times to click prev button to reach prev year
-        //  year: to compare
-        const titleSpan = await shadowCalendar.$('span');
-        const textContent = await page.evaluate(el => el.textContent, titleSpan); // eval JSHandle
-        const monthName = textContent.split(' ')[0];
-    }, 15000);
-
-    // hovering over a day highlights it
-
-
-    // correct number of active days
-
     // first day in correct day of week position
 
     // last day in correct day of week position
-
-    // should load the calendar
-
-    // should handle navigation boundary /// changing between months at last day
-
-    // styling
-
-    it('Testing', async () => {
-        console.log('Testing...');
-        expect(true).toBe(true);
-    });
 });
