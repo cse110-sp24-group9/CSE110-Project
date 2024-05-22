@@ -20,31 +20,86 @@ function mod(n) {
 }
 
 describe('Basic user flow for Calendar', () => {
-    let page;
-    let calendarComponent;
-    let shadowRoot;
-    let titleBarSpan;
-    const months = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
-
     beforeAll(async () => {
-        page = await browser.newPage();
         console.log('Navigating to Calendar page...');
         await page.goto('http://localhost:3000/pages/Calendar.html', { waitUntil: 'networkidle2' });
         console.log('Page loaded');
-
-        calendarComponent = await page.$('calendar-component');
-        shadowRoot = await calendarComponent.evaluateHandle(element => element.shadowRoot);
-        titleBarSpan = await shadowRoot.evaluateHandle(root => root.querySelector('.title_bar span'));
     }, 60000);
 
     it('should load the calendar', async () => {
         console.log('Searching for .title_bar span inside Shadow DOM...');
-        const textContent = await titleBarSpan.evaluate(element => element.textContent);
+        const textContent = await (await (await page.$('calendar-component >>> .title_bar span')).getProperty('textContent')).jsonValue();
         console.log('Title bar span text content:', textContent);
 
         // Instead of checking for the initial debug text, we will log the content and pass the test if it is non-empty.
         expect(textContent).not.toBe('');
+    });
+
+    // current day is highlighted
+    it('Testing that current day is highlighted', async () => {
+        console.log('current day is highlighted...');
+
+        // get the date
+        const date = new Date();
+        const day = date.getDate();
+
+        // get calendar grid
+        // get active day (curr day)
+        const monthGrid = await page.$('calendar-component >>> .day_grid');
+        const activeDay = await monthGrid.$('.active');
+        const displayDay = await page.evaluate(el => el.textContent, activeDay);
+
+        expect(displayDay == day).toBe(true);
+    }, 15000);
+
+    // correct number of active days, ie number of days inside the month
+    it('Testing current active days inside the calendar', async () => {
+        const monthGrid = await page.$('calendar-component >>> .day_grid');
+        const numberOfDays = (await monthGrid.$$('span')).length;
+        const inactiveDays = (await monthGrid.$$('.inactive')).length;
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const numberMonthDays = new Date(currYear, currMonth + 1, 0).getDate();
+        expect((numberOfDays - inactiveDays) === numberMonthDays).toBe(true)
+    });
+
+    // first day in correct day of week position
+    it('Testing first day is in the correct position ', async () => {
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
+        const spanList = await page.$$('calendar-component >>> .day_grid span');
+        for(let i = 0; i < spanList.length; i++){
+           let texItem = await (await spanList[i].getProperty('textContent')).jsonValue();
+           if(texItem == 1){
+                expect(i%7 == firstDayofMonth).toBe(true);
+                return;
+           }
+        }
+        expect(true).toBe(false);
+    });
+
+    // last day in correct day of week position
+    it('Testing last day of month is inside correct week position', async () => {
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const lastDayofMonth = new Date(currYear, currMonth+1, 0).getDay();
+        const lastDateofMonth = new Date(currYear, currMonth+1, 0).getDate();
+        const spanList = await page.$$('calendar-component >>> .day_grid span');
+        for(let i = spanList.length - 1; i >=  0; i--){
+           let texItem = await (await spanList[i].getProperty('textContent')).jsonValue();
+           if(texItem == lastDateofMonth){
+                expect((i%7) === lastDayofMonth).toBe(true);
+                return;
+           }
+        }
+        expect(true).toBe(false);
     });
 
     // calendar month goes forward when clicking RIGHT arrow
@@ -162,60 +217,31 @@ describe('Basic user flow for Calendar', () => {
 
         expect(Number(year) - 1).toBe(Number(oldYear));
     }, 15000);
-    
-    // current day is highlighted
-    it('should highlight the current day', async () => {
-        const dayGrid = await shadowRoot.evaluateHandle(root => root.querySelector('.day_grid'));
-        const activeDaySpan = await dayGrid.evaluateHandle(grid => grid.querySelector('span.active'));
-        const currentDay = new Date().getDate();
-        const highlightedDay = await activeDaySpan.evaluate(span => parseInt(span.textContent, 10));
-
-        expect(highlightedDay).toBe(currentDay);
-    });
 
     // hovering over a day highlights it
-    it('should highlight a day when hovering over it', async () => {
-        const dayElements = await shadowRoot.$$('.day_grid .day');
+    it('Testing highlighting a day when hovering over it', async () => {
+        const dayElements = await page.$$('calendar-component >>> .day_grid .day');
         
         if (dayElements.length > 0) {
             const dayElement = dayElements[0];
             
             await dayElement.hover();
-            await new Promise(resolve => setTimeout(resolve, 500)); // Wait for the highlight effect to apply
             
             const isHighlighted = await dayElement.evaluate(el => el.classList.contains('hover-highlighted'));
             expect(isHighlighted).toBe(true);
         }
     });
 
-    // correct number of active days
-    it('should display the correct number of active days', async () => {
-        const dayGrid = await shadowRoot.evaluateHandle(root => root.querySelector('.day_grid'));
-        const activeDaySpans = await dayGrid.evaluateHandle(grid => grid.querySelectorAll('span:not(.inactive)'));
-        const activeDaysCount = await activeDaySpans.evaluate(spans => spans.length);
-
-        const currentMonth = new Date().getMonth();
-        const currentYear = new Date().getFullYear();
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        expect(activeDaysCount).toBe(daysInMonth);
-        });
-    // first day in correct day of week position
-    it('should have the first day in the correct day of the week position', async () => {
-        // TODO: Implement test to check if the first day is in the correct day of the week position
-    });
-
-    // last day in correct day of week position
-    it('should have the last day in the correct day of the week position', async () => {
-        // TODO: Implement test to check if the last day is in the correct day of the week position
-    });
-
-    // should handle navigation boundary when changing between months at last day
-    it('should handle navigation boundary correctly when changing between months at the last day', async () => {
-        // TODO: Implement test to check navigation boundary when changing months at the last day
-    });
-
-    afterAll(async () => {
-        await page.close();
+    // correct number of active days, ie number of days inside the month
+    it('Testing current active days inside the calendar', async () => {
+        const monthGrid = await page.$('calendar-component >>> .day_grid');
+        const numberOfDays = (await monthGrid.$$('span')).length;
+        const inactiveDays = (await monthGrid.$$('.inactive')).length;
+        let date = new Date(), // getting new date, current year and month
+        currentDay = date.getDate(),
+        currYear = date.getFullYear(),
+        currMonth = date.getMonth();
+        const numberMonthDays = new Date(currYear, currMonth + 1, 0).getDate();
+        expect((numberOfDays - inactiveDays) === numberMonthDays).toBe(true)
     });
 });

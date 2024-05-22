@@ -1,7 +1,7 @@
 module.exports = {
     launch: {
         headless: true,
-        slowMo: 20
+        slowMo: 0
     },
     server: {
         command: "node test.cjs",
