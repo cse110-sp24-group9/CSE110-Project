@@ -71,9 +71,9 @@ describe('Task List Testing', () => {
 // Load task list at TOP of file - Jason
 // add more tasks - henry
 // edit middle task - henry
+// check if strike through properly - JASON
 // edit already edited task - Brendon
 // delete middle task, ensure it doesn't affect other tasks - Brendon
-// check if strike through properly - JASON
 // close page -LAST TEST - JASON
 
 // LATER ONCE DATABASE IS CREATED
