@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../styles/JournalEntries.css">
+        <title>Jounral-Prototype</title>
+    </head>
+    <body>
+        <template id="JournalEntries_template">
+            <div id="toolbar">
+                <input type="text" id="searchJournal" placeholder="Search">
+    
+                <button type="button" id="filter" onclick="drop()">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"/>
+                  </svg>
+                </button>         
+                <button tyoe="button" id="newEntry" onclick="newEntry()">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="none" d="M0 0L24 0 24 24 0 24z"/>
+                      <path d="M20 2c.552 0 1 .448 1 1v3.757l-2 2V4H5v16h14v-2.758l2-2V21c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1V3c0-.552.448-1 1-1h16zm1.778 6.808l1.414 1.414L15.414 18l-1.416-.002.002-1.412 7.778-7.778zM13 12v2H8v-2h5zm3-4v2H8V8h8z"/>
+                  </svg>
+    
+                </button>
+            </div>
+            <div id="journal-list">
+              <arcicle class="journal-entry">
+                <div id="side-info">
+                  <div id='favorite'>★</div>
+                </div>
+                <div id="main-info">
+                  <div id="top-info">
+                    <div id="title"><span>Task Completed</span></div>
+                    <div id="time"><span>5:00pm</span></div>
+                  </div>  
+                  <div id="middle-info">
+                    <div id="preview"><span>Complete Presentation Finished</span></div>
+                  </div>
+                  <div id="bottom-info">
+                    <div id="label-bar">
+                      <div id="label">CSE 110</div>
+                    </div>
+                    <div id="emotion">😄</div>
+                  </div>
+                </div>
+              </arcicle>
+            </div>
+            <div id="info-bar">
+                <span id="info-b">0 Entries</span>
+            </div>
+            <script src="JournalEntries.js"></script>
+        </template>
+        
+    </body>
+</html>
