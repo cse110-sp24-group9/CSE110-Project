@@ -7,20 +7,17 @@
     /**
      * @type {ShadowRoot}
      * @private
-     * @property
      * @summary the shadow root of the task item Component
      */
     #shadow
     /**
      * @type {HTMLElement}
-     * @property
      * @private
      * @summary the Div that holds the task list
      */
     #task_list
     /**
      * @type {HTMLButtonElement}
-     * @property
      * @private
      * @summary the button to add a Task
      */

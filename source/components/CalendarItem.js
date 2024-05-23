@@ -12,7 +12,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
  * @author Andrew Pegg
  * @alias calendar-component
  * @extends {HTMLElement}
- * @version 0.1.0
+ * @version 0.1.1
  * @type {CalendarItem}
  * @summary the calendar web component js implementation class
  * @module
@@ -55,6 +55,13 @@ export default class CalendarItem extends HTMLElement{
      * @property {number} time
      */
     /**
+     * This event is responsible for letting the page know that the calendar item has loaded
+     * The custom information onto the page
+     * @event calendar-component#hydrated
+     * @type {CustomEvent}
+     * @summary listen to event to see if custom component is ready
+     */
+    /**
      * @constructor
      * @since 0.1.0
      * @author Andrew Pegg
@@ -76,6 +83,11 @@ export default class CalendarItem extends HTMLElement{
 
         this.#renderCalendar();
         this.#setupButtons();
+        //tells page that calendar should be ready to test
+        this.#dispatchCustomEvent(new CustomEvent('hydrated',{
+            bubbles: true,
+            composed: true
+        }));
     }
     /**
      * The function responsible for rendering the days to screen by adding span items to the day grid
