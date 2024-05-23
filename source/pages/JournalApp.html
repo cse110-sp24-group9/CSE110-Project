@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../styles/JournalApp.css">
+    <script type="module" src="../components/CalendarItem.js"></script>
+    <script type="module" src="../components/task-list-component.js"></script>
+    <title>Journal App</title>
+  </head>
+  <body>
+
+
+    <aside> <!-- SIDE BAR-->
+      <menu></menu>
+      <article id="calendar"> <!-- CALENDAR COMPONENT -->
+        <template id="calendar_template">
+          <link rel="stylesheet" href="../styles/Calendar.css">
+          <div class="Calendar_Container">
+              <div class="flex title_bar">
+                  <button id="prev">
+                      &lt;
+                  </button>
+                  <span></span>
+                  <button id="nextBtn">
+                      <!-- <i class="fa-solid fa-chevron-right"></i> --><!--lib dep-->
+                      &gt;
+                  </button>
+              </div>
+              <ul class="week_list">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+              </ul>
+              <div class="grid day_grid">
+              </div>
+            </div>
+        </template>
+        <calendar-component></calendar-component>
+        <script>
+          const calendar = document.querySelector('calendar-component');
+          calendar.addEventListener('hydrated',(event)=>{
+              calendar.setAttribute('hydrated',"true");
+          });
+        </script>
+        
+        
+
+      </article>
+      <article id="event-list"><!-- EVENTS COMPONENT --> 
+
+      </article>
+      <article id="task-list"> <!-- TASKS COMPONENT -->
+        <template id="task-list_template">
+          <!-- <link rel="stylesheet" href="../styles/task-list.css"> -->
+          <link rel="stylesheet" href="../styles/task-test.css">
+          <article class="tasklist">
+            <div class="header">
+              <h1 id="title">Task List</h1>
+              <button class="addbtn">
+                  +
+              </button>
+            </div>
+            <div class="list" id="list">
+            </div>
+          </article>
+      </template>
+      <!-- Call the tasklist here VVVV -->
+      <task-list-component></task-list-component>
+
+      </article>
+    </aside>
+    <main> <!-- MAIN -->
+      <article id="entries"> <!-- ENTRIES COMPONENT -->
+        <menu></menu>
+        <footer></footer>
+      </article>
+      <article id="canvas"><!-- CANVAS COMPONENT -->
+       <menu></menu>
+       <footer></footer>
+      </article>
+    </main>
+  </body>
+</html>

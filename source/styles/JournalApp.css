@@ -1,0 +1,67 @@
+html {
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    overflow: hidden;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+}
+
+menu {
+  height: 5vh;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  border-bottom: .5px solid black;
+}
+
+
+
+aside {
+  flex-shrink: 0;
+  width: 19vw;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+
+  article{
+    height: calc(100%/3);
+    width: 100%;
+  }
+
+  #event-list{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  
+}
+
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+
+  #entries {
+    width: 40%;
+    border-right: 1px solid black;
+  }
+
+  #canvas {
+    flex-grow: 1;
+  }
+}
+
+
+/* aside{
+  width: 100%;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(3,repeat(100%/3));
+} */

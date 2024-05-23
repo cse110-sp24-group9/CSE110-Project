@@ -7,21 +7,29 @@
 .Calendar_Container{
     background-color: white;
     /* width: 25vw; */
+    /* added below */
+    height: 100%;
     border-radius: 10px;
-    padding: 10px 10px 10px 10px;
+    /* padding: 10px 10px 10px 10px; */
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
 }
 .grid{
     display: grid;
 }
 .week_list{
+    /* added below */
+    width: 100%;
     display: grid;
-    gap: 2em;
+    /* gap: 2em; */
     grid-template-columns: repeat(7,1fr);
     justify-items: center;
     justify-content: center;
     list-style: none;
     padding: 0;
-    margin-top: 8px;
+    margin: 0;
+    /* margin-top: 8px; */
     border-top-color: black;
     border-bottom-color: black;
     border-style: solid;
@@ -31,9 +39,17 @@
     border-bottom-width: 2px;
 }
 .day_grid{
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2rem;
-    justify-items: center;
+    flex-grow: 1;
+    grid-template-columns: repeat(7, calc(100%/7));
+    /* grid-template-rows: repeat(6, 1fr); */
+    /* grid-template-columns: repeat(7, calc(100%/7)); 
+    grid-template-rows: repeat(5, calc(100%/5));  */
+    /* gap: 2rem; */
+    /* added below */
+    width: 100%;
+    height: 100%;
+    /* justify-items: center; */
+    
 }
 .flex{
     display: flex;
@@ -41,6 +57,7 @@
 .title_bar{
     justify-content: space-between;
     align-items: center;
+    height: 3em;
 }
 .title_bar button{
     display: flex;
@@ -50,8 +67,8 @@
     border-radius: 50%;
     background: #fff;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 3em;
+    height: 3em;
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
 
 }
@@ -77,8 +94,9 @@
 
 
 .day_grid > span {
-    width: 3em;
-    height: 3em;
+    /* aspect-ratio: 1/1; */
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,7 +163,8 @@
     }
 }
 
-@media (max-width: 600px) {
+
+/* @media (max-width: 600px) {
     .week_list{
         gap: 1em;
     }
@@ -171,4 +190,4 @@
         width: 2em;
         height: 2em;
     }
-}
+} */
