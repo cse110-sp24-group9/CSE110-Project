@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../styles/JournalApp.css">
-    
+    <script type="module" src="../components/CalendarItem.js"></script>
+    <script type="module" src="../components/task-list-component.js"></script>
+    <script type="module" src="../components/Toolbar.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script type="module" src="../components/Canvas.js"></script>
     <title>Journal App</title>
   </head>
   <body>
@@ -105,6 +109,7 @@
         </menu>
         <footer></footer>
       </article>
+
       <article id="canvas"><!-- CANVAS COMPONENT -->
         <link rel="stylesheet" href="../styles/Canvas.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
@@ -137,9 +142,24 @@
             </div>
           </div>
           <div id="label-bar">
-            
+            <div class="label-box">
+              <input type="checkbox">
+              <div class="label" id="label-1">Task</div>
+            </div>
+            <div class="label-box">
+              <input type="checkbox">
+              <div class="label" id="label-2">Work</div>
+            </div>
+            <div class="label-box">
+              <input type="checkbox">
+              <div class="label" id="label-3">CSE 110</div>
+            </div>
+            <div class="label-box">
+              <input type="checkbox">
+              <div class="label" id="label-4">Draft 2</div>
+            </div>
             <div id="label-box-add">
-              <button id="label">+</button>
+              <button id="label-add">+</button>
             </div>
           </div>
           <div id="editor-container">

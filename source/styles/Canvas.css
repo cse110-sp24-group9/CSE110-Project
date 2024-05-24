@@ -76,7 +76,7 @@ svg {
     aspect-ratio: 1/1;
 }
 
-#label-box {
+.label-box {
     display: flex;
     position: relative;
     width: 70px;
@@ -85,7 +85,27 @@ svg {
     align-content: center;
 }
 
-#label {
+.label {
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+    border-radius: 16px;
+    align-content: center;
+    color: #00000080;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #ffdfba50; /* default color */
+  }
+
+.label:active {
+    background-color: #ffdfba; /* active color */
+  }
+
+#label-add {
     border-radius: 5px;
     width: 100%;
     border: none;
@@ -106,7 +126,7 @@ svg {
     cursor: pointer;
 } */
 
-#label-box > input[type="checkbox"] {
+.label-box > input[type="checkbox"] {
     position: absolute;
     opacity: 0%;
     width: 100%;
@@ -116,39 +136,39 @@ svg {
 }
 
 /* Label colors */
-.label-1 {
+#label-1 {
     background-color: #ffb3bb50;
 }
 
-.label-2 {
+#label-2 {
     background-color: #ffdfba50;
 }
 
-.label-3 {
+#label-3 {
     background-color: #ffffba50;
 }
 
-.label-4 {
+#label-4 {
     background-color: #bcffba50;
 }
 
-input[type="checkbox"]:checked + .label-1 {
+input[type="checkbox"]:checked + #label-1 {
     background-color: #ffb3ba;
 }
 
-input[type="checkbox"]:checked + .label-2 {
+input[type="checkbox"]:checked + #label-2 {
     background-color: #ffdfba;
 }
 
-input[type="checkbox"]:checked + .label-3 {
+input[type="checkbox"]:checked + #label-3 {
     background-color: #ffffba;
 }
 
-input[type="checkbox"]:checked + .label-4 {
+input[type="checkbox"]:checked + #label-4 {
     background-color: #bcffba;
 }
 
-input[type="checkbox"]:checked + #label {
+input[type="checkbox"]:checked + .label {
     color: #000000;
 }
 
