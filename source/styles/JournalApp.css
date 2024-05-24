@@ -27,18 +27,16 @@ aside {
   width: 19vw;
   border-right: 1px solid black;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
+}
+aside > article{
+  height: calc(100%/3);
+  width: 100%;
+}
 
-  article{
-    height: calc(100%/3);
-    width: 100%;
-  }
-
-  #event-list{
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-  }
-  
+aside > #event-list{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 
@@ -46,15 +44,13 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-
-  #entries {
-    width: 40%;
-    border-right: 1px solid black;
-  }
-
-  #canvas {
-    flex-grow: 1;
-  }
+}
+main > #entries {
+  width: 40%;
+  border-right: 1px solid black;
+}
+main > #canvas {
+  flex-grow: 1;
 }
 
 
