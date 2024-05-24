@@ -80,6 +80,18 @@ main > #entries {
   border-right: 1px solid black;
 }
 
+main > #entries > menu {
+  display: flex;
+  flex-direction: row;
+}
+
+#searchJournal {
+  flex-grow: 2;
+  overflow: hidden;
+  gap: 1%;
+}
+
+/* Note: This works on safari but not on chrome - the container gets overtaken by */
 main > #entries > menu > #conditional-buttons {
   display: inline;
 }
