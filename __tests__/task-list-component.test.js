@@ -104,6 +104,11 @@ describe('Task List Testing', () => {
         expect(newText).toBe('Testing');
     }, 10000);
     
+
+    /**
+     * Author: Brendon He
+     * Checking if delete works
+     */
     it('Delete All Tasks', async () => {
             const deletebtn = await page.$$('task-list-component >>> .minusbtn');
             console.log("here");
@@ -122,6 +127,33 @@ describe('Task List Testing', () => {
     }, 10000);
 
 
+    /**
+     * Author: Brendon He
+     * Checking to make sure delete does not affect other tasks
+     */
+    it('Delete All Tasks', async () => {
+        //find and click the add tasks button 3 times so we have 3 tasks
+        const addbtn = await page.$('task-list-component >>> .addbtn');
+        await addbtn.click();
+        await addbtn.click();
+        await addbtn.click();
+
+        //from there, type something in all 3 tasks
+
+        const taskTexts = await page.$$('task-list-component >>> .task-text');
+        await taskTexts[0].type("1st Task");
+        await taskTexts[1].type("2nd Task");
+        await taskTexts[2].type("3rd Task");
+        
+        //from here, delete the 2nd task
+        const deletebtn = await page.$$('task-list-component >>> .minusbtn');
+        await deletebtn[1].click();
+        //finally, check if the 1st and 3rd tasks were preserved, and if there are the correct # of tasks
+        const newTasks = await page.$$('task-list-component >>> .task-text');
+        expect(await (await newTasks[0].getProperty('value')).jsonValue()).toBe("1st Task");
+        expect(await (await newTasks[1].getProperty('value')).jsonValue()).toBe("3rd Task");
+        expect(newTasks.length).toBe(2);
+}, 10000);
 
 
 
