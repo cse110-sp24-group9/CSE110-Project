@@ -68,20 +68,29 @@
         this.#addTaskButton.addEventListener('click', () => {
             var newListElement = document.createElement('article');
             newListElement.className = 'task-entry';
+          //   newListElement.innerHTML = `
+          //   <article id="task-entry">
+          //   <div class="checkbox">
+          //     <input type="checkbox">
+          //     <div class="checkmark"></div>
+          //   </div>
+          //   <div id="main-box">
+          //     <div class="info">Finish Task</div>
+          //     <div id="remove">
+          //       <button></button>
+          //       <div id="background"><span>-</span></div>
+          //     </div>
+          //   </div>
+          // </article>
+          //   `;
+
             newListElement.innerHTML = `
-            <article id="task-entry">
             <div class="checkbox">
-              <input type="checkbox">
-              <div class="checkmark"></div>
+                <input type="checkbox" class="task-checkbox">
+                <div class="checkmark"></div>
             </div>
-            <div id="main-box">
-              <div class="info">Finish Task</div>
-              <div id="remove">
-                <button></button>
-                <div id="background"><span>-</span></div>
-              </div>
-            </div>
-          </article>
+            <input type="text" class="task-text">
+            <button class="minusbtn">-</button>
             `;
             this.#task_list.appendChild(newListElement);
             
