@@ -1,0 +1,84 @@
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    overflow:auto;
+}
+body {
+    height: 90%;
+    width: 90%;
+    padding: 5%;
+  padding-bottom: 0px;
+    margin: 0px;
+    display: flexbox;
+    background-color: rgb(244, 244, 244);
+}
+
+#event-entry {
+    padding: 1px 2.5% 1px 2.5%;
+    position: relative;
+    border-radius: 5px;
+    width: 95%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+#title {
+    flex-basis: 100%;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    vertical-align: middle;
+    align-content: center;
+}
+
+
+#time {
+    text-align: right;
+    align-content: center;
+    font-size: small;
+}
+
+#add-box {
+  border: 1px solid black;
+  position:fixed;
+  bottom: 5px;
+  width: 90%;
+  text-align: center;
+  background-color: white;
+  font-size: x-large;
+  border-radius: 5px;
+}
+
+#add-box:hover {
+  background-color: lightgrey;
+}
+
+#add-box:active {
+    background-color: grey;
+}
+
+.event-type1 {
+  background-color: rgba(211, 211, 211, 0.429);
+
+  color: rgba(0, 0, 0, 0.308);
+  text-decoration: line-through;
+  /* background-color: #ffb3ba ; */
+}
+.event-type2 {
+    background-color: 	#ffdfba;
+}
+
+.event-type3 {
+    background-color: #ffffba;
+}
+.event-type4 {
+    background-color: #bcffba;
+}
+.event-type5 {
+    background-color: #baf2ff;
+}
