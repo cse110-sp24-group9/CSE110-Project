@@ -58,12 +58,51 @@ describe('Task List Testing', () => {
 
     /**
      * Author: Henry Tiet
+     * Adding more tasks
+     */
+    it('Add more tasks', async () => {
+        const prevTasks = await page.evaluate(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            return shadowRoot.querySelectorAll('.task-entry').length;
+        });
+        console.log('Previous tasks count:', prevTasks);
+
+        await page.evaluate(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            const addButton = shadowRoot.querySelector('.addbtn');
+            addButton.click();
+            addButton.click();
+        });
+
+        const currTasks = await page.evaluate(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            return shadowRoot.querySelectorAll('.task-entry').length;
+        });
+        console.log('Current tasks count:', currTasks);
+
+        expect(currTasks).toBe(prevTasks + 2);
+    }, 10000);
+
+    /**
+     * Author: Henry Tiet
      * Checking if edits work
      */
-    // it('Edit one task', async () => {
-    //     await page.click('')
-    // })
+    it('Edit middle task', async () => {
 
+        const textEditHandle =  await page.evaluateHandle(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            const taskList = shadowRoot.querySelectorAll('.task-entry');
+            return taskList[1].querySelector('.task-text');
+        });
+        await textEditHandle.focus();
+        await textEditHandle.type('Testing');
+        const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle)
+        expect(newText).toBe('Testing');
+    }, 10000);
     
     it('Delete All Tasks', async () => {
             const deletebtn = await page.$$('task-list-component >>> .minusbtn');
