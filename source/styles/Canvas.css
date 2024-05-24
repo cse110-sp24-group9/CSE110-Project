@@ -1,36 +1,42 @@
-html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden; 
-  }
-  
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /*Tool Bar start*/
-  #toolbar {
+#toolbar {
     flex-shrink: 0;
     height: 5vh;
-    width: 100%;
     display: flex;
     flex-direction: row;
-    background-color: #F2F2F4;  
-  }
-  
-  #toolbar > div {
-      height: 100%;
-  }
-  #left-items {
-      flex-grow: 1;
-      position: relative;
-  }
-      /*Middle  Items*/
-  #middle-items{
+    background-color: #F2F2F4;
+    width: 100%;
+}
+
+#label-bar {
+    flex-shrink: 0;
+    height: 4vh;
+    display: flex;
+    background-color: rgb(244, 244, 244);
+    overflow: auto hidden;
+    position: relative;
+    width: 100%;
+}
+
+#editor-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#markdown-editor {
+    flex-grow: 1;
+    height: 100%;
+    resize: none;
+}
+
+/* Additional styles for buttons, labels, etc. */
+#left-items {
+    flex-grow: 1;
+    position: relative;
+}
+
+#middle-items {
     flex-grow: 2;
     align-content: center;
     justify-content: center;
@@ -38,156 +44,146 @@ html {
     font-size: x-large;
     white-space: nowrap;
     overflow: hidden;
-  }
-      /*Right  Items*/
-  #right-items{
-      flex-grow: 1;
-      display: flex;
-      justify-content: end;
-      padding-right: 5px;
-  }
-  #trash, #star, #pen {
-       background-color: #F2F2F4;
-      border: none;
-      height: 100%;
-      aspect-ratio: 1/1;
-      border-radius: 10px;
-      margin: 0px;
-      padding: 0px;
-      cursor: pointer;
-  }
-  #trash:hover, #star:hover, #pen:hover {
-      background-color: lightgray;
-  }
-  #trash:active, #star:active, #pen:active {
-      background-color: rgb(180, 180, 180);
-  }
-  
-  svg {
-      aspect-ratio: 1/1;
-  }
-  /* Canvas Box*/
-  #canvas-box{
-    margin: 10%;
+}
+
+#right-items {
     flex-grow: 1;
-    height: 80vh;
-    width: 80%;
-    resize: none;
-  }
-  #label-bar{
-   flex-shrink: 0;
-   height: 4vh;
-   display: flex;
-   background-color: rgb(244, 244, 244);
-   overflow: auto hidden;
-   position: relative;
-  }
-  #label-box{
-      display: flex;
-      position: relative;
-      width: 70px;
-      height: 100%;
-      justify-content: center;
-      align-content: center;
-  }
-  #label{
-      border-radius: 5px;
-      width: 100%;
-      border: none;
-      text-align: center;
-      text-decoration: none;
-      margin: 4px 2px;
-      border-radius: 16px;
-      align-content: center;
-      color:#00000080;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-  }
-  #label > button{
-      position:absolute;
-      opacity: 0%;
-      cursor: pointer;
-  }
-  #label-box > input[type="checkbox"]{
-      position: absolute;
-      opacity:0%;
-      width: 100%;
-      height: 100%;
-      margin: 0px;
-      cursor: pointer;
-  }
-  /* 
-  Start Of seperate labels and their differenet colors 
-      Will be pastel colors but with half opacity
-      Selected will have full opacity
-  */
-  .label-1 {
-    background-color: #ffb3bb50 ;
-  }
-  .label-2{
-      background-color: 	#ffdfba50;
-  
-  }
-  .label-3 {
-      background-color: #ffffba50;
-  }
-  .label-4 {
-  
-      background-color: #bcffba50;
-  }
-  input[type="checkbox"]:checked + .label-1 {
-    background-color: #ffb3ba ;
-  }
-  input[type="checkbox"]:checked + .label-2{
-      background-color: 	#ffdfba;
-  
-  }
-  input[type="checkbox"]:checked + .label-3 {
-      background-color: #ffffba;
-  }
-  input[type="checkbox"]:checked + .label-4 {
-  
-      background-color: #bcffba;
-  }
-  
-  input[type="checkbox"]:checked + #label {
-      color:#000000;
-  }
-  
-  
-  #label-box-add {
-      height: 100%;
-      width: 70px;
-      position: sticky;
-      right: 1px;
-  }
-  #text-box {
+    display: flex;
+    justify-content: end;
+    padding-right: 5px;
+}
+
+#trash, #star, #pen {
+    background-color: #F2F2F4;
+    border: none;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+#trash:hover, #star:hover, #pen:hover {
+    background-color: lightgray;
+}
+
+#trash:active, #star:active, #pen:active {
+    background-color: rgb(180, 180, 180);
+}
+
+svg {
+    aspect-ratio: 1/1;
+}
+
+#label-box {
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+#label {
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+    border-radius: 16px;
+    align-content: center;
+    color: #00000080;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* #label > button {
+    position: absolute;
+    opacity: 0%;
+    cursor: pointer;
+} */
+
+#label-box > input[type="checkbox"] {
+    position: absolute;
+    opacity: 0%;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    cursor: pointer;
+}
+
+/* Label colors */
+.label-1 {
+    background-color: #ffb3bb50;
+}
+
+.label-2 {
+    background-color: #ffdfba50;
+}
+
+.label-3 {
+    background-color: #ffffba50;
+}
+
+.label-4 {
+    background-color: #bcffba50;
+}
+
+input[type="checkbox"]:checked + .label-1 {
+    background-color: #ffb3ba;
+}
+
+input[type="checkbox"]:checked + .label-2 {
+    background-color: #ffdfba;
+}
+
+input[type="checkbox"]:checked + .label-3 {
+    background-color: #ffffba;
+}
+
+input[type="checkbox"]:checked + .label-4 {
+    background-color: #bcffba;
+}
+
+input[type="checkbox"]:checked + #label {
+    color: #000000;
+}
+
+#label-box-add {
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+#label-box-add > button:hover {
+    background-color: lightgray;
+}
+
+#label-box-add > button:active {
+    background-color: darkgray;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    flex-grow: 1;
+}
+
+/* #text-box {
     position: relative;
     padding: 5%;
     flex-basis: 100%;
-  }
-  #text-box > textarea{
+}
+
+#text-box > textarea {
     border: 1px solid rgb(233, 233, 233);
-   font-size: larger  ;
+    font-size: larger;
     height: 90%;
     width: 90%;
-   box-shadow: 10px 5px 5px #F2F2F4; 
-   resize: none;
-  }
-  /*Info Bar*/
-  #info-bar{
-    flex-shrink: 0;
-    height: 5vh;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    font-size: small;
-    font-style: italic;
-    color:gray;
-    background-color: #F2F2F4;
-  }
-  
-  
-  
+    box-shadow: 10px 5px 5px #F2F2F4;
+    resize: none;
+} */
