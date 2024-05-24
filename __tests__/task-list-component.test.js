@@ -65,7 +65,30 @@ describe('Task List Testing', () => {
     // })
 
     
+    it('Delete All Tasks', async () => {
+            const deletebtn = await page.$$('task-list-component >>> .minusbtn');
+            console.log("here");
+            console.log(deletebtn);
+            for (const button of deletebtn)
+                await button.click();
+            //this will find all tasks and delete them
+
+        const currTasks = await page.evaluate(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            return shadowRoot.querySelectorAll('.task-entry').length;
+        });
+        console.log('Current tasks count:', currTasks);
+        expect(currTasks).toBe(0);
+    }, 10000);
+
+
+
+
+
+    
 });
+
 
 // Testing to do:
 // Load task list at TOP of file - Jason
