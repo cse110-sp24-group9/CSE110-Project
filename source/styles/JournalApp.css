@@ -12,6 +12,11 @@ body {
   flex-direction: row;
 }
 
+svg {
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+
 menu {
   height: 5vh;
   margin: 0;
@@ -20,13 +25,36 @@ menu {
   border-bottom: .5px solid black;
 }
 
+menu > button,
+#conditional-buttons > button {
+    background-color: #F2F2F4;
+    height: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    border: none;
+    border: 0px;
+    flex-shrink: 0;
+}
+
+menu > button:hover,
+#conditional-buttons > button:hover {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+menu > button:active,
+#conditional-buttons > button:active {
+    background-color: rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
 
 
 aside {
   flex-shrink: 0;
   width: 19vw;
   border-right: 1px solid black;
-  display: flex;
+  display: none;
   flex-direction: column;  
 }
 aside > article{
@@ -45,10 +73,17 @@ main {
   display: flex;
   flex-direction: row;
 }
+
+
 main > #entries {
   width: 40%;
   border-right: 1px solid black;
 }
+
+main > #entries > menu > #conditional-buttons {
+  display: inline;
+}
+
 main > #canvas {
   flex-grow: 1;
 }
