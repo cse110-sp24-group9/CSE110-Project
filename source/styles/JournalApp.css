@@ -35,12 +35,13 @@ menu > li.button {
 }
 
 menu > li > button {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    border: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background-color: #F2F2F4;
 }
 
 menu >li > button:hover {
@@ -100,13 +101,22 @@ main > #entries > menu > #search-bar > input[type="text"]{
 
 main > #canvas {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+main > #canvas > menu > #mode-info {
+    flex-grow: 1;
+    text-align: center;
+    align-content: center;
+}
 
-/* aside{
-  width: 100%;
-  flex-grow: 1;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: repeat(3,repeat(100%/3));
-} */
+main > #canvas > #editor {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.CodeMirror {
+    flex-grow: 1;
+}

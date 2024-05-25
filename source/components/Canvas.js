@@ -1,4 +1,14 @@
-var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
+var simplemde = new SimpleMDE({
+     element: document.getElementById("markdown-editor"),
+     toolbar: ["bold", "italic", "strikethrough", "heading",
+                "|","unordered-list", "ordered-list", "quote", "code",
+                "|", "link", "image", "table",
+                "|", "side-by-side", "fullscreen", "guide"] });
+simplemde.togglePreview();
+const toggleModeButton = document.querySelector("#toggle-mode-button > button");
+
+
+toggleModeButton.addEventListener('click', () => {simplemde.togglePreview();});
 
 document.getElementById('label-add').addEventListener('click', function() {
     let labelBox = document.createElement('div');
@@ -17,3 +27,4 @@ document.getElementById('label-add').addEventListener('click', function() {
     });
     document.getElementById('label-bar').insertBefore(labelBox, document.getElementById('label-box-add'));
   });
+
