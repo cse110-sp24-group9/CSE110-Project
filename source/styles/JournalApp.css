@@ -11,46 +11,47 @@ body {
   display: flex;
   flex-direction: row;
 }
-
 svg {
   height: 100%;
-  aspect-ratio: 1/1;
+  width: 100%;
 }
 
 menu {
   height: 5vh;
+  width: 100%;
   margin: 0;
   padding: 0;
   flex-shrink: 0;
   border-bottom: .5px solid black;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  background-color: #F2F2F4;
 }
 
-menu > button,
-#conditional-buttons > button {
-    background-color: #F2F2F4;
+menu > li.button {
+   height: 100%;
+   aspect-ratio: 1/1;
+}
+
+menu > li > button {
     height: 100%;
-    aspect-ratio: 1/1;
-    cursor: pointer;
-    border: none;
-    border: 0;
+    width: 100%;
     margin: 0;
     padding: 0;
-    flex-shrink: 0;
+    cursor: pointer;
+    border: none;
 }
 
-menu > button:hover,
-#conditional-buttons > button:hover {
+menu >li > button:hover {
     background-color: lightgray;
     border-radius: 5px;
 }
 
-menu > button:active,
-#conditional-buttons > button:active {
+menu >li > button:active {
     background-color: rgb(180, 180, 180);
     border-radius: 5px;
 }
-
-
 
 aside {
   flex-shrink: 0;
@@ -74,28 +75,27 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 
 main > #entries {
+  flex-shrink: 0;
   width: 40%;
   border-right: 1px solid black;
 }
 
-main > #entries > menu {
-  display: flex;
-  flex-direction: row;
-}
-
-#searchJournal {
+main > #entries > menu > #search-bar {
+  height: 100%;
   flex-grow: 1;
-  overflow: hidden;
-  gap: 1%;
 }
 
-/* Note: This works on safari but not on chrome - the container gets overtaken by */
-main > #entries > menu > #conditional-buttons {
-  display: flex;
+main > #entries > menu > #search-bar > input[type="text"]{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  border: none;
+
 }
 
 main > #canvas {

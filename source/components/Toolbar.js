@@ -1,7 +1,6 @@
 const SideBar = document.querySelector('aside');
 const SidebarButtonOpen = document.querySelector('#sidebar-button-open');
 const SidebarButtonClose = document.querySelector('#sidebar-button-close');
-const ConditionalButtons = document.querySelector('#conditional-buttons')
 
 
 /**
@@ -10,7 +9,7 @@ const ConditionalButtons = document.querySelector('#conditional-buttons')
  */
 SidebarButtonOpen.addEventListener('click', () => {
     SideBar.style.display = 'flex'
-    ConditionalButtons.style.display = 'none'
+    SidebarButtonOpen.style.display = 'none'
 });
 /**
  * Makes the sidebar pop close
@@ -18,5 +17,5 @@ SidebarButtonOpen.addEventListener('click', () => {
  */
 SidebarButtonClose.addEventListener('click', () => {
     SideBar.style.display = 'none'
-    ConditionalButtons.style.display = 'flex'
+    SidebarButtonOpen.style.display = 'flex'
 });
