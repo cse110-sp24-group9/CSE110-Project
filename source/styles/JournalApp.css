@@ -32,7 +32,9 @@ menu > button,
     aspect-ratio: 1/1;
     cursor: pointer;
     border: none;
-    border: 0px;
+    border: 0;
+    margin: 0;
+    padding: 0;
     flex-shrink: 0;
 }
 
@@ -93,7 +95,7 @@ main > #entries > menu {
 
 /* Note: This works on safari but not on chrome - the container gets overtaken by */
 main > #entries > menu > #conditional-buttons {
-  display: inline;
+  display: flex;
 }
 
 main > #canvas {

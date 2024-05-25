@@ -18,5 +18,5 @@ SidebarButtonOpen.addEventListener('click', () => {
  */
 SidebarButtonClose.addEventListener('click', () => {
     SideBar.style.display = 'none'
-    ConditionalButtons.style.display = 'inline'
+    ConditionalButtons.style.display = 'flex'
 });
