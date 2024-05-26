@@ -104,18 +104,18 @@ main {
 }
 
 
-main > #entries {
+main > #navigation {
   flex-shrink: 0;
   width: 40%;
   border-right: 1px solid black;
 }
 
-main > #entries > menu > #search-bar {
+main > #navigation > menu > #search-bar {
   height: 100%;
   flex-grow: 1;
 }
 
-main > #entries > menu > #search-bar > input[type="text"]{
+main > #navigation > menu > #search-bar > input[type="text"]{
   height: 100%;
   width: 100%;
   padding: 0;

@@ -1,6 +1,6 @@
 const SideBar = document.querySelector('aside');
-const SidebarButtonOpen = document.querySelector('#sidebar-button-open');
-const SidebarButtonClose = document.querySelector('#sidebar-button-close');
+const SidebarButtonOpen = document.querySelector('#open-sidebar-button');
+const SidebarButtonClose = document.querySelector('#close-sidebar-button');
 
 
 /**
