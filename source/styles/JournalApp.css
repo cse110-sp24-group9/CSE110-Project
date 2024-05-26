@@ -87,6 +87,10 @@ aside {
   flex-direction: column;  
 }
 
+aside > menu {
+  justify-content: space-between;
+}
+
 aside > article{
   height: calc(100%/3);
   width: 100%;
