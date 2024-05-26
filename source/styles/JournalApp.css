@@ -34,6 +34,27 @@ menu > li.button {
    aspect-ratio: 1/1;
 }
 
+menu > li.toggle {
+    display: flex;
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+menu > li.toggle > input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+menu > li.toggle > svg {
+    width: 100%;
+    height: 100%;
+}
+
 menu > li > button {
   height: 100%;
   width: 100%;
@@ -61,6 +82,7 @@ aside {
   display: none;
   flex-direction: column;  
 }
+
 aside > article{
   height: calc(100%/3);
   width: 100%;
@@ -111,12 +133,18 @@ main > #canvas > menu > #mode-info {
     align-content: center;
 }
 
+main > #canvas > menu > #favorite-button > input:checked + svg {
+    fill: gold;
+}
+
 main > #canvas > #editor {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     overflow: auto;
 }
+
+
 .CodeMirror {
     flex-grow: 1;
 }
