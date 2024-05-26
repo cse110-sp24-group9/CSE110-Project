@@ -9,10 +9,37 @@
   </head>
   <body>
     <template id="journal_entries_template">
+      <link rel="stylesheet" href="../styles/entries_dummy.css">
+      <div id="journal-list">
+      </div>
+      <div id="info-bar">
+          <span id="info-b">0 Entries</span>
+      </div>
         
     </template>
     <template id="journal_entries_card_template">
-        
+      <link rel="stylesheet" href="../styles/entries_dummy.css">
+      <arcicle class="journal-entry">
+        <div id="side-info">
+          <div id='favorite'></div>
+        </div>
+        <div id="main-info">
+          <div id="top-info">
+            <div id="title"><span></span></div>
+            <div id="time"><span></span></div>
+          </div>  
+          <div id="middle-info">
+            <div id="preview"><span></span></div>
+          </div>
+          <div id="bottom-info">
+            <div id="label-bar">
+              <!-- RIGHT HERE THERE CAN BE MULTIPLE LABLE divs so UNsiure what to do -->
+              <div id="label"></div>
+            </div>
+            <div id="emotion"></div>
+          </div>
+        </div>
+      </arcicle>
     </template>
   </body>
 </html>
