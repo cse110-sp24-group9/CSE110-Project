@@ -65,12 +65,14 @@ menu > li > button {
   background-color: #F2F2F4;
 }
 
-menu >li > button:hover {
+menu > li > button:hover,
+menu > li.toggle:hover  {
     background-color: lightgray;
     border-radius: 5px;
 }
 
-menu >li > button:active {
+menu >li > button:active 
+menu > li.toggle:active {
     background-color: rgb(180, 180, 180);
     border-radius: 5px;
 }
