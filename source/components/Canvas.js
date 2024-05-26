@@ -14,6 +14,7 @@ const editIcons = document.getElementsByClassName("edit-mode")
 const viewIcons = document.getElementsByClassName("view-mode")
 const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
+const editorBox = document.querySelector("#editor")
 editorToolbar.style.display = 'none'
 
 
@@ -65,6 +66,12 @@ discardButton.addEventListener('click', () => {
    ){
     activateViewMode()
   }
+})
+
+editorBox.addEventListener('dblclick', () => {
+    if(simplemde.isPreviewActive()){
+        activateEditMode()
+    }
 })
 
 document.getElementById('label-add').addEventListener('click', function() {
