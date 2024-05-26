@@ -11,6 +11,8 @@ const toggleModeButton = document.querySelector("#toggle-mode-button > button");
 const editIcons = document.getElementsByClassName("edit-mode")
 const viewIcons = document.getElementsByClassName("view-mode")
 const modeDisplay = document.querySelector("#mode-info > p")
+const editorToolbar = document.querySelector(".editor-toolbar")
+editorToolbar.style.display = 'none'
 
 function hideElements(elementContainer){
   for(let i = 0; i < elementContainer.length; i++){
@@ -29,10 +31,12 @@ toggleModeButton.addEventListener('click', () => {
     hideElements(viewIcons)
     showElements(editIcons, 'inline')
     modeDisplay.innerHTML = "Edit Mode"
+    editorToolbar.style.display = 'block'
   }else{
     hideElements(editIcons)
     showElements(viewIcons, 'inline')
     modeDisplay.innerHTML = "View Mode"
+    editorToolbar.style.display = 'none'
   }
   simplemde.togglePreview();
 });
