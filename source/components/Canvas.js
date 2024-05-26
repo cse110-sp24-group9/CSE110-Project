@@ -3,7 +3,8 @@ var simplemde = new SimpleMDE({
      toolbar: ["bold", "italic", "strikethrough", "heading",
                 "|","unordered-list", "ordered-list", "quote", "code",
                 "|", "link", "image", "table",
-                "|", "side-by-side", "fullscreen", "guide"]
+                "|", "side-by-side", "fullscreen", "guide"],
+    shortcuts: {"togglePreview": null}
 });
 
 simplemde.togglePreview();
