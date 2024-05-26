@@ -73,7 +73,7 @@ menu > li.toggle:hover  {
     border-radius: 5px;
 }
 
-menu >li > button:active 
+menu >li > button:active, 
 menu > li.toggle:active {
     background-color: rgb(180, 180, 180);
     border-radius: 5px;
