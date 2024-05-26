@@ -9,11 +9,13 @@ var simplemde = new SimpleMDE({
 
 simplemde.togglePreview();
 const toggleModeButton = document.querySelector("#toggle-mode-button > button");
+const discardButton = document.querySelector("#discard-button > button")
 const editIcons = document.getElementsByClassName("edit-mode")
 const viewIcons = document.getElementsByClassName("view-mode")
 const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
 editorToolbar.style.display = 'none'
+
 
 function hideElements(elementContainer){
   for(let i = 0; i < elementContainer.length; i++){
@@ -27,20 +29,43 @@ function showElements(elementContainer, display){
     }
 }
 
-toggleModeButton.addEventListener('click', () => {
-  if(simplemde.isPreviewActive()){
-    hideElements(viewIcons)
-    showElements(editIcons, 'inline')
-    modeDisplay.innerHTML = "Edit Mode"
-    editorToolbar.style.display = 'block'
-  }else{
+function activateViewMode(){
+    //Change to View Mode
     hideElements(editIcons)
     showElements(viewIcons, 'inline')
     modeDisplay.innerHTML = "View Mode"
     editorToolbar.style.display = 'none'
-  }
-  simplemde.togglePreview();
+    simplemde.togglePreview();
+}
+
+function activateEditMode(){
+    //Change to Edit Mode
+    hideElements(viewIcons)
+    showElements(editIcons, 'inline')
+    modeDisplay.innerHTML = "Edit Mode"
+    editorToolbar.style.display = 'block'
+    simplemde.togglePreview();
+}
+
+toggleModeButton.addEventListener('click', () => {
+  if(simplemde.isPreviewActive()){
+    activateEditMode();
+  }else if(confirm("Save Changes?")){
+    activateViewMode();
+  } 
 });
+
+discardButton.addEventListener('click', () => {
+  if(simplemde.isPreviewActive() 
+        && confirm("Are you sure you want to delete your Journal Entry?")
+   ){
+  }
+  if(!simplemde.isPreviewActive() 
+        && confirm("Are you sure you want to discard your Journal Entry?")
+   ){
+    activateViewMode()
+  }
+})
 
 document.getElementById('label-add').addEventListener('click', function() {
     let labelBox = document.createElement('div');
@@ -59,4 +84,3 @@ document.getElementById('label-add').addEventListener('click', function() {
     });
     document.getElementById('label-bar').insertBefore(labelBox, document.getElementById('label-box-add'));
   });
-
