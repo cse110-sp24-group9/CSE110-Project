@@ -129,6 +129,7 @@ main {
 /* Helps add the border between entry list and canvas
 NOTE: This helps avoid borders from overlapping  */
 main > #navigation {
+  flex-grow: 1;
   border-right: 1px solid black;
 }
 
@@ -146,7 +147,7 @@ main > #navigation > menu > #search-bar > input[type="text"]{
 }
 
 main > #canvas {
-  flex-grow: 1; /* Responsible for making the canvas area take up as much space as possible*/
+  flex-grow: 2; /* Responsible for making the canvas area take up as much space as possible*/
   display: flex;
   flex-direction: column;
 }
