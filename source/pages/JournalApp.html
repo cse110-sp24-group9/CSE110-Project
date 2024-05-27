@@ -1,10 +1,17 @@
+<!--
+    Documentition done by:
+     - Drew Lara
+     - Jesus 
+ -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../styles/JournalApp.css">
+    <link rel="stylesheet" href="../styles/JournalApp.css"> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
+    <link rel="stylesheet" href="../styles/Canvas.css"> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script type="module" src="../components/CalendarItem.js"></script>
     <script type="module" src="../components/task-list-component.js"></script>
     <script type="module" src="../components/Toolbar.js"></script>
@@ -13,8 +20,8 @@
     <title>Journal App</title>
   </head>
   <body>
-    <aside> <!-- SIDE BAR-->
-      <menu> <!--TOOL BAR-->
+    <aside> <!-- SIDE BAR: TOOL BAR, CALENDAR, EVENT LIST, TASK LIST-->
+      <menu> <!--TOOL BAR: CLOSE SIDEBAR, SETTINGS-->
         <li id="close-sidebar-button" class="button">
           <button type="button">
             <svg viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg">
@@ -65,9 +72,6 @@
               calendar.setAttribute('hydrated',"true");
           });
         </script>
-        
-        
-
       </article>
       <article id="event-list"><!-- EVENTS COMPONENT --> 
 
@@ -92,9 +96,9 @@
 
       </article>
     </aside>
-    <main> <!-- MAIN CONTENT-->
-      <article id="navigation"> <!-- JOURNAL ENTRIES COMPONENT -->
-        <menu id="tool-bar">
+    <main> <!-- MAIN CONTENT: TOOL BARS, INFO BARS, JOURNAL ENTRIES, CANVAS-->
+      <article id="navigation"> <!-- JOURNAL ENTRIES AREA -->
+        <menu id="tool-bar"> <!--TOOLBAR: OPEN SIDE BAR, SEARCH BAR, FILTER, NEW ENTRY -->
           <li id="open-sidebar-button" class="button">
             <button type="button">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,14 +107,14 @@
             </button>
           </li>
           <li id="search-bar"><input type="text" placeholder="Search"></li>
-          <li id="new-entry-button" class="button">
+          <li id="filter-button" class="button">
             <button type="button">
              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"/>
               </svg> 
             </button>
           </li>
-          <li id="filter-button" class="button">
+          <li id="new-entry-button" class="button">
             <button type="button">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <g>
@@ -121,12 +125,11 @@
             </button>
           </li>
         </menu>
-        <footer></footer>
+        <article></article> <!--ENTRY LIST COMPONENT-->
+        <footer></footer> <!--INFO BAR: NUMBER OF ENTRIES-->
       </article>
-      <article id="canvas"><!-- CANVAS COMPONENT -->
-        <link rel="stylesheet" href="../styles/Canvas.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-        <menu>
+      <article id="canvas"><!-- CANVAS AREA -->
+        <menu> <!--TOOL BAR: DELETE/DISCARD, MODE DISPLAY, FAVORITE, EDIT/CONFIRM-->
           <li id="discard-button" class="button">
             <button type="button" id="testing">
               <svg id="trashcan" class="view-mode" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +171,7 @@
             </button>
           </li>
         </menu>
-        <menu id="label-bar">
+        <menu id="label-bar"> <!--TAG BAR: EXISTING TAGS, ADD TAGS-->
             <div class="label-box">
               <input type="checkbox">
               <div class="label" id="label-1">Task</div>
@@ -189,7 +192,7 @@
               <button id="label-add">+</button>
             </div>
         </menu> 
-        <article id="editor">
+        <article id="editor"> <!-- EDITOR COMPONENT-->
           <textarea id="markdown-editor" name="journal-entry" placeholder="Start Typing Here"></textarea>
         </article>
       </article>
