@@ -24,18 +24,18 @@ body {
   display: flex;
   flex-direction: row;
 }
+/* ALL SVGS */
 svg {
   height: 100%;
   width: 100%;
 }
-
+/* ALL Tool bar */
 menu {
   height: 5vh;
   width: auto;
   margin: 0;
   padding: 0 5px 0 5px;
   flex-shrink: 0;
-  border-bottom: .5px solid black;
   list-style: none;
   display: flex;
   gap: 5px;
