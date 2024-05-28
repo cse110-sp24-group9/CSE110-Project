@@ -11,10 +11,30 @@
  */
 export default class JournalEntries extends HTMLElement {
     /**
+     * The shadow root of the JournalEntry 
+     * @type {ShadowRoot}
+     * @private
+     * @summary the shadow root of the JournalEntry
+     * @since 0.1.0
+     */
+    #shadow
+
+    /**
      * @constructor
      */
     constructor(){
-        
+        super();
+        this.#shadow = this.attachShadow({mode: "open"});
+        /**
+         * @type {HTMLTemplateElement}
+         */
+        const tmpl =  document.getElementById('journal_entries_template');
+
+        this.#shadow.appendChild(tmpl.content);
+        this.addEntry();
+        this.#initSearchHandler();
+        this.#initCreateEntry();
+        this.#initFilterHandler();
     };
     /**
      * 
@@ -49,4 +69,5 @@ export default class JournalEntries extends HTMLElement {
 
     }
     
-};
+}
+customElements.define('journal-entries-component', JournalEntries);
