@@ -40,7 +40,8 @@ menu {
   display: flex;
   gap: 5px;
   flex-direction: row;
-  background-color: #F2F2F4;
+  /* background-color: #F2F2F4 */
+  background-color: rgb(235,235,235);
   align-items: center;
 }
 
@@ -78,7 +79,8 @@ menu > li > button {
   padding: 0;
   cursor: pointer;
   border: none;
-  background-color: #F2F2F4;
+  /* background-color: #F2F2F4; */
+  background-color: rgb(235,235,235);
 }
 
 menu > li > button:hover,
@@ -87,7 +89,7 @@ menu > li.toggle:hover  {
     border-radius: 5px;
 }
 
-menu >li > button:active 
+menu >li > button:active, 
 menu > li.toggle:active {
     background-color: rgb(180, 180, 180);
     border-radius: 5px;
