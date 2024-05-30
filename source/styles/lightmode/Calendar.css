@@ -1,0 +1,196 @@
+.center_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.Calendar_Container{
+    background-color: rgb(255,255,255);
+    /* width: 25vw; */
+    /* added below */
+    height: 100%;
+    border-radius: 10px;
+    /* padding: 10px 10px 10px 10px; */
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+.grid{
+    display: grid;
+}
+.week_list{
+    /* added below */
+    width: 100%;
+    display: grid;
+    /* gap: 2em; */
+    grid-template-columns: repeat(7,1fr);
+    justify-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* margin-top: 8px; */
+    border-top-color: rgb(255,255,255);
+    border-bottom-color: rgb(255,255,255);
+    border-style: solid;
+    border-left: 0px;
+    border-right: 0px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+.day_grid{
+    flex-grow: 1;
+    grid-template-columns: repeat(7, calc(100%/7));
+    /* grid-template-rows: repeat(6, 1fr); */
+    /* grid-template-columns: repeat(7, calc(100%/7)); 
+    grid-template-rows: repeat(5, calc(100%/5));  */
+    /* gap: 2rem; */
+    /* added below */
+    width: 100%;
+    height: 100%;
+    /* justify-items: center; */
+    
+}
+.flex{
+    display: flex;
+}
+.title_bar{
+    justify-content: space-between;
+    align-items: center;
+    height: 3em;
+}
+.title_bar button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    border-radius: 50%;
+    background: rgb(255,255,255);
+    cursor: pointer;
+    width: 3em;
+    height: 3em;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+
+}
+.title_bar button:hover {
+    background: rgb(179,179,179);
+    color: rgb(0,0,0);
+}
+.title_bar button:active {
+    background: grey;
+}
+
+.inactive{
+    color: rgb(179,179,179);
+}
+.active{
+    /* put here  */
+    background-color: #1A73E8;
+    border-radius: 50%;    
+    color: rgb(255, 255, 255);
+}
+.selected {
+    background-color: #C0D5F8;
+    color: #3C4043;
+    border-radius: 50%;
+}
+
+
+.day_grid > span {
+    /* aspect-ratio: 1/1; */
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:  background-color 0.5s ease-in-out, border-radius .2s ease-in-out;
+}
+
+.day_grid > span:hover {
+    color: rgb(0,0,0);
+    cursor: pointer;
+    border-radius: 50%;
+    /* background-color: #454851; */
+    background-color: rgb(200,200,200);
+}
+/* todo add media query to fix gap in grid when overflow happens */
+
+.day_grid > * {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.title_bar > * {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.week_list > * {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.day_grid > * {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.loading {
+    animation-duration: .5s;
+    animation-name: fadeOut;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+}
+.loadingIn {
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}
+@keyframes fadeIn {
+    from{
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+
+/* @media (max-width: 600px) {
+    .week_list{
+        gap: 1em;
+    }
+    .day_grid{
+        gap: 1em;
+    }
+    .day_grid > span {
+        width: 2em;
+        height: 2em;
+    }
+}
+
+@media (max-width: 400px) {
+    .week_list{
+        gap: 0;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    .day_grid{
+        gap: 0em;
+    }
+    .day_grid > span {
+        width: 2em;
+        height: 2em;
+    }
+} */

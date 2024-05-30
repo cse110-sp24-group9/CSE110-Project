@@ -138,7 +138,7 @@ export default class CalendarItem extends HTMLElement{
         // create all days of the current month in span elements
         for (let i = 1; i <= lastDateofMonth; i++) { 
             let isToday = i === currentDay && isCorrectMonth
-                        && isCorrectYear ? "active" : "";
+                        && isCorrectYear ? "active" : "currMonth";
             // if the users current date matches above date then give it the active class
             let dayEle = document.createElement('span');
             dayEle.className = isToday;
