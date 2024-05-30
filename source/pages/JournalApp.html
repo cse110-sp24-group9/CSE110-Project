@@ -73,6 +73,10 @@
           });
         </script>
       </article>
+
+
+
+
       <article id="event-list"><!-- EVENTS COMPONENT --> 
           <link rel="stylesheet" href="../styles/Event-list.css">
           <article class="eventlist">
@@ -83,17 +87,45 @@
               </div> 
             </div>
             <div id="add-event">+</div>
-            <script src="../components/Event-list.js"></script>
           </article>
-
-
-
-
-
-
-        
-
+          <div id="modal">
+            <h5>New Event</h5>
+            <form>
+              <article id="input-title">
+                <label for="title">Title</label><input type="text" id="title">
+              </article>
+              <article id="input-date">
+                <label for="date">Date</label><input type="date" id="date">
+              </article>
+              <article id="input-time">
+                <label for="time">Time</label><input type="time" id="time">
+              </article>
+              <article id="input-tag">
+                <label for="tag">Tag</label>
+                <select id="tag">
+                    <option value="">Select tag</option>
+                    <option value="meeting">Meeting</option>
+                    <option value="workshop">Workshop</option>
+                    <!-- Add more tags as needed -->
+                </select>
+              </article>
+              <article id="input-info">
+                <label for="info">Information</label>
+                <textarea id="info"></textarea>
+              </article>
+              <article id="input-accept">
+                <button type="button" class="cancel">x</button>
+                <button type="submit" class="confirm">✓</button>
+              </article>
+            </form>
+          </div>
+          <script src="../components/Event-list.js"></script>
       </article>
+
+
+
+
+
       <article id="task-list"> <!-- TASKS COMPONENT -->
         <template id="task-list_template">
           <link rel="stylesheet" href="../styles/task-list.css">
@@ -215,5 +247,19 @@
         </article>
       </article>
     </main>
+    <!-- TAG POP MENU -->
+    <div id="tag-modal">
+      <form>
+        <h5>Create New Tag</h5>
+        <article id="tag-title">
+          <label for="title">Title</label><input type="text" id="title">
+        </article>
+        <input type="color">
+        <article id="input-accept">
+          <button type="button" class="cancel">x</button>
+          <button type="submit" class="confirm">✓</button>
+        </article>
+      </form>
+    </div>
   </body>
 </html>
