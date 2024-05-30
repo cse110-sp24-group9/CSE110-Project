@@ -116,9 +116,9 @@
                  * tasklist will show up as selected
                  */
                 textEntry.addEventListener('dblclick', () => {
-                    textEntry.readOnly = false
-                    textEntry.style.backgroundColor ='white'
-                    textEntry.style.cursor = 'text'
+                    textEntry.readOnly = false;
+                    textEntry.style.backgroundColor ='white';
+                    textEntry.style.cursor = 'text';
                 })
                 /**
                  * Documented by Drew
@@ -126,9 +126,9 @@
                  * show tasklist item as unselected
                  */
                 textEntry.addEventListener('focusout', () => {
-                    textEntry.readOnly = true
-                    textEntry.style.backgroundColor=''
-                    textEntry.style.cursor = 'grab'
+                    textEntry.readOnly = true;
+                    textEntry.style.backgroundColor='';
+                    textEntry.style.cursor = 'grab';
                 })
     
               });
