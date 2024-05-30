@@ -12,10 +12,10 @@
 */
 
 html {
-    height: 100vh;
-    width: 100vw;
-    margin: 0px;
-    overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  overflow: hidden;
 }
 body {
   height: 100%;
@@ -23,7 +23,7 @@ body {
   margin: 0px;
   display: flex;
   flex-direction: row;
-  background-color: black;
+  background-color: rgb(0,0,0);
 }
 /* ALL SVGS */
 svg {
@@ -42,39 +42,38 @@ menu {
   gap: 5px;
   flex-direction: row;
   /* background-color: #F2F2F4 */
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(75, 75, 75);
   align-items: center;
 }
 
 /* Responsible for making each button a perfect square based on height of tool bar */
-menu > li.button {
+menu > li.button { 
   height: 100%;
   aspect-ratio: 1/1;
 }
 /* Responsible as above, as well as containing both visual of toggle and checkbox*/
 menu > li.toggle {
-    display: flex;
-    position: relative;
-    height: 100%;
-    aspect-ratio: 1/1;
+  display: flex;
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1/1;
 }
 /* Actual checkbox in tool bar */
 menu > li.toggle > input {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
 }
 /* Picture for a checkbox */
 menu > li.toggle > svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 /*  Buttons in toolbar */
 menu > li > button {
-  background-color: transparent;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -82,26 +81,26 @@ menu > li > button {
   cursor: pointer;
   border: none;
   /* background-color: #F2F2F4; */
-  /* background-color: rgb(235,235,235); */
+  background-color: transparent;
 }
 
 menu > li > button:hover,
 menu > li.toggle:hover  {
-    background-color: lightgray;
-    border-radius: 5px;
+  background-color: lightgray;
+  border-radius: 5px;
 }
 
-menu > li > button:active, 
+menu >li > button:active, 
 menu > li.toggle:active {
-    background-color: rgb(180, 180, 180);
-    border-radius: 5px;
+  background-color: rgb(180, 180, 180);
+  border-radius: 5px;
 }
 
 /* Responsible for styling side bar */
 aside {
   flex-shrink: 0;
-  border-right: 1px solid white;
-  display: none;
+  border-right: 1px solid rgb(75, 75, 75);
+  display: flex;
   flex-direction: column;  
 }
 /* Makes buttons on opposite sides */
@@ -113,15 +112,17 @@ aside > menu {
 aside > article{
   height: calc(100%/3);
   width: 100%;
+  overflow: hidden;
 }
 
 /* 
 Helps add the borders between side bar components
 NOTE: This helps avoid borders from overlapping*/
 aside > #event-list{
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid rgb(75, 75, 75);
+  border-bottom: 1px solid rgb(75, 75, 75);
 }
+
 
 /* Responsible for styling main area (NOT SIDEBAR)*/
 main {
@@ -134,7 +135,7 @@ main {
 NOTE: This helps avoid borders from overlapping  */
 main > #navigation {
   flex-grow: 1;
-  border-right: 1px solid white;
+  border-right: 1px solid rgb(75, 75, 75);
 }
 
 main > #navigation > menu > #search-bar {
@@ -142,12 +143,15 @@ main > #navigation > menu > #search-bar {
   flex-grow: 1; /* Responsible for making search bar take up as much space as possible */
 }
 
+main > #navigation > #tool-bar > #open-sidebar-button{
+  display: none;
+}
+
 main > #navigation > menu > #search-bar > input[type="text"]{
   height: 100%;
   width: 100%;
   padding: 0;
   border: none;
-
 }
 
 main > #canvas {
@@ -157,26 +161,26 @@ main > #canvas {
 }
 
 main > #canvas > menu > #mode-info {
-    flex-grow: 1; /* Responsible for making information bar fill up space in canvas toolbar */
-    text-align: center;
-    align-content: center;
-    overflow: hidden;
+  flex-grow: 1; /* Responsible for making information bar fill up space in canvas toolbar */
+  text-align: center;
+  align-content: center;
+  overflow: hidden;
 }
 
 /* Make Favorite star gold */
 main > #canvas > menu > #favorite-button > input:checked + svg {
-    fill: gold;
+  fill: gold;
 }
 
 
 main > #canvas > #editor {
-    flex-grow: 1; /* Responsible for making editor component fill up canvas area */
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+  flex-grow: 1; /* Responsible for making editor component fill up canvas area */
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 /* Responsible for making editor text area fill up area and make info bar go to bottom*/
 .CodeMirror {
-    flex-grow: 1;
+  flex-grow: 1;
 }
