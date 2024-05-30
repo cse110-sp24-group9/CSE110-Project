@@ -111,6 +111,7 @@ aside > menu {
 aside > article{
   height: calc(100%/3);
   width: 100%;
+  overflow: hidden;
 }
 
 /* 
