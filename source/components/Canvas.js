@@ -91,3 +91,16 @@ document.getElementById('label-add').addEventListener('click', function() {
     });
     document.getElementById('label-bar').insertBefore(labelBox, document.getElementById('label-box-add'));
   });
+
+
+
+
+
+
+// Tag pop up test code
+var btn = document.getElementById("label-add");
+var modal = document.getElementById("tag-modal");
+
+btn.onclick = function() {
+  modal.style.display = "flex";
+}

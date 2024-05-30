@@ -99,7 +99,7 @@ menu > li.toggle:active {
 aside {
   flex-shrink: 0;
   border-right: 1px solid black;
-  display: none;
+  display: flex;
   flex-direction: column;  
 }
 /* Makes buttons on opposite sides */
@@ -138,6 +138,10 @@ main > #navigation {
 main > #navigation > menu > #search-bar {
   height: 75%;
   flex-grow: 1; /* Responsible for making search bar take up as much space as possible */
+}
+
+main > #navigation > #tool-bar > #open-sidebar-button{
+  display: none;
 }
 
 main > #navigation > menu > #search-bar > input[type="text"]{
