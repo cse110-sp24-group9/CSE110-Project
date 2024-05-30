@@ -1,10 +1,10 @@
-html {
+/* html {
     height: 100%;
     width: 100%;
     margin: 0px;
     overflow:auto;
-}
-body {
+} */
+/* body {
     height: 90%;
     width: 90%;
     padding: 5%;
@@ -12,17 +12,28 @@ body {
     margin: 0px;
     display: flexbox;
     background-color: rgb(244, 244, 244);
+} */
+.eventlist{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
 }
-
+.eventlist-entries{
+    overflow: hidden auto; 
+    flex-grow: 1;
+    margin: 2%
+}
 #event-entry {
-    padding: 1px 2.5% 1px 2.5%;
+    /* padding: 1px 2.5% 1px 2.5%; */
     position: relative;
     border-radius: 5px;
-    width: 95%;
+    width: 100%;
     height: 30px;
     display: flex;
     flex-direction: row;
-    margin-bottom: 5px;
+    margin-bottom: 2%;
 }
 
 #title {
@@ -36,30 +47,29 @@ body {
     align-content: center;
 }
 
-
 #time {
     text-align: right;
     align-content: center;
     font-size: small;
 }
-
-#add-box {
+#add-event {
+  margin: 2%;
   border: 1px solid black;
-  position:fixed;
+  /* position:fixed; */
   bottom: 5px;
-  width: 90%;
+  /* width: 100%; */
   text-align: center;
   background-color: white;
   font-size: x-large;
   border-radius: 5px;
 }
 
-#add-box:hover {
+#add-event:hover {
   background-color: lightgrey;
 }
 
-#add-box:active {
-    background-color: grey;
+#add-event:active {
+    background-color: rgb(180, 180, 180);
 }
 
 .event-type1 {
