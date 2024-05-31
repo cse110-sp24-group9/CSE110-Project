@@ -75,9 +75,9 @@
       </article>
 
 
-
-
-      <article id="event-list"><!-- EVENTS COMPONENT --> 
+<!-- EVENTS COMPONENT --> 
+<!-- 
+      <article id="event-list">
           <link rel="stylesheet" href="../styles/darkmode/Event-list.css">
           <article class="eventlist">
             <div class="eventlist-entries">
@@ -106,7 +106,7 @@
                     <option value="">Select tag</option>
                     <option value="meeting">Meeting</option>
                     <option value="workshop">Workshop</option>
-                    <!-- Add more tags as needed -->
+                   
                 </select>
               </article>
               <article id="input-info">
@@ -120,9 +120,27 @@
             </form>
           </div>
           <script src="../components/Event-list.js"></script>
+      </article> -->
+
+      
+      <article id="event-list"> <!-- EVENTS COMPONENT -->
+        <template id="event-list-template">
+          <link rel="stylesheet" href="../styles/darkmode/Event-list.css">
+          <article id="eventlist">
+            <h4 id="eventTitle">Event List</h4>
+            <div id="displayEvents"></div>
+            <button id="addEventsButton">+</button>
+          </article>
+        </template>
+      <!-- Call the eventlist here VVVV -->
+      <event-list-component></event-list-component>
+
       </article>
 
 
+
+
+      
 
 
 
