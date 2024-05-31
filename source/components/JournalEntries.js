@@ -52,6 +52,7 @@ export default class JournalEntries extends HTMLElement {
         })
         this.#entries.push([JSON.parse(entry),card_ele])
         console.log(this.#entries[this.#entries.length-1]);
+        this.#shadow.getElementById('info-b').textContent = this.#entries.length + " Entries"
     }
     /**
      * This function is responsible for subscribing to the input field, to filter journal entries by finding what entries have the same/contains the search for string
@@ -59,17 +60,29 @@ export default class JournalEntries extends HTMLElement {
      * @property {Function} initSearchHandler
      * @returns {void}
      * @summary creates the filter handler for the journal component
-     * 1: grab input text listener line 154 journal app
-     * 2: listen to input when value changes
-     * 3: grab string from it
-     * 4: loop through #entries and get title from obj
-     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-     * 5: if false -> js inline styling (independent of css), verbatim: card_ele.setAttribute("style","display: none;")
-     *    if true -> card_ele.toggleAttribute("style") https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute
-     * 
      */
     #initSearchHandler(){
-        // TODO
+        // Get list of entries and subscribe to Search bar text input
+        // Each element of array is of the form: [JSON object, journal-card-component element]
+        const listOfEntries = this.#entries;
+        const searchInput = document.querySelector('#search-bar').querySelector('input[type="text"]');
+
+        // Dynamically listen to input and HIDE entries that do NOT match user input
+        function handleInputEvent(event) {
+            const userInput = event.target.value;
+            for (let pair of listOfEntries) {
+                const currTitle = pair[0]['title'].toLowerCase();
+                const currEle = pair[1];
+                if(!(currTitle.includes(userInput.toLowerCase()))) {
+                    currEle.setAttribute("style", "display: none");
+                }
+                else {
+                    currEle.toggleAttribute("style");
+                }
+            }
+        }
+
+        searchInput.addEventListener('input', handleInputEvent);
     }
 
     /**
