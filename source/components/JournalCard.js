@@ -41,8 +41,12 @@ export default class JournalCard extends HTMLElement {
     set data(data) {
         // If nothing was passed in, return
         if (!data) return;
-        this.#shadow.querySelector()
-        
+        this.#shadow.querySelector('#favorite span').innerText = data['favorite'] ? '★' : '';
+        this.#shadow.querySelector('#title span').innerText = data['title'];
+        this.#shadow.querySelector('#emotion').innerText = '😄';
+        this.#shadow.querySelector('#preview span').innerText = data['preview'];
+        const time_string =  new Date(data['time']).toLocaleString('en-US', {hour: "numeric", hour12: true});
+        this.#shadow.querySelector('#time span').innerText = time_string;
     }
 
     /**
