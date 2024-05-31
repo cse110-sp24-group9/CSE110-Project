@@ -43,6 +43,32 @@ export default class JournalCard extends HTMLElement {
         if (!data) return;
 
         console.log(this.#shadow.innerHTML);
+        /**
+         * @type {Array<Array<Object>>}
+         * List of tuples containing tile and color of tags
+         */
+        const tagList = data['tags'];
+        if(tagList){
+            const tag_ele = this.#shadow.querySelector('#label-bar');
+            tag_ele.replaceChildren()
+            for(const pair of tagList.values()){
+                /**
+                 * the title of the tag
+                 * @type {string}
+                 */
+                const title_string = pair[0];
+                /**
+                 * the css color string of the tag
+                 * @type {string}
+                 */
+                const tag_color = pair[1]; // css color
+                const add_tag_ele = document.createElement('div');
+                add_tag_ele.setAttribute("class", "label")
+                add_tag_ele.setAttribute('style', `background-color: ${tag_color}`);
+                add_tag_ele.textContent = title_string;
+                tag_ele.appendChild(add_tag_ele);
+            }
+        }
         this.#shadow.querySelector('#favorite').innerText = data['favorite'] ? '★' : '';
         this.#shadow.querySelector('#title span').innerText = data['title'];
         this.#shadow.querySelector('#emotion').innerText = '😄';
