@@ -1,5 +1,6 @@
 /**
  * @module JournalCardModule
+ * The module that holds the JournalCard Component
  */
 /**
  * @class
@@ -25,6 +26,7 @@ export default class JournalCard extends HTMLElement {
         /**
          * @type {HTMLTemplateElement}
          */
+        this.#shadow = this.attachShadow({mode: "open"});
         const tmpl =  document.getElementById('JournalCard_template');
 
         this.#shadow.appendChild(tmpl.content);
@@ -39,34 +41,8 @@ export default class JournalCard extends HTMLElement {
     set data(data) {
         // If nothing was passed in, return
         if (!data) return;
-
-        const parentArticle = this.#shadow.querySelector('.journal-entry');
-        parentArticle.innerHTML = `
-        <div id="side-info">
-            <div id='favorite'></div>
-        </div>
-        <div id="main-info">
-            <div id="top-info">
-                <div id="title">
-                    <span>${data.title}</span>
-                </div>
-                <div id="time">
-                    <span>${data.time}</span>
-                </div>
-            </div>  
-            <div id="middle-info">
-                <div id="preview">
-                    <span>${data.preview}</span>
-                </div>
-            </div>
-            <div id="bottom-info">
-                <div id="label-bar">
-                    <div id="label">${data.label}</div>
-                </div>
-                <div id="emotion">${data.emotion}</div>
-            </div>
-        </div>
-        `;
+        this.#shadow.querySelector()
+        
     }
 
     /**

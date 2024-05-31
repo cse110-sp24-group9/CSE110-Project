@@ -1,7 +1,7 @@
 /**
  * @module JournalEntriesModule
  */
-
+import JournalCard from "./JournalCard";
 /**
  * @class
  * @extends {HTMLElement}
@@ -31,15 +31,13 @@ export default class JournalEntries extends HTMLElement {
         const tmpl =  document.getElementById('JournalEntries_template');
 
         this.#shadow.appendChild(tmpl.content);
-        this.addEntry();
         this.#initSearchHandler();
-        this.#initCreateEntry();
         this.#initFilterHandler();
     };
     /**
-     * 
+     * @param {JSON} entry the json object to be loaded into a journal card
      */
-    addEntry(){
+    addEntry(entry){
         // TODO
     }
     /**
@@ -52,12 +50,7 @@ export default class JournalEntries extends HTMLElement {
     #initSearchHandler(){
         // TODO
     }
-    /**
-     * 
-     */
-    #initCreateEntry(){
-        // TODO
-    }
+
     /**
      * This function filters journal entries by subscribing to journal entries tag check boxes
      * @private
