@@ -28,7 +28,7 @@ export default class JournalEntries extends HTMLElement {
         /**
          * @type {HTMLTemplateElement}
          */
-        const tmpl =  document.getElementById('journal_entries_template');
+        const tmpl =  document.getElementById('JournalEntries_template');
 
         this.#shadow.appendChild(tmpl.content);
         this.addEntry();

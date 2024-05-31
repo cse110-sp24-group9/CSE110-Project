@@ -25,7 +25,7 @@ export default class JournalCard extends HTMLElement {
         /**
          * @type {HTMLTemplateElement}
          */
-        const tmpl =  document.getElementById('journal_entries_card_template');
+        const tmpl =  document.getElementById('JournalCard_template');
 
         this.#shadow.appendChild(tmpl.content);
     };
