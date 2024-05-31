@@ -18,7 +18,13 @@ export default class JournalEntries extends HTMLElement {
      * @since 0.1.0
      */
     #shadow
-
+    /**
+     * @type {Array}
+     * @private
+     * @summary Has a tuple of json object and element of entries
+     * @since 0.1.0
+     */
+    #entries = [];
     /**
      * @constructor
      */
@@ -41,6 +47,11 @@ export default class JournalEntries extends HTMLElement {
         const card_ele = document.createElement('journal-card-component');
         card_ele.data = JSON.parse(entry);
         this.#shadow.appendChild(card_ele);
+        card_ele.addEventListener('click', (e)=>{
+            console.log("Element with time of: " + JSON.parse(entry)['time']);
+        })
+        this.#entries.push([JSON.parse(entry),card_ele])
+        console.log(this.#entries[this.#entries.length-1]);
     }
     /**
      * This function is responsible for subscribing to the input field, to filter journal entries by finding what entries have the same/contains the search for string
@@ -48,6 +59,14 @@ export default class JournalEntries extends HTMLElement {
      * @property {Function} initSearchHandler
      * @returns {void}
      * @summary creates the filter handler for the journal component
+     * 1: grab input text listener line 154 journal app
+     * 2: listen to input when value changes
+     * 3: grab string from it
+     * 4: loop through #entries and get title from obj
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+     * 5: if false -> js inline styling (independent of css), verbatim: card_ele.setAttribute("style","display: none;")
+     *    if true -> card_ele.toggleAttribute("style") https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute
+     * 
      */
     #initSearchHandler(){
         // TODO

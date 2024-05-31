@@ -150,7 +150,7 @@ export default class CalendarItem extends HTMLElement{
             dayEle.className = isToday;
             dayEle.innerText = (i);
             /**
-             * @fires calendar-component#day-changed-event
+             * @fires day-changed-event
              */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
