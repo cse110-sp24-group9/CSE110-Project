@@ -1,3 +1,8 @@
+/**
+ * @module CalendarModule
+ * The module that houses the Calendar Component
+ */
+
 let date = new Date(), // getting new date, current year and month
 currentDay = date.getDate(),
 currYear = date.getFullYear(),
@@ -15,7 +20,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
  * @version 0.1.1
  * @type {CalendarItem}
  * @summary the calendar web component js implementation class
- * @module
+ * @class
  */              
 export default class CalendarItem extends HTMLElement{
     /**
@@ -50,19 +55,20 @@ export default class CalendarItem extends HTMLElement{
      */
     #prevNextIcon
     /**
-     * @event calendar-component#day-changed-event
+     * This event is responsible for informing the front end that a new day has been selected
+     * This event contains a detail with the utc string of the day selected
+     * @event day-changed-event
      * @type {CustomEvent}
      * @property {number} time
      */
     /**
      * This event is responsible for letting the page know that the calendar item has loaded
      * The custom information onto the page
-     * @event calendar-component#hydrated
+     * @event hydrated
      * @type {CustomEvent}
      * @summary listen to event to see if custom component is ready
      */
     /**
-     * @constructor
      * @since 0.1.0
      * @author Andrew Pegg
      * @summary Creates, renders, and sets up interactability with the calendar component
