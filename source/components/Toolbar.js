@@ -2,6 +2,9 @@ const SideBar = document.querySelector('aside');
 const SidebarButtonOpen = document.querySelector('#open-sidebar-button');
 const SidebarButtonClose = document.querySelector('#close-sidebar-button');
 
+const SettingButton = document.querySelector('#setting-button');
+const lightMode = document.getElementById("lightmode");
+const darkMode = document.getElementById("darkmode");
 
 /**
  * Makes the sidebar pop open
@@ -19,3 +22,26 @@ SidebarButtonClose.addEventListener('click', () => {
     SideBar.style.display = 'none'
     SidebarButtonOpen.style.display = 'flex'
 });
+
+/**
+ * Changes light/dark mode of the page
+ * Makes all components to light/dark mode concurrently
+ */
+
+
+/* SettingButton.addEventListener('click', () => {
+    const lightMode = document.getElementsByClassName("lightmode");
+    const darkMode = document.getElementsByClassName("darkmode");
+    for(let i = 0; i < lightMode.length; i++) {
+        console.log(lightMode[i]);
+        console.log(darkMode[i]);
+
+       if (lightMode[i].disabled) {
+        lightMode[i].disabled = false;
+        darkMode[i].disabled = true;
+        } else {
+            lightMode[i].disabled = true;
+            darkMode[i].disabled = false;
+        } 
+    } 
+}); */

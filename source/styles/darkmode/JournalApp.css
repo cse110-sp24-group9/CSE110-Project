@@ -152,6 +152,7 @@ main > #navigation > menu > #search-bar > input[type="text"]{
   width: 100%;
   padding: 0;
   border: none;
+  background-color: darkgray;
 }
 
 main > #canvas {

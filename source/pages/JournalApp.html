@@ -9,9 +9,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../styles/darkmode/JournalApp.css"> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
-    <link rel="stylesheet" href="../styles/Canvas.css"> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
+
+    <link class="lightmode" rel="stylesheet" href="../styles/lightmode/JournalApp.css"disabled> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
+    <link class="darkmode" rel="stylesheet" href="../styles/darkmode/JournalApp.css" > 
+
+    <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Canvas.css"disabled> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
+    <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Canvas.css" >
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    
     <script type="module" src="../components/CalendarItem.js"></script>
     <script type="module" src="../components/task-list-component.js"></script>
     <script type="module" src="../components/Toolbar.js"></script>
@@ -40,7 +47,10 @@
       </menu>
       <article id="calendar"> <!-- CALENDAR COMPONENT -->
         <template id="calendar_template">
-          <link rel="stylesheet" href="../styles/darkmode/Calendar.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Calendar.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Calendar.css" >
+
           <div class="Calendar_Container">
               <div class="flex title_bar">
                   <button id="prev">
@@ -78,7 +88,10 @@
 
 
       <article id="event-list"><!-- EVENTS COMPONENT --> 
-          <link rel="stylesheet" href="../styles/darkmode/Event-list.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Event-list.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Event-list.css" >
+
           <article class="eventlist">
             <div class="eventlist-entries">
               <div id="event-entry" class="event-type1">
@@ -128,16 +141,19 @@
 
       <article id="task-list"> <!-- TASKS COMPONENT -->
         <template id="task-list_template">
-          <link rel="stylesheet" href="../styles/darkmode/task-list.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/task-list.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/task-list.css">
+
           <!-- <link rel="stylesheet" href="../styles/task-test.css"> -->
           <article id="tasklist">
             <h4 id="title">Task List</h4>
             <div id="list"></div>
             <button id="add-button">+</button>
           </article>
-      </template>
-      <!-- Call the tasklist here VVVV -->
-      <task-list-component></task-list-component>
+        </template>
+        <!-- Call the tasklist here VVVV -->
+        <task-list-component></task-list-component>
 
       </article>
     </aside>
