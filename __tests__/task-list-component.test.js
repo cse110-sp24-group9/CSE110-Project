@@ -3,17 +3,39 @@
  * Author: Henry Tiet
  */
 
+// To Do
+// LATER ONCE DATABASE IS CREATED
+// refresh to check save//not possible until we get database
+// repeat edting tests after reloading page//not possible yet
+
 describe('Task List Testing', () => {
     
+    let page;
     /**
      * Author: Henry Tiet and Jason
      * Update link to github pages when posted
      */
     beforeAll(async () => {
       console.log('Navigating to Tasklist page...');
+      page = await browser.newPage();
       await page.goto('http://localhost:3000/pages/task-list.html', { waitUntil: 'networkidle2' });
       console.log('Page loaded');
     },60000);
+
+    /**
+     * Author: Jason Boenjamin
+     * Ensuring task list loads correctly 
+     */
+    it('Load Tasklist at file', async () => {
+        const taskComponent = await page.$('task-list-component');
+        const taskListPosition = await page.evaluate(taskComponent => {
+            return window.getComputedStyle(taskComponent).top;
+        }, taskComponent);
+        expect(taskListPosition).toBe('auto');
+    },10000);
+
+
+
     /** 
      * Author: Henry Tiet
      * Checking for correct empty task on initialization
@@ -104,6 +126,41 @@ describe('Task List Testing', () => {
         expect(newText).toBe('Testing');
     }, 10000);
     
+     /**
+     * Author: Jason Boenjamin
+     * Checking if tasks get a strikethrough when checked
+     */
+     it('Check strike through, properly', async () => {
+        const taskComponent = await page.$('task-list-component');
+        await page.evaluate(taskComponent => {
+            const shadowRoot = taskComponent.shadowRoot;
+            const addButton = shadowRoot.querySelector('.addbtn');
+            addButton.click();
+            const taskText = shadowRoot.querySelector('.task-text');
+            const taskCheckbox = shadowRoot.querySelector('.task-checkbox');
+            taskText.value = 'Test Task';
+            taskCheckbox.click();
+        }, taskComponent);
+        const isStrikethrough = await page.evaluate(taskComponent => {
+            const shadowRoot = taskComponent.shadowRoot;
+            const taskText = shadowRoot.querySelector('.task-text');
+            return window.getComputedStyle(taskText).textDecoration.includes('line-through');
+        }, taskComponent);
+        expect(isStrikethrough).toBe(true);
+    }, 10000);
+
+
+    /**
+     * Author: Jason Boenjamin
+     * Edit already edited task
+     */
+    it('Edit already edited task', async () => {
+        const textEditHandle = await page.$('task-list-component >>> .task-text');
+        await textEditHandle.focus();
+        await textEditHandle.type(' More Testing');
+        const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle);
+        expect(newText).toBe('Test Task More Testing');
+    }, 10000);
 
     /**
      * Author: Brendon He
@@ -130,8 +187,9 @@ describe('Task List Testing', () => {
     /**
      * Author: Brendon He
      * Checking to make sure delete does not affect other tasks
+     * Edited by Jason
      */
-    it('Delete All Tasks', async () => {
+    it('Delete Second Tasks, Check to see if 3rd task becomes second', async () => {
         //find and click the add tasks button 3 times so we have 3 tasks
         const addbtn = await page.$('task-list-component >>> .addbtn');
         await addbtn.click();
@@ -156,20 +214,17 @@ describe('Task List Testing', () => {
 }, 10000);
 
 
-
+    /**
+     * Author: Jason Boenjamin
+     * Closing the page after all tests are done
+     */
+    afterAll(async () => {
+        if (page) {
+            await page.close();
+        }
+    });
     
 });
 
 
-// Testing to do:
-// Load task list at TOP of file - Jason
-// add more tasks - henry
-// edit middle task - henry
-// check if strike through properly - JASON
-// edit already edited task - Brendon
-// delete middle task, ensure it doesn't affect other tasks - Brendon
-// close page -LAST TEST - JASON
 
-// LATER ONCE DATABASE IS CREATED
-// refresh to check save//not possible until we get database
-// repeat edting tests after reloading page//not possible yet
