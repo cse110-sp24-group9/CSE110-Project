@@ -1,7 +1,7 @@
 /**
  * @module JournalEntriesModule
  */
-import JournalCard from "./JournalCard";
+import JournalCard from "./JournalCard.js";
 /**
  * @class
  * @extends {HTMLElement}
@@ -35,10 +35,12 @@ export default class JournalEntries extends HTMLElement {
         this.#initFilterHandler();
     };
     /**
-     * @param {JSON} entry the json object to be loaded into a journal card
+     * @param {string} entry the json object to be loaded into a journal card
      */
     addEntry(entry){
-        // TODO
+        const card_ele = document.createElement('journal-card-component');
+        card_ele.data = JSON.parse(entry);
+        this.#shadow.appendChild(card_ele);
     }
     /**
      * This function is responsible for subscribing to the input field, to filter journal entries by finding what entries have the same/contains the search for string

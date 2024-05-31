@@ -27,9 +27,10 @@ export default class JournalCard extends HTMLElement {
          * @type {HTMLTemplateElement}
          */
         this.#shadow = this.attachShadow({mode: "open"});
-        const tmpl =  document.getElementById('JournalCard_template');
-
-        this.#shadow.appendChild(tmpl.content);
+        const tmpl =  window.document.querySelector('#JournalCardTemplate');
+        console.log(tmpl.innerHTML);
+        this.#shadow.appendChild(tmpl.content.cloneNode(true));
+        console.log('hello from card')
     };
     
     
@@ -41,10 +42,12 @@ export default class JournalCard extends HTMLElement {
     set data(data) {
         // If nothing was passed in, return
         if (!data) return;
-        this.#shadow.querySelector('#favorite span').innerText = data['favorite'] ? '★' : '';
+
+        console.log(this.#shadow.innerHTML);
+        this.#shadow.querySelector('#favorite').innerText = data['favorite'] ? '★' : '';
         this.#shadow.querySelector('#title span').innerText = data['title'];
         this.#shadow.querySelector('#emotion').innerText = '😄';
-        this.#shadow.querySelector('#preview span').innerText = data['preview'];
+        this.#shadow.querySelector('#preview span').innerText = data['preview-text'];
         const time_string =  new Date(data['time']).toLocaleString('en-US', {hour: "numeric", hour12: true});
         this.#shadow.querySelector('#time span').innerText = time_string;
     }

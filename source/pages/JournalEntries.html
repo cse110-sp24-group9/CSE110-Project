@@ -8,13 +8,15 @@
     </head>
     <body>
         <template id="JournalEntries_template">
+          <link rel="stylesheet" href="../styles/JournalEntries.css">
             <div id="journal-list">
             </div>
             <div id="info-bar">
                 <span id="info-b">0 Entries</span>
             </div>
         </template>
-        <template id="JournalCard_template">
+        <template id="JournalCardTemplate">
+          <link rel="stylesheet" href="../styles/JournalEntries.css">
             <article class="journal-entry">
               <div id="side-info">
                 <div id='favorite'>★</div>
@@ -36,5 +38,6 @@
               </div>
             </article>
         </template>
+        <journal-entries-component> </journal-entries-component>
     </body>
 </html>
