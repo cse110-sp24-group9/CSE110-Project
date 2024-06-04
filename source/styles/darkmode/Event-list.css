@@ -155,7 +155,7 @@
 #input-accept {
     /* NEED TO CHANGE VALUE OF HEIGHT */
     margin-top: 2px;
-    height: 30px;
+    height: auto;
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
