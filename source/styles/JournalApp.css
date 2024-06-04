@@ -100,7 +100,7 @@ aside {
   flex-shrink: 0;
   border-right: 1px solid black;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 /* Makes buttons on opposite sides */
 aside > menu {
