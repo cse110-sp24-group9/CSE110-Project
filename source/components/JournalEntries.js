@@ -51,16 +51,18 @@ export default class JournalEntries extends HTMLElement {
      * @param {string} entry the json object to be loaded into a journal card
      */
     addEntry(entry){
+        let hoist = this;
         const card_ele = document.createElement('journal-card-component');
         card_ele.data = JSON.parse(entry);
         const journal_list = this.#shadow.querySelector("#journal-list")
         journal_list.appendChild(card_ele);
         card_ele.addEventListener('click', (e)=>{
+            hoist.#submitJournalClickEvent(JSON.parse(entry)['time']);
             console.log("Element with time of: " + JSON.parse(entry)['time']);
         })
         this.#entries.push([JSON.parse(entry),card_ele])
         console.log(this.#entries[this.#entries.length-1]);
-        this.#shadow.getElementById('info-b').textContent = this.#entries.length + " Entries"
+        this.#shadow.getElementById('info-b').textContent = this.#entries.length + " Entries Total"
     }
     /**
      * This function is responsible for subscribing to the input field, to filter journal entries by finding what entries have the same/contains the search for string
@@ -138,6 +140,20 @@ export default class JournalEntries extends HTMLElement {
             if(!tag_true)
                 currEle.setAttribute("style", "display: none");
         }
+    }
+    /**
+     * @private 
+     * @property {Function} submitJournalClickEvent
+     * @param {number} time_stamp 
+     */
+    #submitJournalClickEvent(time_stamp){
+        let event = new CustomEvent('journal-clicked', {
+            bubbles: true,
+            cancelable: false,
+            composed: true,
+            detail: {time: time_stamp}
+        });
+        this.dispatchEvent(event);
     }
     
 }
