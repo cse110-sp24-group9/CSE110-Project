@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script type="module" src="../components/CalendarItem.js"></script>
     <script type="module" src="../components/task-list-component.js"></script>
+    <script type="module" src="../components/JournalEntries.js"></script>
     <script type="module" src="../components/Toolbar.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script type="module" src="../components/Canvas.js"></script>
+    <script src="../scripts/JournalApp.js"></script>
     <title>Journal App</title>
   </head>
   <body>
@@ -40,7 +42,10 @@
       </menu>
       <article id="calendar"> <!-- CALENDAR COMPONENT -->
         <template id="calendar_template">
-          <link rel="stylesheet" href="../styles/darkmode/Calendar.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Calendar.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Calendar.css" >
+
           <div class="Calendar_Container">
               <div class="flex title_bar">
                   <button id="prev">
@@ -73,12 +78,46 @@
           });
         </script>
       </article>
+      <template id="JournalEntries_template">
+        <link rel="stylesheet" href="../styles/JournalEntries.css">
+          <div id="journal-list">
+          </div>
+          <div id="info-bar">
+              <span id="info-b">0 Entries</span>
+          </div>
+      </template>
+      <template id="JournalCardTemplate">
+        <link rel="stylesheet" href="../styles/JournalEntries.css">
+          <article class="journal-entry">
+            <div id="side-info">
+              <div id='favorite'>★</div>
+            </div>
+            <div id="main-info">
+              <div id="top-info">
+                <div id="title"><span>Task Completed</span></div>
+                <div id="time"><span>5:00pm</span></div>
+              </div>  
+              <div id="middle-info">
+                <div id="preview"><span>Complete Presentation Finished</span></div>
+              </div>
+              <div id="bottom-info">
+                <div id="label-bar">
+                  <div class="label">CSE 110</div>
+                </div>
+                <div id="emotion">😄</div>
+              </div>
+            </div>
+          </article>
+      </template>
 
 
 
 
       <article id="event-list"><!-- EVENTS COMPONENT --> 
-          <link rel="stylesheet" href="../styles/darkmode/Event-list.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Event-list.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Event-list.css" >
+
           <article class="eventlist">
             <div class="eventlist-entries">
               <div id="event-entry" class="event-type1">
@@ -128,16 +167,19 @@
 
       <article id="task-list"> <!-- TASKS COMPONENT -->
         <template id="task-list_template">
-          <link rel="stylesheet" href="../styles/darkmode/task-list.css">
+
+          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/task-list.css" disabled>
+          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/task-list.css">
+
           <!-- <link rel="stylesheet" href="../styles/task-test.css"> -->
           <article id="tasklist">
             <h4 id="title">Task List</h4>
             <div id="list"></div>
             <button id="add-button">+</button>
           </article>
-      </template>
-      <!-- Call the tasklist here VVVV -->
-      <task-list-component></task-list-component>
+        </template>
+        <!-- Call the tasklist here VVVV -->
+        <task-list-component></task-list-component>
 
       </article>
     </aside>
@@ -154,10 +196,29 @@
           <li id="search-bar"><input type="text" placeholder="Search"></li>
           <li id="filter-button" class="button">
             <button type="button">
-             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"/>
               </svg> 
             </button>
+            <!-- TODO: Added Existing Tags -->
+            <div id="dropdown-content">
+              <div id="tag-option">
+                <input type="checkbox" value="CSE 190" checked>
+                <div id="option" title="CSE 190">CSE 190</div>
+              </div>
+              <div id="tag-option">
+                <input type="checkbox" value="CSE 110" checked>
+                <div id="option" title="CSE 110">CSE 110</div>
+              </div>
+              <div id="tag-option">
+                <input type="checkbox" value="Task" checked>
+                <div id="option" title="Task">Task</div>
+              </div>
+              <div id="tag-option">
+                <input type="checkbox" value="CSE 150b" checked>
+                <div id="option" title="CSE 150b">CSE 150b</div>
+              </div>
+            </div>
           </li>
           <li id="new-entry-button" class="button">
             <button type="button">
@@ -170,8 +231,7 @@
             </button>
           </li>
         </menu>
-        <article></article> <!--ENTRY LIST COMPONENT-->
-        <footer></footer> <!--INFO BAR: NUMBER OF ENTRIES-->
+        <journal-entries-component></journal-entries-component>
       </article>
       <article id="canvas"><!-- CANVAS AREA -->
         <menu> <!--TOOL BAR: DELETE/DISCARD, MODE DISPLAY, FAVORITE, EDIT/CONFIRM-->

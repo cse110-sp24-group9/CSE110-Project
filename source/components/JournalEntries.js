@@ -26,6 +26,13 @@ export default class JournalEntries extends HTMLElement {
      */
     #entries = [];
     /**
+     * tag map trueness
+     * @type {Object}
+     * @private
+     * @summary holds tags and says whether they are enabled or not
+     */
+    #tag_map = {};
+    /**
      * @constructor
      */
     constructor(){
@@ -93,7 +100,43 @@ export default class JournalEntries extends HTMLElement {
      * @summary filters entries based on tags selected
      */
     #initFilterHandler(){
-        // TODO
+        let dropdown_list = document.querySelectorAll('#dropdown-content div > input');
+        for(let check_box of dropdown_list){
+            this.#tag_map[check_box.value] = check_box.checked;
+            let hoist = this;
+            check_box.addEventListener('change',function(){
+                if(this.checked){
+                    console.log("checkbox: " + check_box.value + " : was checked" )
+                }else{
+                    console.log("checkbox: " + check_box.value + " : was unchecked" )
+                }
+                hoist.#tag_map[check_box.value] = check_box.checked;
+                hoist.#filterJournalEntriesByTags();
+            })
+        }
+    }
+    /**
+     * @private
+     * @property {Function} filterJournalEntriesByTags
+     * @returns {void}
+     * @summary filters entries off of the selected tags
+     */
+    #filterJournalEntriesByTags(){
+        let listOfEntries = this.#entries;
+        for (let pair of listOfEntries) {
+            const tagTupleList = pair[0]['tags']
+            const currEle = pair[1];
+            let tag_true = false;
+            for(let tag_pair of tagTupleList){
+                if(this.#tag_map[tag_pair[0]]){
+                    currEle.toggleAttribute("style");
+                    tag_true = true;
+                    break;
+                }
+            }
+            if(!tag_true)
+                currEle.setAttribute("style", "display: none");
+        }
     }
     
 }
