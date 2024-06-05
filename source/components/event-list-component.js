@@ -181,6 +181,7 @@
                 info.value='';
             }); 
             //confirm currently does not store all the data, make sure to store all the data
+            //date and info not saved
             confirm.addEventListener('click', () => {
                 modal.style.display = "none";
                 let newListElement = document.createElement('article');
