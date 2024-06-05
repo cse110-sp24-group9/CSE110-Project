@@ -14,18 +14,24 @@
     background-color: rgb(244, 244, 244);
 } */
 
-.eventlist{
+
+#eventTitle {
+    margin: 0;
+    color:white;
+  }
+#eventlist{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+    color:white;
 }
-.eventlist-entries{
+#displayEvents{
     overflow: hidden auto; 
     flex-grow: 1;
     margin: 2%
 }
+
 #event-entry {
     /* padding: 1px 2.5% 1px 2.5%; */
     position: relative;
@@ -54,7 +60,7 @@
     font-size: small;
 }
 
-.eventlist > #add-event {
+#addEventsButton {
   height: 30px;
   margin: 2%;
   flex-shrink: 0;
@@ -64,11 +70,11 @@
   background: rgb(233,233,233);
 }
 
-.eventlist > #add-event:hover {
+#eventlist > #add-event:hover {
   background-color: rgb(175,175,175);
 }
 
-.eventlist > #add-event:active {
+#eventlist > #add-event:active {
     background-color: rgb(75,75,75);
 }
 
