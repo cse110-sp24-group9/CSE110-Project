@@ -119,6 +119,50 @@
                 modal.style.display = "flex";
             });
         }
+        //set up a way for the editModal to delete itself once you click on cancel or delete
+        //set up so that all the info of an event is loaded into editModal
+        //set up so that pressing confirm will change the contents of event
+        //can go into css and make it so that all buttons are on the same row
+        setUpEdit(newListElement){
+          newListElement.addEventListener('click', () => {
+            let editModal = document.createElement('div');
+            editModal.setAttribute('class', 'modal_check_current_event');
+            editModal.innerHTML=`
+            <h5>Edit Event</h5>
+            <form>
+              <article id="input-title">
+                <label for="title">Title</label><input type="text" id="title">
+              </article>
+              <article id="input-date">
+                <label for="date">Date</label><input type="date" id="date">
+              </article>
+              <article id="input-time">
+                <label for="time">Time</label><input type="time" id="time">
+              </article>
+              <article id="input-tag">
+                <label for="tag">Tag</label>
+                <select id="tag">
+                    <option value="">Select tag</option>
+                    <option value="meeting">Meeting</option>
+                    <option value="workshop">Workshop</option>
+                   
+                </select>
+              </article>
+              <article id="input-info">
+                <label for="info">Information</label>
+                <textarea id="info"></textarea>
+              </article>
+              <article id="input-accept">
+                <button type="button" class="edit-cancel">Cancel</button>
+                <button type="submit" class="edit-confirm">Save</button>
+                <button type="button" class="edit-delete">Delete</button>
+              </article>
+            </form>
+            `;
+            this.#shadow.append(editModal);
+            editModal.style.display="flex";
+        });
+        }
         setUpCancelAndConfirm(){
             let cancel = this.#shadow.querySelector('.event-cancel');
             let confirm = this.#shadow.querySelector('.event-confirm');
@@ -136,6 +180,7 @@
                 tag.value='';
                 info.value='';
             }); 
+            //confirm currently does not store all the data, make sure to store all the data
             confirm.addEventListener('click', () => {
                 modal.style.display = "none";
                 let newListElement = document.createElement('article');
@@ -144,8 +189,9 @@
                 <div id="event-entry" class="${tag.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
-            </div> 
+                </div> 
                 `;
+                this.setUpEdit(newListElement);
                 this.#event_list.appendChild(newListElement);
                 title.value ='';
                 date.value='';
