@@ -105,7 +105,7 @@
  All adjustments on modal can be done on the same block since display is none
  nothing will be shown until display is not none (ie block)
 */
-#modal {
+#modal_add_event, #modal_check_current_event {
     display: none; /* Initially hidden */
     position: fixed; /* Fixed position to stay in place when scrolling */
     z-index: 1000; /* Ensure modal is on top of other content */
@@ -121,12 +121,12 @@
     flex-direction: column;
 }
 
-#modal > h5{
+#modal_add_event > h5, #modal_check_current_event > h5 {
     margin: 0;
     text-align: center;
 }
 
-#modal > form {
+#modal_add_event > form, #modal_check_current_event > form {
     height: 100%;
     width: 100%;
     display: grid;
@@ -139,7 +139,8 @@
     overflow: hidden;
 }
 
-#modal > form > article {
+#modal_add_event > form > article,
+#modal_check_current_event > form > article {
   display: grid;
   /* Each input section will be a grid itself to spread their parts correctly */
 }

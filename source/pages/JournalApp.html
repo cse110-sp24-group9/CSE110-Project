@@ -93,7 +93,7 @@
             </div>
             <button id="add-event">+</button>
           </article>
-          <div id="modal">
+          <div id="modal_add_event">
             <h5>New Event</h5>
             <form>
               <article id="input-title">
@@ -119,8 +119,40 @@
                 <textarea id="info"></textarea>
               </article>
               <article id="input-accept">
-                <button type="button" class="cancel">x</button>
-                <button type="submit" class="confirm">✓</button>
+                <button type="button" class="cancel">Cancel</button>
+                <button type="submit" class="confirm">Save</button>
+              </article>
+            </form>
+          </div>
+          <div id="modal_check_current_event">
+            <h5>New Event</h5>
+            <form>
+              <article id="input-title">
+                <label for="title">Title</label><input type="text" id="title">
+              </article>
+              <article id="input-date">
+                <label for="date">Date</label><input type="date" id="date">
+              </article>
+              <article id="input-time">
+                <label for="time">Time</label><input type="time" id="time">
+              </article>
+              <article id="input-tag">
+                <label for="tag">Tag</label>
+                <select id="tag">
+                    <option value="">Select tag</option>
+                    <option value="meeting">Meeting</option>
+                    <option value="workshop">Workshop</option>
+                   
+                </select>
+              </article>
+              <article id="input-info">
+                <label for="info">Information</label>
+                <textarea id="info"></textarea>
+              </article>
+              <article id="input-accept">
+                <button type="button" class="cancel">Cancel</button>
+                <button type="submit" class="confirm">Save</button>
+                <button type="button" class="delete">Delete</button>
               </article>
             </form>
           </div>
