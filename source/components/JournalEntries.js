@@ -53,7 +53,8 @@ export default class JournalEntries extends HTMLElement {
     addEntry(entry){
         const card_ele = document.createElement('journal-card-component');
         card_ele.data = JSON.parse(entry);
-        this.#shadow.appendChild(card_ele);
+        const journal_list = this.#shadow.querySelector("#journal-list")
+        journal_list.appendChild(card_ele);
         card_ele.addEventListener('click', (e)=>{
             console.log("Element with time of: " + JSON.parse(entry)['time']);
         })

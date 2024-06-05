@@ -183,3 +183,28 @@ main > #canvas > #editor {
 .CodeMirror {
   flex-grow: 1;
 }
+
+#dropdown-content {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 6em;
+  height: auto;
+  max-height: 8em;
+  overflow: hidden auto;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 2px;
+}
+
+#dropdown-content > #tag-option{
+  display: flex
+}
+
+#tag-option > #option {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
