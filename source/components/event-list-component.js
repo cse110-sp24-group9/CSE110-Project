@@ -190,7 +190,7 @@
               let time = editModal.querySelector('#time');
               let tag = editModal.querySelector('#tag');
               let info = editModal.querySelector('#info');
-              if(date.value==''||date.value.length!=10) alert("Invalid Date. NOTE: There can only be 4 digits for the year");
+              if(date.value=='') alert("Invalid Date");
               else if(title.value=='') alert("Missing Title");
               else if(time.value=='') alert("Missing Time");
               else if(tag.value=='') alert("Missing Tag");
@@ -255,7 +255,7 @@
             //confirm currently does not store all the data, make sure to store all the data
             //date and info not saved
             confirm.addEventListener('click', () => {
-              if(date.value==''||date.value.length!=10) alert("Invalid Date. NOTE: There can only be 4 digits for the year");
+              if(date.value=='') alert("Invalid Date");
               else if(title.value=='') alert("Missing Title");
               else if(time.value=='') alert("Missing Time");
               else if(tag.value=='') alert("Missing Tag");
