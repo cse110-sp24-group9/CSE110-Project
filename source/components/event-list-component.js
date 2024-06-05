@@ -49,14 +49,14 @@
             /**
              * @type {HTMLButtonElement}
              */
-            this.#addEventButton = this.#shadow.querySelector('#addEventsButton');     
+            this.#addEventButton = this.#shadow.querySelector('#add-event');     
             /**
              * @type {HTMLDivElement}
              */
             this.#event_list = this.#shadow.querySelector("#displayEvents");
 
             let modal = document.createElement('div');
-            modal.setAttribute('id', 'modal');
+            modal.setAttribute('id', 'modal_add_event');
             this.#shadow.append(modal);
             console.log("creating modal");
             console.log(modal);
@@ -77,7 +77,8 @@
         //then the event list will go and grab everything from the storage and load it
         #setUpModal(){
             console.log("setting up modal");
-            let modal = this.#shadow.querySelector('#modal');
+            let modal = this.#shadow.querySelector('#modal_add_event');
+            console.log(modal);
             modal.innerHTML=`
             <h5>New Event</h5>
             <form>
@@ -96,7 +97,7 @@
                     <option value="">Select tag</option>
                     <option value="meeting">Meeting</option>
                     <option value="workshop">Workshop</option>
-                    <!-- Add more tags as needed -->
+                   
                 </select>
               </article>
               <article id="input-info">
@@ -104,10 +105,9 @@
                 <textarea id="info"></textarea>
               </article>
               <article id="input-accept">
-                <button type="button" class="event-cancel">x</button>
-                <button type="button" class="event-confirm">✓</button>
+                <button type="button" class="event-cancel">Cancel</button>
+                <button type="button" class="event-confirm">Save</button>
               </article>
-            </form>
           `;
           modal.style.display = "none";
         }
@@ -115,15 +115,14 @@
 
         setUpaddEventButton(){
             this.#addEventButton.addEventListener('click', () => {
-                let modal = this.#shadow.querySelector('#modal');
+                let modal = this.#shadow.querySelector('#modal_add_event');
                 modal.style.display = "flex";
             });
         }
-
         setUpCancelAndConfirm(){
             let cancel = this.#shadow.querySelector('.event-cancel');
             let confirm = this.#shadow.querySelector('.event-confirm');
-            let modal = this.#shadow.querySelector('#modal');
+            let modal = this.#shadow.querySelector('#modal_add_event');
             let title = this.#shadow.querySelector('#title');
             let date = this.#shadow.querySelector('#date');
             let time = this.#shadow.querySelector('#time');
@@ -136,7 +135,7 @@
                 time.value='';
                 tag.value='';
                 info.value='';
-            });
+            }); 
             confirm.addEventListener('click', () => {
                 modal.style.display = "none";
                 let newListElement = document.createElement('article');
@@ -156,4 +155,5 @@
             });
         }
     }
+    
     customElements.define('event-list-component',EventListItem);
