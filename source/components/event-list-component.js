@@ -112,7 +112,10 @@
           modal.style.display = "none";
         }
 
-
+        /**
+         * Documented by Henry Tiet
+         * Sets up add button to add NEW events
+         */
         setUpaddEventButton(){
             this.#addEventButton.addEventListener('click', () => {
                 let modal = this.#shadow.querySelector('#modal_add_event');
@@ -122,6 +125,15 @@
         //set up so that all the info of an event is loaded into editModal
         //set up so that pressing confirm will change the contents of event
         //can go into css and make it so that all buttons are on the same row
+
+        /**
+         * Documented by Henry
+         * Sets up edit button for existing events. Based off of add button, however creates a new hidden 
+         * modal that allows editing of existing elements
+         * Called in setUpCancelAndConfirm as new elements are made
+         * 
+         * @param {*} newListElement existing element to pass
+         */
         setUpEdit(newListElement){
           newListElement.addEventListener('click', () => {
             let editModal = document.createElement('div');
@@ -178,6 +190,11 @@
 
         });
         }
+
+        /**
+         * Documented by Henry
+         * Sets up modal for new and existing events. Grabs modal and form elements to display and edit
+         */
         setUpCancelAndConfirm(){
             let cancel = this.#shadow.querySelector('.event-cancel');
             let confirm = this.#shadow.querySelector('.event-confirm');
