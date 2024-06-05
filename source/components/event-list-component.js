@@ -119,7 +119,6 @@
                 modal.style.display = "flex";
             });
         }
-        //set up a way for the editModal to delete itself once you click on cancel or delete
         //set up so that all the info of an event is loaded into editModal
         //set up so that pressing confirm will change the contents of event
         //can go into css and make it so that all buttons are on the same row
