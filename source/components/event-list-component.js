@@ -4,7 +4,7 @@
       - Henry Tiet
       - Jason Boenjamin
      */
-     
+
       export default class EventListItem extends HTMLElement{
         /**
          * @type {ShadowRoot}
@@ -94,15 +94,15 @@
               <article id="input-tag">
                 <label for="tag">Tag</label>
                 <select id="tag">
-                    <option value="">Select tag</option>
-                    <option value="meeting">Meeting</option>
-                    <option value="workshop">Workshop</option>
+                    <option value="" selected disabled hidden>Select tag</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Workshop">Workshop</option>
                    
                 </select>
               </article>
               <article id="input-info">
                 <label for="info">Information</label>
-                <textarea id="info"></textarea>
+                <input type="text" id="info">
               </article>
               <article id="input-accept">
                 <button type="button" class="event-cancel">Cancel</button>
@@ -138,30 +138,37 @@
           newListElement.addEventListener('click', () => {
             let editModal = document.createElement('div');
             editModal.setAttribute('class', 'modal_check_current_event');
+            let entry = newListElement.querySelector("#event-entry");
+            console.log(entry);
+            let info = (entry.getAttribute('info'));
+            let time = (entry.getAttribute('time'));
+            let date =(entry.getAttribute('date'));
+            let tag = (entry.getAttribute('tag'));
+            let title=(entry.getAttribute('title'));
             editModal.innerHTML=`
             <h5>Edit Event</h5>
             <form>
               <article id="input-title">
-                <label for="title">Title</label><input type="text" id="title">
+                <label for="title">Title</label><input type="text" id="title" value= "${title}">
               </article>
               <article id="input-date">
-                <label for="date">Date</label><input type="date" id="date">
+                <label for="date">Date</label><input type="date" id="date" value= "${date}">
               </article>
               <article id="input-time">
-                <label for="time">Time</label><input type="time" id="time">
+                <label for="time">Time</label><input type="time" id="time" value= "${time}">
               </article>
               <article id="input-tag">
                 <label for="tag">Tag</label>
                 <select id="tag">
-                    <option value="">Select tag</option>
-                    <option value="meeting">Meeting</option>
-                    <option value="workshop">Workshop</option>
+                    <option value="${tag}" selected disabled hidden>${tag}</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Workshop">Workshop</option>
                    
                 </select>
               </article>
               <article id="input-info">
                 <label for="info">Information</label>
-                <textarea id="info"></textarea>
+                <input type="text" id="info" value= "${info}">
               </article>
               <article id="input-accept">
                 <button type="button" class="edit-cancel">Cancel</button>
@@ -178,7 +185,40 @@
               editModal.remove();
             });
             confirmButton.addEventListener('click', () => {
-              editModal.remove();
+              let title = editModal.querySelector('#title');
+              let date = editModal.querySelector('#date');
+              let time = editModal.querySelector('#time');
+              let tag = editModal.querySelector('#tag');
+              let info = editModal.querySelector('#info');
+              if(date.value==''||date.value.length!=10) alert("Invalid Date. There can only be 4 digits for the year");
+              else if(title.value=='') alert("Missing Title");
+              else if(time.value=='') alert("Missing Time");
+              else if(tag.value=='') alert("Missing Tag");
+              else if(date.value.length!=10) alert("Date must be in format of DD/MM/YYYY. There can only be 4 digits for the year");
+              else{
+                //please tell me theres a better way of doing this
+                let curDate = new Date();
+                let year=date.value.substring(0,4);
+                let month=date.value.substring(5,7);
+                let day=date.value.substring(8,10);
+                let hour = time.value.substring(0,2);
+                let min = time.value.substring(3,5);
+                let eventTime = new Date(year, month, day, hour, min);
+                if(eventTime>curDate)
+                newListElement.innerHTML = `
+                <div id="event-entry" class="event-ToBe" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="title">${title.value}</div>
+                <div id="time">${time.value}</div>
+                </div> 
+                `;
+                else newListElement.innerHTML = `
+                <div id="event-entry" class="event-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="title">${title.value}</div>
+                <div id="time">${time.value}</div>
+                </div> 
+                `;
+                editModal.remove();
+              }
             });
             deleteButton.addEventListener('click', () => {
               editModal.remove();
@@ -215,22 +255,43 @@
             //confirm currently does not store all the data, make sure to store all the data
             //date and info not saved
             confirm.addEventListener('click', () => {
-                modal.style.display = "none";
-                let newListElement = document.createElement('article');
-                newListElement.className = 'element-entry';
+              if(date.value==''||date.value.length!=10) alert("Invalid Date. There can only be 4 digits for the year");
+              else if(title.value=='') alert("Missing Title");
+              else if(time.value=='') alert("Missing Time");
+              else if(tag.value=='') alert("Missing Tag");
+                else {
+                  modal.style.display = "none";
+                  let newListElement = document.createElement('article');
+                  newListElement.className = 'element-entry';
+                //please tell me theres a better way of doing this
+                let curDate = new Date();
+                let year=date.value.substring(0,4);
+                let month=date.value.substring(5,7);
+                let day=date.value.substring(8,10);
+                let hour = time.value.substring(0,2);
+                let min = time.value.substring(3,5);
+                let eventTime = new Date(year, month, day, hour, min);
+                if(eventTime>curDate)
                 newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}">
+                <div id="event-entry" class="event-ToBe" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
                 </div> 
                 `;
-                this.setUpEdit(newListElement);
-                this.#event_list.appendChild(newListElement);
-                title.value ='';
-                date.value='';
-                time.value='';
-                tag.value='';
-                info.value='';
+                else newListElement.innerHTML = `
+                <div id="event-entry" class="event-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="title">${title.value}</div>
+                <div id="time">${time.value}</div>
+                </div> 
+                `;
+                  this.setUpEdit(newListElement);
+                  this.#event_list.appendChild(newListElement);
+                  title.value ='';
+                  date.value='';
+                  time.value='';
+                  tag.value='';
+                  info.value='';
+               }
             });
         }
     }

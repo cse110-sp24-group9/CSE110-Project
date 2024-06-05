@@ -42,7 +42,7 @@
 }
 
 #title {
-    margin-left: 5%;
+    margin-left: 0%;
     flex-basis: 100%;
     position: relative;
     overflow: hidden;
@@ -54,7 +54,7 @@
 }
 
 #time {
-    margin-right: 5%;
+    margin-right: 0%;
     text-align: right;
     align-content: center;
     /* font-size: small; */
@@ -78,14 +78,14 @@
     background-color: rgb(75,75,75);
 }
 
-.event-type1 {
+.event-passed {
   background-color: rgba(211, 211, 211, 0.429);
 
   color: rgba(0, 0, 0, 0.308);
   text-decoration: line-through;
   /* background-color: #ffb3ba ; */
 }
-.event-type2 {
+.event-ToBe {
     background-color: 	#ffdfba;
 }
 
@@ -150,7 +150,7 @@
     justify-content: left;
 }
 
-#input-info > textarea {
+#input-info > #info {
     /* User cannot resize the box, always same width and height */
     resize: none;
 }
