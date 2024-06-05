@@ -4,7 +4,7 @@
       - Henry Tiet
       - Jason Boenjamin
      */
-
+     //TO DO: database, events should order themselves by time
       export default class EventListItem extends HTMLElement{
         /**
          * @type {ShadowRoot}
