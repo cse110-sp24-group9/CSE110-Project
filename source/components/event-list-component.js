@@ -154,7 +154,7 @@
               </article>
               <article id="input-accept">
                 <button type="button" class="edit-cancel">Cancel</button>
-                <button type="submit" class="edit-confirm">Save</button>
+                <button type="button" class="edit-confirm">Save</button>
                 <button type="button" class="edit-delete">Delete</button>
               </article>
             </form>
