@@ -159,8 +159,24 @@
               </article>
             </form>
             `;
+            //cancel & delete Button is working, set up confirm to change the event data;
+            let cancelButton = editModal.querySelector(".edit-cancel");
+            let confirmButton = editModal.querySelector(".edit-confirm");
+            let deleteButton = editModal.querySelector(".edit-delete");
+            cancelButton.addEventListener('click', () => {
+              editModal.remove();
+            });
+            confirmButton.addEventListener('click', () => {
+              editModal.remove();
+            });
+            deleteButton.addEventListener('click', () => {
+              editModal.remove();
+              newListElement.remove();
+            });
             this.#shadow.append(editModal);
+            
             editModal.style.display="flex";
+
         });
         }
         setUpCancelAndConfirm(){
