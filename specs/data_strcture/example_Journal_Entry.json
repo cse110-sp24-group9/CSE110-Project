@@ -1,0 +1,8 @@
+{
+    "title": "str",
+    "tags": [],
+    "favorite": true,
+    "time": "number",
+    "preview-text": "str",
+    "emotion": "enum"
+}

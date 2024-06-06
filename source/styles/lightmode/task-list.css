@@ -5,36 +5,38 @@
   padding: 1%;
   display: flex;
   flex-direction: column;
-  }
+}
   
-  #tasklist > #title {
-    margin: 0;
-  }
+#tasklist > #title {
+  margin: 0;
+}
   
-  #tasklist > #list {
+#tasklist > #list {
   flex-grow: 1;
   overflow: hidden auto;  /* Responsible for showing scroll bar*/
   position: relative;
   justify-items: center;
   align-items: center;
+}
   
-  }
+#tasklist > #add-button {
+  height: 30px;
+  margin: 2%;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
   
-  #tasklist > #add-button {
-      height: 30px;
-      margin: 2%;
-      flex-shrink: 0;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-  }
-  
-  #tasklist > #add-button:hover{
-    background-color: lightgray;
-  
-  }
-  
-  .task-entry {
+#tasklist > #add-button:hover{
+  background-color: rgb(175,175,175);
+}
+
+#tasklist > #add-button:active{
+  background-color: rgb(75,75,75);
+}
+
+.task-entry {
   overflow: hidden;
   width: 96%;
   height: 25px;
@@ -42,17 +44,17 @@
   display: flex;
   position: relative;
   gap: 2%;
-  }
+}
   
-  .task-entry:hover,
-  .task-entry:hover > .task-text,
-  .task-entry:hover > button{
-      opacity: 100%;
-      background-color: lightgray;
-  }
+.task-entry:hover,
+.task-entry:hover > .task-text,
+.task-entry:hover > button{
+  opacity: 100%;
+  background-color: lightgray;
+}
   
-  /* Styling of the titles for tasks */
-  .task-entry > input[type="text"] {
+/* Styling of the titles for tasks */
+.task-entry > input[type="text"] {
   flex-grow: 1;
   padding: 0; 
   font-size: inherit;
@@ -66,32 +68,32 @@
   transition: text-decoration 
   0.3s ease;
   cursor:grab;
-  }
+}
   
-  /* Styling of the remove button */
-  .task-entry > button {
-      position: absolute;
-      right: 0px;
-      opacity: 0;
-      border-radius: 100%;
-      cursor: pointer;
-  }
+/* Styling of the remove button */
+.task-entry > button {
+  position: absolute;
+  right: 0px;
+  opacity: 0;
+  border-radius: 100%;
+  cursor: pointer;
+}
   
   /* Responsible for containing both the checkmark and checkbox */
-  .checkbox{
-    display: block;
-    justify-self: center;
-    align-self: center;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-    height: 50%;
-    border: solid;
-    aspect-ratio: 1 / 1 ;
-    background-color: white;
-  }
-  /* Responsible for hiding and styling the ACTUAL checkbox */
-  .checkbox > input[type="checkbox"] {
+.checkbox{
+  display: block;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  height: 50%;
+  border: solid;
+  aspect-ratio: 1 / 1 ;
+  background-color: white;
+}
+/* Responsible for hiding and styling the ACTUAL checkbox */
+.checkbox > input[type="checkbox"] {
   z-index: 1;
   cursor: pointer;
   position: absolute;
@@ -100,18 +102,18 @@
   width: 100%;
   height: 100%;
   margin: 0%;
-  }
-  /* Responsible for showing the checkmark when checked*/
-  .checkbox input[type="checkbox"]:checked ~ .checkmark {
+}
+/* Responsible for showing the checkmark when checked*/
+.checkbox input[type="checkbox"]:checked ~ .checkmark {
   opacity: 100%;
-  }
+}
   
-  /* Responsible for showing preview of checkmark */
-  .checkbox input[type="checkbox"]:hover ~ .checkmark {
+/* Responsible for showing preview of checkmark */
+.checkbox input[type="checkbox"]:hover ~ .checkmark {
     opacity: 50%;
-  }
-  /* Style the actual checkmark */
-  .checkmark {
+}
+/* Style the actual checkmark */
+.checkmark {
   z-index: 0;
   margin: auto;
   width: 20%;
@@ -120,13 +122,13 @@
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
   opacity: 0;
-  }
+}
   
-  .strikethrough {
+.strikethrough {
   text-decoration: line-through;
    /*  
   Author : Jason Boenjamin, Henry Tiet
   added transition 
    */
   transition: text-decoration 1.3s ease;
-  }
+}

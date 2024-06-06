@@ -3,7 +3,7 @@
     height: 5vh;
     display: flex;
     flex-direction: row;
-/*     background-color: #F2F2F4; */
+    background-color: #F2F2F4;
     width: 100%;
 }
 
@@ -11,7 +11,7 @@
     flex-shrink: 0;
     height: 4vh;
     display: flex;
-    /* background-color: rgb(244, 244, 244); */
+    background-color: rgb(95, 95, 95);
     overflow: auto hidden;
     position: relative;
     width: 100%;
@@ -114,7 +114,8 @@ svg {
     margin: 4px 2px;
     border-radius: 16px;
     align-content: center;
-    color: #00000080;
+    background-color: rgb(55,55,55);
+    color: white;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -191,11 +192,16 @@ input[type="checkbox"]:checked + .label {
 
 .CodeMirror, .CodeMirror-scroll {
     flex-grow: 1;
-}
-
-#mode-info {
+    background-color: black;
     color: white;
 }
+
+.editor-preview, .editor-preview-side {
+    background: #000000;
+
+}
+
+
 /* #text-box {
     position: relative;
     padding: 5%;
@@ -210,3 +216,33 @@ input[type="checkbox"]:checked + .label {
     box-shadow: 10px 5px 5px #F2F2F4;
     resize: none;
 } */
+
+
+/* Tag Menu */
+#tag-modal {
+    display: flex; /* Initially hidden */
+    position: fixed; /* Fixed position to stay in place when scrolling */
+    z-index: 1; /* Ensure modal is on top of other content */
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    width: auto;
+    transform: translate(-50%, -50%); /* Center the modal exactly */
+    overflow: auto; /* Allow scrolling if content exceeds modal size */
+    background-color: darkgray; /* Dark background color */
+    padding: 5px; /* Padding inside the modal */
+    border: 1px solid #888; /* Border around the modal */
+    flex-direction: column;
+}
+
+#title {
+    background-color: lightgray;
+}
+
+#tag-modal > form > h5{
+    text-align: center;
+    margin: 0;
+}
+
+.cancel, .confirm {
+    background-color: lightgray;
+}

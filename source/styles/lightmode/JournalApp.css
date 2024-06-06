@@ -17,39 +17,43 @@ html {
   margin: 0px;
   overflow: hidden;
 }
+
 body {
-height: 100%;
-width: 100%;
-margin: 0px;
-display: flex;
-flex-direction: row;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
 }
+
 /* ALL SVGS */
 svg {
-height: 100%;
-width: 100%;
+  height: 100%;
+  width: 100%;
 }
+
 /* ALL Tool bar */
 menu {
-height: 5vh;
-width: auto;
-margin: 0;
-padding: 0 5px 0 5px;
-flex-shrink: 0;
-list-style: none;
-display: flex;
-gap: 5px;
-flex-direction: row;
-/* background-color: #F2F2F4 */
-background-color: rgb(235,235,235);
-align-items: center;
+  height: 5vh;
+  width: auto;
+  margin: 0;
+  padding: 0 5px 0 5px;
+  flex-shrink: 0;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  /* background-color: #F2F2F4 */
+  background-color: rgb(235,235,235);
+  align-items: center;
 }
 
 /* Responsible for making each button a perfect square based on height of tool bar */
 menu > li.button { 
- height: 100%;
- aspect-ratio: 1/1;
+  height: 100%;
+  aspect-ratio: 1/1;
 }
+
 /* Responsible as above, as well as containing both visual of toggle and checkbox*/
 menu > li.toggle {
   display: flex;
@@ -57,6 +61,7 @@ menu > li.toggle {
   height: 100%;
   aspect-ratio: 1/1;
 }
+
 /* Actual checkbox in tool bar */
 menu > li.toggle > input {
   position: absolute;
@@ -66,21 +71,23 @@ menu > li.toggle > input {
   margin: 0;
   cursor: pointer;
 }
+
 /* Picture for a checkbox */
 menu > li.toggle > svg {
   width: 100%;
   height: 100%;
 }
+
 /*  Buttons in toolbar */
 menu > li > button {
-height: 100%;
-width: 100%;
-margin: 0;
-padding: 0;
-cursor: pointer;
-border: none;
-/* background-color: #F2F2F4; */
-background-color: rgb(235,235,235);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  /* background-color: #F2F2F4; */
+  background-color: rgb(235,235,235);
 }
 
 menu > li > button:hover,
@@ -89,74 +96,126 @@ menu > li.toggle:hover  {
   border-radius: 5px;
 }
 
-menu >li > button:active, 
+menu > li > button:active, 
 menu > li.toggle:active {
   background-color: rgb(180, 180, 180);
   border-radius: 5px;
 }
 
-/* Responsible for styling side bar */
-aside {
-flex-shrink: 0;
-border-right: 1px solid black;
-display: flex;
-flex-direction: column;  
-}
-/* Makes buttons on opposite sides */
-aside > menu {
-justify-content: space-between;
+#dropdown-content {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 6em;
+  height: auto;
+  max-height: 8em;
+  overflow: hidden auto;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 2px;
 }
 
-/* Splits each side bar area evenly */
-aside > article{
-height: calc(100%/3);
-width: 100%;
-overflow: hidden;
+#dropdown-content > #tag-option{
+  display: flex
+}
+
+#tag-option > #option {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsible for styling side bar */
+aside {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px; */
+  flex-shrink: 0;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;  
+}
+
+/* Makes buttons on opposite sides */
+aside > menu {
+  justify-content: space-between;
+  height: 50px; /* Fixed height for the sidebar toolbar */
+  display: flex;
+}
+
+/* Calendar size fixed, the other two components taking the remaining space */
+aside > article#calendar {
+  height: 300px;
+  min-height: 300px;
+}
+
+aside > article#event-list {
+  flex: 1; /* Make the event list take the remaining space */
+  overflow: hidden;
+}
+
+aside > article#task-list {
+  flex: 1; /* Make the task list take the remaining space */
+  overflow: hidden;
 }
 
 /* 
 Helps add the borders between side bar components
 NOTE: This helps avoid borders from overlapping*/
 aside > #event-list{
-border-top: 1px solid black;
-border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 /* Responsible for styling main area (NOT SIDEBAR)*/
 main {
-flex-grow: 1;
-display: flex;
-flex-direction: row;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Fixed size for the tool bar in main page */
+main > article > menu {
+  height: 50px;
+  display: flex;
 }
 
 /* Helps add the border between entry list and canvas
 NOTE: This helps avoid borders from overlapping  */
 main > #navigation {
-flex-grow: 1;
-border-right: 1px solid black;
+  flex-grow: 1;
+  border-right: 1px solid black;
 }
 
 main > #navigation > menu > #search-bar {
-height: 75%;
-flex-grow: 1; /* Responsible for making search bar take up as much space as possible */
+  height: 75%;
+  flex-grow: 1; /* Responsible for making search bar take up as much space as possible */
 }
 
 main > #navigation > #tool-bar > #open-sidebar-button{
-display: none;
+  display: none;
 }
 
 main > #navigation > menu > #search-bar > input[type="text"]{
-height: 100%;
-width: 100%;
-padding: 0;
-border: none;
-
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  border: none;
 }
 
 main > #canvas {
-flex-grow: 2; /* Responsible for making the canvas area take up as much space as possible*/
-display: flex;
-flex-direction: column;
+  flex-grow: 2; /* Responsible for making the canvas area take up as much space as possible*/
+  display: flex;
+  flex-direction: column;
+}
+
+main > #canvas > #label-bar {
+  height: 40px;
+  display: flex;
 }
 
 main > #canvas > menu > #mode-info {
@@ -171,7 +230,6 @@ main > #canvas > menu > #favorite-button > input:checked + svg {
   fill: gold;
 }
 
-
 main > #canvas > #editor {
   flex-grow: 1; /* Responsible for making editor component fill up canvas area */
   display: flex;
@@ -182,4 +240,29 @@ main > #canvas > #editor {
 /* Responsible for making editor text area fill up area and make info bar go to bottom*/
 .CodeMirror {
   flex-grow: 1;
+}
+
+#dropdown-content {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 6em;
+  height: auto;
+  max-height: 8em;
+  overflow: hidden auto;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 2px;
+}
+
+#dropdown-content > #tag-option{
+  display: flex
+}
+
+#tag-option > #option {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
