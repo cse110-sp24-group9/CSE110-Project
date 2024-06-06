@@ -52,6 +52,11 @@ toggleModeButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive()){
     activateEditMode();
   }else if(confirm("Save Changes?")){
+    let editor_elem = document.querySelector(".editor-preview");
+    let content = editor_elem.querySelector("p");
+    console.log(editor_elem);
+
+    console.log(content);
     activateViewMode();
   } 
 });
@@ -92,8 +97,10 @@ document.getElementById('label-add').addEventListener('click', function() {
     document.getElementById('label-bar').insertBefore(labelBox, document.getElementById('label-box-add'));
   });
 
+document.getElementById('label-add').addEventListener('click', function() {
 
 
+});
 
 
 
