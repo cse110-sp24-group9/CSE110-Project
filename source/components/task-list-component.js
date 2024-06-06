@@ -135,5 +135,6 @@
             
         }
         
-    }
-    customElements.define('task-list-component',TaskListItem);
+    }    
+}
+customElements.define('task-list-component',TaskListItem);
