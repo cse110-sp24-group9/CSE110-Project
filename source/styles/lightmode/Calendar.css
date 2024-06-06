@@ -5,7 +5,7 @@
     height: 100vh;
 }
 .Calendar_Container{
-    background-color: white;
+    background-color: rgb(255,255,255);
     /* width: 25vw; */
     /* added below */
     height: 100%;
@@ -30,8 +30,8 @@
     padding: 0;
     margin: 0;
     /* margin-top: 8px; */
-    border-top-color: black;
-    border-bottom-color: black;
+    border-top-color: rgb(255,255,255);
+    border-bottom-color: rgb(255,255,255);
     border-style: solid;
     border-left: 0px;
     border-right: 0px;
@@ -65,7 +65,7 @@
     justify-content: center;
     border:none;
     border-radius: 50%;
-    background: #fff;
+    background: rgb(255,255,255);
     cursor: pointer;
     width: 3em;
     height: 3em;
@@ -73,22 +73,25 @@
 
 }
 .title_bar button:hover {
-    background: rgb(255, 89, 89);
-    color: white;
+    background: rgb(179,179,179);
+    color: rgb(0,0,0);
+}
+.title_bar button:active {
+    background: grey;
 }
 
 .inactive{
-    color: #bfbfbf;
+    color: rgb(179,179,179);
 }
 .active{
     /* put here  */
-    background-color: #1c86dd;
+    background-color: #1A73E8;
     border-radius: 50%;    
-    color: rgb(238, 235, 235);
+    color: rgb(255, 255, 255);
 }
 .selected {
-    background-color: #1B998B;
-    color: wheat;
+    background-color: #C0D5F8;
+    color: #3C4043;
     border-radius: 50%;
 }
 
@@ -100,15 +103,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
     transition:  background-color 0.5s ease-in-out, border-radius .2s ease-in-out;
 }
 
 .day_grid > span:hover {
-    color: wheat;
+    color: rgb(0,0,0);
     cursor: pointer;
     border-radius: 50%;
     /* background-color: #454851; */
-    background-color: #1B998B;
+    background-color: rgb(200,200,200);
 }
 /* todo add media query to fix gap in grid when overflow happens */
 

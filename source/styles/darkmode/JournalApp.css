@@ -1,0 +1,231 @@
+/*
+ Documented by: 
+ - Drew Lara
+
+ FILE STYLES THE FOLLOWING FOR THE APPLICATION:
+ - HTML
+ - BODY
+ - SIDEBAR LAYOUT
+ - MAIN AREA LAYOUT
+ - EVERY TOOL BAR AND ITS COMPONENTS
+ - ONE PART OF THE EDITOR COMPONENT
+*/
+
+html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(0,0,0);
+}
+/* ALL SVGS */
+svg {
+  height: 100%;
+  width: 100%;
+}
+/* ALL Tool bar */
+menu {
+  height: 5vh;
+  width: auto;
+  margin: 0;
+  padding: 0 5px 0 5px;
+  flex-shrink: 0;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  /* background-color: #F2F2F4 */
+  background-color: rgb(75, 75, 75);
+  align-items: center;
+}
+
+/* Responsible for making each button a perfect square based on height of tool bar */
+menu > li.button { 
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+/* Responsible as above, as well as containing both visual of toggle and checkbox*/
+menu > li.toggle {
+  display: flex;
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+/* Actual checkbox in tool bar */
+menu > li.toggle > input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+/* Picture for a checkbox */
+menu > li.toggle > svg {
+  width: 100%;
+  height: 100%;
+}
+/*  Buttons in toolbar */
+menu > li > button {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  /* background-color: #F2F2F4; */
+  background-color: transparent;
+}
+
+menu > li > button:hover,
+menu > li.toggle:hover  {
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+menu >li > button:active, 
+menu > li.toggle:active {
+  background-color: rgb(180, 180, 180);
+  border-radius: 5px;
+}
+
+#dropdown-content {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 6em;
+  height: auto;
+  max-height: 8em;
+  overflow: hidden auto;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 2px;
+}
+
+#dropdown-content > #tag-option{
+  display: flex
+}
+
+#tag-option > #option {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsible for styling side bar */
+aside {
+  flex-shrink: 0;
+  border-right: 1px solid rgb(75, 75, 75);
+  display: flex;
+  flex-direction: column;  
+}
+/* Makes buttons on opposite sides */
+aside > menu {
+  justify-content: space-between;
+}
+
+/* Splits each side bar area evenly */
+aside > article{
+  height: calc(100%/3);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 
+Helps add the borders between side bar components
+NOTE: This helps avoid borders from overlapping*/
+aside > #event-list{
+  border-top: 1px solid rgb(75, 75, 75);
+  border-bottom: 1px solid rgb(75, 75, 75);
+}
+
+
+/* Responsible for styling main area (NOT SIDEBAR)*/
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Helps add the border between entry list and canvas
+NOTE: This helps avoid borders from overlapping  */
+main > #navigation {
+  flex-grow: 1;
+  border-right: 1px solid rgb(75, 75, 75);
+}
+
+main > #navigation > menu > #search-bar {
+  height: 75%;
+  flex-grow: 1; /* Responsible for making search bar take up as much space as possible */
+}
+
+main > #navigation > #tool-bar > #open-sidebar-button{
+  display: none;
+}
+
+main > #navigation > menu > #search-bar > input[type="text"]{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background-color: darkgray;
+}
+
+main > #canvas {
+  flex-grow: 2; /* Responsible for making the canvas area take up as much space as possible*/
+  display: flex;
+  flex-direction: column;
+}
+
+main > #canvas > menu > #mode-info {
+  flex-grow: 1; /* Responsible for making information bar fill up space in canvas toolbar */
+  text-align: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+/* Make Favorite star gold */
+main > #canvas > menu > #favorite-button > input:checked + svg {
+  fill: gold;
+}
+
+
+main > #canvas > #editor {
+  flex-grow: 1; /* Responsible for making editor component fill up canvas area */
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/* Responsible for making editor text area fill up area and make info bar go to bottom*/
+.CodeMirror {
+  flex-grow: 1;
+}

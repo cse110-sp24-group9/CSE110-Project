@@ -1,0 +1,180 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0px;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+svg {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+/* Tool-bar section */
+#toolbar {
+  flex-shrink: 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #F2F2F4;  
+}
+#searchJournal {
+    flex-grow: 1;
+    margin: 1%;
+    overflow: hidden;
+
+}
+
+#filter,
+#newEntry {
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border: 0px;
+    background-color: rgba(0, 0, 255, 0);
+    flex-shrink: 0;
+}
+
+#filter:hover,
+#newEntry:hover {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#filter:active,
+#newEntry:active {
+    background-color: rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+/* Journal-List section */
+#journal-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: row;
+}
+.journal-entry {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 90%;
+    margin: 2.5%;
+    margin-bottom: 0%;
+    padding: 2.5%;
+    padding-bottom: 0%;
+    height: 75px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.journal-entry:hover {
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px;
+    border-color: 1px solid black;
+}
+
+#side-info {
+    flex-shrink: 0;
+}
+#favorite{
+    color: rgb(255, 217, 0);
+}
+
+#main-info {
+    width: 90%;
+    height: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: repeat(3,calc(100%/3));
+    grid-template-columns: 100%;
+}
+
+#top-info {
+    padding: 0% 2.5% 0% 2.5%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+}
+
+#middle-info {
+    padding: 0% 2.5% 0% 2.5%;
+    align-content: center;
+}
+
+#bottom-info {
+    padding: 0% 2.5% 0% 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+#title {
+    font-weight: bold;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    align-content: center;
+}
+
+#time {
+    text-align: right;
+    align-content: center;
+}
+
+#preview {
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-content: center;
+}
+
+#label-bar {
+    flex-grow: 1;
+    align-content: center;
+}
+
+#label {
+    text-align: center;
+    width: 70px;
+    border-radius: 5px ;
+    background-color: #ffb3bb50;
+    color: #00000090;
+}
+
+#emotion {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Info Bar Section  */
+#info-bar{
+  flex-shrink: 0;
+  height: 40px;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-size: small;
+  font-style: italic;
+  color:gray;
+  background-color: #F2F2F4;
+}
