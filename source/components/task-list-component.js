@@ -49,7 +49,7 @@
              * @type {HTMLButtonElement}
              */
             console.log(tmpl.id);
-            this.#addTaskButton = this.#shadow.querySelector('#add-button');     
+            this.#addTaskButton = this.#shadow.querySelector('.addbtn');     
             /**
              * @type {HTMLDivElement}
              */
