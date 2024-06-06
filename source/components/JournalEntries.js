@@ -145,6 +145,8 @@ export default class JournalEntries extends HTMLElement {
      * @private 
      * @property {Function} submitJournalClickEvent
      * @param {number} time_stamp 
+     * @returns {void}
+     * @fires  JournalEntries#journal-clicked
      */
     #submitJournalClickEvent(time_stamp){
         let event = new CustomEvent('journal-clicked', {
@@ -155,6 +157,32 @@ export default class JournalEntries extends HTMLElement {
         });
         this.dispatchEvent(event);
     }
-    
+    /**
+     * @property {Function} clearEntries
+     * @returns {void}
+     * @summary clears all entries from the journal list
+     */
+    clearEntries(){
+        for(let entry of this.#entries){
+            this.#shadow.querySelector('#journal-list').removeChild(entry[1]);
+        }
+        this.#entries = [];
+        this.#shadow.getElementById('info-b').textContent = "0 Entries Total";
+    }
 }
 customElements.define('journal-entries-component', JournalEntries);
+
+
+/* 
+`
+    {
+        "title": "str",
+        "tags": [["cse110", "green"]],
+        "favorite": true,
+        "time": 1717189743759,
+        "preview-text": "Hello this is a preview",
+        "emotion": "😄"
+    }
+`
+
+ */

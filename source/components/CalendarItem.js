@@ -57,14 +57,14 @@ export default class CalendarItem extends HTMLElement{
     /**
      * This event is responsible for informing the front end that a new day has been selected
      * This event contains a detail with the utc string of the day selected
-     * @event day-changed-event
+     * @event CalendarItem#day-changed-event
      * @type {CustomEvent}
      * @property {number} time
      */
     /**
      * This event is responsible for letting the page know that the calendar item has loaded
      * The custom information onto the page
-     * @event hydrated
+     * @event CalendarItem#hydrated
      * @type {CustomEvent}
      * @summary listen to event to see if custom component is ready
      */
@@ -150,7 +150,7 @@ export default class CalendarItem extends HTMLElement{
             dayEle.className = isToday;
             dayEle.innerText = (i);
             /**
-             * @fires day-changed-event
+             * @fires CalendarItem#day-changed-event
              */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
@@ -174,7 +174,7 @@ export default class CalendarItem extends HTMLElement{
             dayEle.className = "inactive";
             dayEle.innerText = (i - lastDayofMonth + 1);
             /**
-             * @fires calendar-component#day-changed-event
+             * @fires CalendarItem#day-changed-event
              */
             dayEle.onclick = () => {
                 let activeEle = this.#shadow.querySelector(".selected");
