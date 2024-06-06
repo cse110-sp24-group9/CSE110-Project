@@ -63,8 +63,77 @@
             this.#setUpModal();
             this.setUpaddEventButton();
             this.setUpCancelAndConfirm();
+
+            //added by jason
+            // when user clicks off modal, closes event
+            this.addGlobalClickListener();
         }
-    
+      
+
+         /*
+         * Documented and created by Jason
+         * close all modals when clicked
+        */ 
+         closeAllModals() {
+          let modals = this.#shadow.querySelectorAll('.modal_check_current_event, #modal_add_event');
+          modals.forEach(modal => {
+              modal.style.display = 'none';
+          });
+        }
+        
+        /*
+         * Documented and Created by Jason
+         * Close modals when clicking off the screen
+        */ 
+        addGlobalClickListener() {
+          document.addEventListener('click', (event) => {
+
+              // important, i wish i knew this earlier
+              // event.composedPath()[0]; is used to get the actual clicked element even if it is inside a shadow DOM.
+              const clickedElement = event.composedPath()[0];
+      
+              // testing
+              // Log the tag name, id, and class of the clicked element
+              // console.log('Clicked element tag name:', clickedElement.tagName);
+              // console.log('Clicked element id:', clickedElement.id || 'No ID');
+              // console.log('Clicked element classes:', clickedElement.classList.value || 'No Classes');
+      
+              // Select elements inside the shadow DOM
+              const modals = this.shadowRoot.querySelectorAll('.modal_check_current_event, #modal_add_event');
+              const addEventButton = this.shadowRoot.querySelector('#add-event');
+      
+              let clickInside = false;
+      
+              // Check if the click is inside the shadow root
+              if (this.shadowRoot.contains(clickedElement)) {
+                  // console.log('Click inside shadow root detected.');
+                  clickInside = true;
+              }
+      
+              // Check if the click is inside any modal
+              modals.forEach(modal => {
+                  if (modal.contains(clickedElement)) {
+                      // console.log('Click inside modal:', modal);
+                      clickInside = true;
+                  }
+              });
+      
+              // Check if the click is on the add event button
+              if (addEventButton && addEventButton.contains(clickedElement)) {
+                  // console.log('Click on add event button:', addEventButton);
+                  clickInside = true;
+              }
+      
+              if (!clickInside) {
+                  // console.log('Click outside detected. Closing modals.');
+                  this.closeAllModals();
+              }
+          });
+      }
+      
+      
+
+
         /*
          * Documented by Jason
          * Converted the old Javascript into a template
@@ -104,7 +173,7 @@
                 <label for="info">Information</label>
                 <input type="text" id="info">
               </article>
-              <article id="input-accept">
+              <article id="input-accept" class="input-accept">
                 <button type="button" class="event-cancel">Cancel</button>
                 <button type="button" class="event-confirm">Save</button>
               </article>
@@ -112,12 +181,14 @@
           modal.style.display = "none";
         }
 
+
         /**
          * Documented by Henry Tiet
          * Sets up add button to add NEW events
          */
         setUpaddEventButton(){
             this.#addEventButton.addEventListener('click', () => {
+                this.closeAllModals(); // Close all other modals (ADDED BY JASON)
                 let modal = this.#shadow.querySelector('#modal_add_event');
                 modal.style.display = "flex";
             });
@@ -136,6 +207,10 @@
          */
         setUpEdit(newListElement){
           newListElement.addEventListener('click', () => {
+            
+            // Remove any existing edit modals before creating a new one
+            this.closeAllModals(); // Close all other modals (added by jason)
+                  
             let editModal = document.createElement('div');
             editModal.setAttribute('class', 'modal_check_current_event');
             let entry = newListElement.querySelector("#event-entry");
@@ -170,7 +245,7 @@
                 <label for="info">Information</label>
                 <input type="text" id="info" value= "${info}">
               </article>
-              <article id="input-accept">
+              <article id="input-accept" class="input-accept">
                 <button type="button" class="edit-cancel">Cancel</button>
                 <button type="button" class="edit-confirm">Save</button>
                 <button type="button" class="edit-delete">Delete</button>
