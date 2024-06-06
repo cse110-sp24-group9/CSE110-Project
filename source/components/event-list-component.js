@@ -206,7 +206,7 @@
          * @param {*} newListElement existing element to pass
          */
         setUpEdit(newListElement){
-          newListElement.addEventListener('click', () => {
+          newListElement.addEventListener('dblclick', () => {
             
             // Remove any existing edit modals before creating a new one
             this.closeAllModals(); // Close all other modals (added by jason)
