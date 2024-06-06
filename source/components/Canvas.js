@@ -15,7 +15,10 @@ const viewIcons = document.getElementsByClassName("view-mode")
 const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
 const editorBox = document.querySelector("#editor")
+const textarea = document.querySelector(".CodeMirror");
 editorToolbar.style.display = 'none'
+
+let textareaContent = "";
 
 
 function hideElements(elementContainer){
@@ -48,15 +51,16 @@ function activateEditMode(){
     simplemde.togglePreview();
 }
 
+textarea.addEventListener("input", () => {
+  textareaContent = textarea.textContent;
+})
+
 toggleModeButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive()){
     activateEditMode();
   }else if(confirm("Save Changes?")){
-    let editor_elem = document.querySelector(".editor-preview");
-    let content = editor_elem.querySelector("p");
-    console.log(editor_elem);
-
-    console.log(content);
+    console.log(textareaContent);
+    
     activateViewMode();
   } 
 });
