@@ -148,21 +148,23 @@ svg {
 }
 
 #label-bar {
-    flex-grow: 1;
-    align-content: center;
+    display: flex;
+    gap: 2em;
 }
 
-#label {
+.label {
     text-align: center;
     width: 70px;
     border-radius: 5px ;
     background-color: #ffb3bb50;
     color: #00000090;
+    margin: auto;
 }
 
 #emotion {
     justify-content: center;
     text-align: center;
+    margin-left: auto;
 }
 
 /* Info Bar Section  */

@@ -22,9 +22,11 @@
     <script type="module" src="../components/JournalApp.js"></script>
     <script type="module" src="../components/CalendarItem.js"></script>
     <script type="module" src="../components/task-list-component.js"></script>
+    <script type="module" src="../components/JournalEntries.js"></script>
     <script type="module" src="../components/Toolbar.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script type="module" src="../components/Canvas.js"></script>
+    <script src="../scripts/JournalApp.js"></script>
     <title>Journal App</title>
   </head>
   <body>
@@ -84,6 +86,37 @@
           });
         </script>
       </article>
+      <template id="JournalEntries_template">
+        <link rel="stylesheet" href="../styles/JournalEntries.css">
+          <div id="journal-list">
+          </div>
+          <div id="info-bar">
+              <span id="info-b">0 Entries</span>
+          </div>
+      </template>
+      <template id="JournalCardTemplate">
+        <link rel="stylesheet" href="../styles/JournalEntries.css">
+          <article class="journal-entry">
+            <div id="side-info">
+              <div id='favorite'>★</div>
+            </div>
+            <div id="main-info">
+              <div id="top-info">
+                <div id="title"><span>Task Completed</span></div>
+                <div id="time"><span>5:00pm</span></div>
+              </div>  
+              <div id="middle-info">
+                <div id="preview"><span>Complete Presentation Finished</span></div>
+              </div>
+              <div id="bottom-info">
+                <div id="label-bar">
+                  <div class="label">CSE 110</div>
+                </div>
+                <div id="emotion">😄</div>
+              </div>
+            </div>
+          </article>
+      </template>
 
 
 
@@ -155,6 +188,9 @@
         </template>
         <!-- Call the tasklist here VVVV -->
         <task-list-component></task-list-component>
+        </template>
+        <!-- Call the tasklist here VVVV -->
+        <task-list-component></task-list-component>
 
       </article>
     </aside>
@@ -178,16 +214,20 @@
             <!-- TODO: Added Existing Tags -->
             <div id="dropdown-content">
               <div id="tag-option">
-                <input type="checkbox" value="Task">
-                <div id="option" title="Task">Task</div>
+                <input type="checkbox" value="CSE 190" checked>
+                <div id="option" title="CSE 190">CSE 190</div>
               </div>
-              <div id="tag-option" >
-                <input type="checkbox" value="CSE 110">
+              <div id="tag-option">
+                <input type="checkbox" value="CSE 110" checked>
                 <div id="option" title="CSE 110">CSE 110</div>
               </div>
-              <div id="tag-option" >
-                <input type="checkbox" value="Draft 2fcgvhsdgfgdnh">
-                <div id="option" title="Draft 2fcgvhsdgfgdnh">Draft 2fcgvhsdgfgdnh</div>
+              <div id="tag-option">
+                <input type="checkbox" value="Task" checked>
+                <div id="option" title="Task">Task</div>
+              </div>
+              <div id="tag-option">
+                <input type="checkbox" value="CSE 150b" checked>
+                <div id="option" title="CSE 150b">CSE 150b</div>
               </div>
             </div>
           </li>
@@ -202,8 +242,7 @@
             </button>
           </li>
         </menu>
-        <article></article> <!--ENTRY LIST COMPONENT-->
-        <footer></footer> <!--INFO BAR: NUMBER OF ENTRIES-->
+        <journal-entries-component></journal-entries-component>
       </article>
       <article id="canvas"><!-- CANVAS AREA -->
         <menu> <!--TOOL BAR: DELETE/DISCARD, MODE DISPLAY, FAVORITE, EDIT/CONFIRM-->
