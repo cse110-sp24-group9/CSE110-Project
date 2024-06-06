@@ -53,24 +53,23 @@
     align-content: center;
     font-size: small;
 }
-#add-event {
-  margin: 2%;
-  border: 1px solid black;
-  /* position:fixed; */
-  bottom: 5px;
-  /* width: 100%; */
-  text-align: center;
-  background-color: white;
-  font-size: x-large;
-  border-radius: 5px;
-}
 
-#add-event:hover {
-  background-color: lightgrey;
+.eventlist > #add-event {
+    height: 30px;
+    margin: 2%;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgb(233,233,233);
 }
-
-#add-event:active {
-    background-color: rgb(180, 180, 180);
+  
+.eventlist > #add-event:hover {
+    background-color: rgb(175,175,175);
+}
+  
+.eventlist > #add-event:active {
+    background-color: rgb(75,75,75);
 }
 
 .event-type1 {

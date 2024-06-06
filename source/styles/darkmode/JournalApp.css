@@ -96,6 +96,50 @@ menu > li.toggle:active {
   border-radius: 5px;
 }
 
+#dropdown-content {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 6em;
+  height: auto;
+  max-height: 8em;
+  overflow: hidden auto;
+  transform: translate(-50%);
+  z-index: 1;
+  padding: 2px;
+}
+
+#dropdown-content > #tag-option{
+  display: flex
+}
+
+#tag-option > #option {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Responsible for styling side bar */
 aside {
   flex-shrink: 0;
@@ -152,6 +196,7 @@ main > #navigation > menu > #search-bar > input[type="text"]{
   width: 100%;
   padding: 0;
   border: none;
+  background-color: darkgray;
 }
 
 main > #canvas {

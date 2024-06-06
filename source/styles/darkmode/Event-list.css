@@ -109,7 +109,7 @@
     width: 50%; /* 80% of the viewport width */
     transform: translate(-50%, -50%); /* Center the modal exactly */
     overflow: auto; /* Allow scrolling if content exceeds modal size */
-    background-color: #fefefe; /* Light background color */
+    background-color: darkgray; /* Light background color */
     padding: 5px; /* Padding inside the modal */
     border: 1px solid #888; /* Border around the modal */
     flex-direction: column;
@@ -138,6 +138,10 @@
   /* Each input section will be a grid itself to spread their parts correctly */
 }
 
+#modal #title, #modal #date, #modal #time, #modal #tag, #modal #info {
+    background-color: lightgray;
+}
+
 #input-time > input[type="time"]{
     /* Make Time appear on left, without this time will be justified right */
     justify-content: left;
@@ -151,7 +155,7 @@
 #input-accept {
     /* NEED TO CHANGE VALUE OF HEIGHT */
     margin-top: 2px;
-    height: 30px;
+    height: auto;
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;

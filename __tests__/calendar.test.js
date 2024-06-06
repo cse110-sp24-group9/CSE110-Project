@@ -22,7 +22,7 @@ function mod(n) {
 describe('Basic user flow for Calendar', () => {
     beforeAll(async () => {
         console.log('Navigating to Calendar page...');
-        await page.goto('http://localhost:3000/pages/Calendar.html', { waitUntil: 'networkidle2' });
+        await page.goto('http://localhost:3000/pages/JournalApp.html', { waitUntil: 'networkidle2' });
         console.log('Page loaded');
     }, 60000);
 
