@@ -15,13 +15,13 @@
 } */
 
 .eventlist{
-    width: 100%;
-    height: 100%;
+    width: 99%;
+    height: 99%;
+    padding: 1%;
     display: flex;
     flex-direction: column;
-    
 }
-.eventlist-entries{
+#displayEvents{
     overflow: hidden auto; 
     flex-grow: 1;
     margin: 2%
@@ -39,6 +39,11 @@
     display: grid;
     grid-template-columns: 70% 30%;
     width: 100%; 
+}
+
+#eventTitle {
+    margin: 0 0.5px 0 0;
+    padding: 0;
 }
 
 #title {
