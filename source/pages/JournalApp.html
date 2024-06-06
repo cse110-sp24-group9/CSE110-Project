@@ -3,329 +3,299 @@
      - Drew Lara
      - Jesus 
  -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 
+     <link class="lightmode" rel="stylesheet" href="../styles/lightmode/JournalApp.css"> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
+     <link class="darkmode" rel="stylesheet" href="../styles/darkmode/JournalApp.css" disabled> 
+ 
+     <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Canvas.css"> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
+     <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Canvas.css" disabled>
+ 
+ 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+ 
+     <!-- <script type="module" src="../components/JournalApp.js"></script> -->
+     <script type="module" src="../components/CalendarItem.js"></script>
+     <script type="module" src="../components/task-list-component.js"></script>
+     <script type="module" src="../components/JournalEntries.js"></script>
+     <script type="module" src="../components/event-list-component.js"></script>
+     <script type="module" src="../components/Toolbar.js"></script>
+     <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+     <script type="module" src="../components/Canvas.js"></script>
+     <script src="../scripts/JournalApp.js"></script>
+     <title>Journal App</title>
+   </head>
+   <body>
+     <aside> <!-- SIDE BAR: TOOL BAR, CALENDAR, EVENT LIST, TASK LIST-->
+       <menu> <!--TOOL BAR: CLOSE SIDEBAR, SETTINGS-->
+         <li id="close-sidebar-button" class="button">
+           <button type="button">
+             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M11 5V19M6 8H8M6 11H8M6 14H8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+           </button>
+         </li>
+         <li id="setting-button" class="button">
+           <button type="button">
+             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 8C9.79111 8 8.00024 9.79086 8.00024 12C8.00024 14.2091 9.79111 16 12.0002 16C14.2094 16 16.0002 14.2091 16.0002 12C16.0002 9.79086 14.2094 8 12.0002 8ZM10.0002 12C10.0002 10.8954 10.8957 10 12.0002 10C13.1048 10 14.0002 10.8954 14.0002 12C14.0002 13.1046 13.1048 14 12.0002 14C10.8957 14 10.0002 13.1046 10.0002 12Z" fill="#000000"/>
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z" fill="#000000"/>
+             </svg>
+           </button>
+         </li>
+       </menu>
+       <article id="calendar"> <!-- CALENDAR COMPONENT -->
+         <template id="calendar_template">
+ 
+           <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Calendar.css">
+           <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Calendar.css"  disabled>
+ 
+           <div class="Calendar_Container">
+               <div class="flex title_bar">
+                   <button id="prev">
+                       &lt;
+                   </button>
+                   <span></span>
+                   <button id="nextBtn">
+                       <!-- <i class="fa-solid fa-chevron-right"></i> --><!--lib dep-->
+                       &gt;
+                   </button>
+               </div>
+               <ul class="week_list">
+                 <li>Sun</li>
+                 <li>Mon</li>
+                 <li>Tue</li>
+                 <li>Wed</li>
+                 <li>Thu</li>
+                 <li>Fri</li>
+                 <li>Sat</li>
+               </ul>
+               <div class="grid day_grid">
+               </div>
+             </div>
+         </template>
+         <calendar-component></calendar-component>
+         <script>
+           const calendar = document.querySelector('calendar-component');
+           calendar.addEventListener('hydrated',(event)=>{
+               calendar.setAttribute('hydrated',"true");
+           });
+         </script>
+       </article>
+       <template id="JournalEntries_template">
+         <link rel="stylesheet" href="../styles/JournalEntries.css">
+           <div id="journal-list">
+           </div>
+           <div id="info-bar">
+               <span id="info-b">0 Entries</span>
+           </div>
+       </template>
+       <template id="JournalCardTemplate">
+         <link rel="stylesheet" href="../styles/JournalEntries.css">
+           <article class="journal-entry">
+             <div id="side-info">
+               <div id='favorite'>★</div>
+             </div>
+             <div id="main-info">
+               <div id="top-info">
+                 <div id="title"><span>Task Completed</span></div>
+                 <div id="time"><span>5:00pm</span></div>
+               </div>  
+               <div id="middle-info">
+                 <div id="preview"><span>Complete Presentation Finished</span></div>
+               </div>
+               <div id="bottom-info">
+                 <div id="label-bar">
+                   <div class="label">CSE 110</div>
+                 </div>
+                 <div id="emotion">😄</div>
+               </div>
+             </div>
+           </article>
+       </template>
+ 
+ 
+ 
+ 
 
-    <link class="lightmode" rel="stylesheet" href="../styles/lightmode/JournalApp.css"> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
-    <link class="darkmode" rel="stylesheet" href="../styles/darkmode/JournalApp.css" disabled> 
-
-    <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Canvas.css"> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
-    <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Canvas.css" disabled>
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-
-    <!-- <script type="module" src="../components/JournalApp.js"></script> -->
-    <script type="module" src="../components/CalendarItem.js"></script>
-    <script type="module" src="../components/task-list-component.js"></script>
-    <script type="module" src="../components/JournalEntries.js"></script>
-    <script type="module" src="../components/Toolbar.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <script type="module" src="../components/Canvas.js"></script>
-    <script src="../scripts/JournalApp.js"></script>
-    <title>Journal App</title>
-  </head>
-  <body>
-    <aside> <!-- SIDE BAR: TOOL BAR, CALENDAR, EVENT LIST, TASK LIST-->
-      <menu> <!--TOOL BAR: CLOSE SIDEBAR, SETTINGS-->
-        <li id="close-sidebar-button" class="button">
-          <button type="button">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 5V19M6 8H8M6 11H8M6 14H8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </li>
-        <li id="setting-button" class="button">
-          <button type="button">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 8C9.79111 8 8.00024 9.79086 8.00024 12C8.00024 14.2091 9.79111 16 12.0002 16C14.2094 16 16.0002 14.2091 16.0002 12C16.0002 9.79086 14.2094 8 12.0002 8ZM10.0002 12C10.0002 10.8954 10.8957 10 12.0002 10C13.1048 10 14.0002 10.8954 14.0002 12C14.0002 13.1046 13.1048 14 12.0002 14C10.8957 14 10.0002 13.1046 10.0002 12Z" fill="#000000"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z" fill="#000000"/>
-            </svg>
-          </button>
-        </li>
-      </menu>
-      <article id="calendar"> <!-- CALENDAR COMPONENT -->
-        <template id="calendar_template">
-
-          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Calendar.css">
-          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Calendar.css"  disabled>
-
-          <div class="Calendar_Container">
-              <div class="flex title_bar">
-                  <button id="prev">
-                      &lt;
-                  </button>
-                  <span></span>
-                  <button id="nextBtn">
-                      <!-- <i class="fa-solid fa-chevron-right"></i> --><!--lib dep-->
-                      &gt;
-                  </button>
-              </div>
-              <ul class="week_list">
-                <li>Sun</li>
-                <li>Mon</li>
-                <li>Tue</li>
-                <li>Wed</li>
-                <li>Thu</li>
-                <li>Fri</li>
-                <li>Sat</li>
-              </ul>
-              <div class="grid day_grid">
-              </div>
-            </div>
-        </template>
-        <calendar-component></calendar-component>
-        <script>
-          const calendar = document.querySelector('calendar-component');
-          calendar.addEventListener('hydrated',(event)=>{
-              calendar.setAttribute('hydrated',"true");
-          });
-        </script>
-      </article>
-      <template id="JournalEntries_template">
-        <link rel="stylesheet" href="../styles/JournalEntries.css">
-          <div id="journal-list">
-          </div>
-          <div id="info-bar">
-              <span id="info-b">0 Entries</span>
-          </div>
-      </template>
-      <template id="JournalCardTemplate">
-        <link rel="stylesheet" href="../styles/JournalEntries.css">
-          <article class="journal-entry">
-            <div id="side-info">
-              <div id='favorite'>★</div>
-            </div>
-            <div id="main-info">
-              <div id="top-info">
-                <div id="title"><span>Task Completed</span></div>
-                <div id="time"><span>5:00pm</span></div>
-              </div>  
-              <div id="middle-info">
-                <div id="preview"><span>Complete Presentation Finished</span></div>
-              </div>
-              <div id="bottom-info">
-                <div id="label-bar">
-                  <div class="label">CSE 110</div>
-                </div>
-                <div id="emotion">😄</div>
-              </div>
-            </div>
-          </article>
-      </template>
-
-
-
-
-      <article id="event-list"><!-- EVENTS COMPONENT --> 
-
-          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Event-list.css">
-          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Event-list.css" disabled>
-
-          <article class="eventlist">
-            <div class="eventlist-entries">
-              <div id="event-entry" class="event-type1">
-                  <div id="title">Meeting with the professor</div>
-                  <div id="time">5:00pm</div>
-              </div> 
-            </div>
-            <button id="add-event">+</button>
-          </article>
-          <div id="modal">
-            <h5>New Event</h5>
-            <form>
-              <article id="input-title">
-                <label for="title">Title</label><input type="text" id="title">
-              </article>
-              <article id="input-date">
-                <label for="date">Date</label><input type="date" id="date">
-              </article>
-              <article id="input-time">
-                <label for="time">Time</label><input type="time" id="time">
-              </article>
-              <article id="input-tag">
-                <label for="tag">Tag</label>
-                <select id="tag">
-                    <option value="">Select tag</option>
-                    <option value="meeting">Meeting</option>
-                    <option value="workshop">Workshop</option>
-                    <!-- Add more tags as needed -->
-                </select>
-              </article>
-              <article id="input-info">
-                <label for="info">Information</label>
-                <textarea id="info"></textarea>
-              </article>
-              <article id="input-accept">
-                <button type="button" class="cancel">x</button>
-                <button type="submit" class="confirm">✓</button>
-              </article>
-            </form>
-          </div>
-          <script src="../components/Event-list.js"></script>
-      </article>
-
-
-
-
-
-      <article id="task-list"> <!-- TASKS COMPONENT -->
-        <template id="task-list_template">
-
-          <link class="lightmode" rel="stylesheet" href="../styles/lightmode/task-list.css">
-          <link class="darkmode" rel="stylesheet" href="../styles/darkmode/task-list.css" disabled>
-
-          <!-- <link rel="stylesheet" href="../styles/task-test.css"> -->
-          <article id="tasklist">
-            <h4 id="title">Task List</h4>
-            <div id="list"></div>
-            <button id="add-button" class="addbtn">+</button>
-          </article>
-        </template>
-        <!-- Call the tasklist here VVVV -->
-        <task-list-component></task-list-component>
-        </template>
-        <!-- Call the tasklist here VVVV -->
-        <task-list-component></task-list-component>
-
-      </article>
-    </aside>
-    <main> <!-- MAIN CONTENT: TOOL BARS, INFO BARS, JOURNAL ENTRIES, CANVAS-->
-      <article id="navigation"> <!-- JOURNAL ENTRIES AREA -->
-        <menu id="tool-bar"> <!--TOOLBAR: OPEN SIDE BAR, SEARCH BAR, FILTER, NEW ENTRY -->
-          <li id="open-sidebar-button" class="button">
-            <button type="button">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 5V19M6 8H8M6 11H8M6 14H8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </li>
-          <li id="search-bar"><input type="text" placeholder="Search"></li>
-          <li id="filter-button" class="button">
-            <button type="button">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"/>
-              </svg> 
-            </button>
-            <!-- TODO: Added Existing Tags -->
-            <div id="dropdown-content">
-              <div id="tag-option">
-                <input type="checkbox" value="CSE 190" checked>
-                <div id="option" title="CSE 190">CSE 190</div>
-              </div>
-              <div id="tag-option">
-                <input type="checkbox" value="CSE 110" checked>
-                <div id="option" title="CSE 110">CSE 110</div>
-              </div>
-              <div id="tag-option">
-                <input type="checkbox" value="Task" checked>
-                <div id="option" title="Task">Task</div>
-              </div>
-              <div id="tag-option">
-                <input type="checkbox" value="CSE 150b" checked>
-                <div id="option" title="CSE 150b">CSE 150b</div>
-              </div>
-            </div>
-          </li>
-          <li id="new-entry-button" class="button">
-            <button type="button">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                  <path fill="none" d="M0 0L24 0 24 24 0 24z"/>
-                  <path d="M20 2c.552 0 1 .448 1 1v3.757l-2 2V4H5v16h14v-2.758l2-2V21c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1V3c0-.552.448-1 1-1h16zm1.778 6.808l1.414 1.414L15.414 18l-1.416-.002.002-1.412 7.778-7.778zM13 12v2H8v-2h5zm3-4v2H8V8h8z"/>
-                </g>
-              </svg>
-            </button>
-          </li>
-        </menu>
-        <journal-entries-component></journal-entries-component>
-      </article>
-      <article id="canvas"><!-- CANVAS AREA -->
-        <menu> <!--TOOL BAR: DELETE/DISCARD, MODE DISPLAY, FAVORITE, EDIT/CONFIRM-->
-          <li id="discard-button" class="button">
-            <button type="button" id="testing">
-              <svg id="trashcan" class="view-mode" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6H20L18.4199 20.2209C18.3074 21.2337 17.4512 22 16.4321 22H7.56786C6.54876 22 5.69264 21.2337 5.5801 20.2209L4 6Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.34491 3.14716C7.67506 2.44685 8.37973 2 9.15396 2H14.846C15.6203 2 16.3249 2.44685 16.6551 3.14716L18 6H6L7.34491 3.14716Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 6H22" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 11V16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14 11V16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg> 
-              <svg id="cross" class="edit-mode" style="display:none" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                  <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-467.000000, -1039.000000)" fill="#000000">
-                    <path d="M489.396,1061.4 C488.614,1062.18 487.347,1062.18 486.564,1061.4 L479.484,1054.32 L472.404,1061.4 C471.622,1062.18 470.354,1062.18 469.572,1061.4 C468.79,1060.61 468.79,1059.35 469.572,1058.56 L476.652,1051.48 L469.572,1044.4 C468.79,1043.62 468.79,1042.35 469.572,1041.57 C470.354,1040.79 471.622,1040.79 472.404,1041.57 L479.484,1048.65 L486.564,1041.57 C487.347,1040.79 488.614,1040.79 489.396,1041.57 C490.179,1042.35 490.179,1043.62 489.396,1044.4 L482.316,1051.48 L489.396,1058.56 C490.179,1059.35 490.179,1060.61 489.396,1061.4 L489.396,1061.4 Z M485.148,1051.48 L490.813,1045.82 C492.376,1044.26 492.376,1041.72 490.813,1040.16 C489.248,1038.59 486.712,1038.59 485.148,1040.16 L479.484,1045.82 L473.82,1040.16 C472.257,1038.59 469.721,1038.59 468.156,1040.16 C466.593,1041.72 466.593,1044.26 468.156,1045.82 L473.82,1051.48 L468.156,1057.15 C466.593,1058.71 466.593,1061.25 468.156,1062.81 C469.721,1064.38 472.257,1064.38 473.82,1062.81 L479.484,1057.15 L485.148,1062.81 C486.712,1064.38 489.248,1064.38 490.813,1062.81 C492.376,1061.25 492.376,1058.71 490.813,1057.15 L485.148,1051.48 L485.148,1051.48 Z" id="cross" sketch:type="MSShapeGroup"></path>
-                  </g>
-                </g>
-              </svg>
-            </button>
-          </li>
-          <li id="mode-info"><p>View Mode</p></li>
-          <li id="favorite-button" class="toggle">
-            <input type="checkbox">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M11.2691 4.41115C11.5006 3.89177 11.6164 3.63208 11.7776 3.55211C11.9176 3.48263 12.082 3.48263 12.222 3.55211C12.3832 3.63208 12.499 3.89177 12.7305 4.41115L14.5745 8.54808C14.643 8.70162 14.6772 8.77839 14.7302 8.83718C14.777 8.8892 14.8343 8.93081 14.8982 8.95929C14.9705 8.99149 15.0541 9.00031 15.2213 9.01795L19.7256 9.49336C20.2911 9.55304 20.5738 9.58288 20.6997 9.71147C20.809 9.82316 20.8598 9.97956 20.837 10.1342C20.8108 10.3122 20.5996 10.5025 20.1772 10.8832L16.8125 13.9154C16.6877 14.0279 16.6252 14.0842 16.5857 14.1527C16.5507 14.2134 16.5288 14.2807 16.5215 14.3503C16.5132 14.429 16.5306 14.5112 16.5655 14.6757L17.5053 19.1064C17.6233 19.6627 17.6823 19.9408 17.5989 20.1002C17.5264 20.2388 17.3934 20.3354 17.2393 20.3615C17.0619 20.3915 16.8156 20.2495 16.323 19.9654L12.3995 17.7024C12.2539 17.6184 12.1811 17.5765 12.1037 17.56C12.0352 17.5455 11.9644 17.5455 11.8959 17.56C11.8185 17.5765 11.7457 17.6184 11.6001 17.7024L7.67662 19.9654C7.18404 20.2495 6.93775 20.3915 6.76034 20.3615C6.60623 20.3354 6.47319 20.2388 6.40075 20.1002C6.31736 19.9408 6.37635 19.6627 6.49434 19.1064L7.4341 14.6757C7.46898 14.5112 7.48642 14.429 7.47814 14.3503C7.47081 14.2807 7.44894 14.2134 7.41394 14.1527C7.37439 14.0842 7.31195 14.0279 7.18708 13.9154L3.82246 10.8832C3.40005 10.5025 3.18884 10.3122 3.16258 10.1342C3.13978 9.97956 3.19059 9.82316 3.29993 9.71147C3.42581 9.58288 3.70856 9.55304 4.27406 9.49336L8.77835 9.01795C8.94553 9.00031 9.02911 8.99149 9.10139 8.95929C9.16534 8.93081 9.2226 8.8892 9.26946 8.83718C9.32241 8.77839 9.35663 8.70162 9.42508 8.54808L11.2691 4.41115Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </li>
-          <li id="toggle-mode-button" class="button">
-            <button type="button">
-              <svg id="pencil" class="view-mode" viewBox="0 0 24 24" id="_24x24_On_Light_Edit" data-name="24x24/On Light/Edit" xmlns="http://www.w3.org/2000/svg">
-                <rect id="view-box" width="24" height="24" fill="none"/>
-                <path id="Shape" d="M.75,17.5A.751.751,0,0,1,0,16.75V12.569a.755.755,0,0,1,.22-.53L11.461.8a2.72,2.72,0,0,1,3.848,0L16.7,2.191a2.72,2.72,0,0,1,0,3.848L5.462,17.28a.747.747,0,0,1-.531.22ZM1.5,12.879V16h3.12l7.91-7.91L9.41,4.97ZM13.591,7.03l2.051-2.051a1.223,1.223,0,0,0,0-1.727L14.249,1.858a1.222,1.222,0,0,0-1.727,0L10.47,3.91Z" transform="translate(3.25 3.25)" fill="#141124"/>
-              </svg>
-              <svg id="checkmark" class="edit-mode" style="display:none" viewBox="0 -3 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                  <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-516.000000, -1037.000000)" fill="#000000">
-                    <path d="M545.34,1042.62 C545.34,1042.62 528.282,1060.01 528.014,1060.29 C527.216,1061.1 525.924,1061.1 525.126,1060.29 C525.126,1060.29 518.588,1053.62 518.568,1053.6 C517.832,1052.78 517.852,1051.51 518.629,1050.71 C519.426,1049.9 520.719,1049.9 521.517,1050.71 L526.569,1055.87 L542.452,1039.67 C543.249,1038.86 544.542,1038.86 545.34,1039.67 C546.137,1040.48 546.137,1041.8 545.34,1042.62 L545.34,1042.62 Z M546.783,1038.2 C545.188,1036.57 542.603,1036.57 541.008,1038.2 L526.569,1052.92 L522.96,1049.24 C521.365,1047.62 518.779,1047.62 517.185,1049.24 C515.59,1050.87 515.59,1053.51 517.185,1055.13 L523.682,1061.76 C525.277,1063.39 527.862,1063.39 529.457,1061.76 L546.783,1044.09 C548.378,1042.46 548.378,1039.82 546.783,1038.2 L546.783,1038.2 Z" id="checkmark" sketch:type="MSShapeGroup"></path>
-                  </g>
-                </g>
-              </svg>
-            </button>
-          </li>
-        </menu>
-        <menu id="label-bar"> <!--TAG BAR: EXISTING TAGS, ADD TAGS-->
-            <div class="label-box">
-              <input type="checkbox">
-              <div class="label" id="label-1">Task</div>
-            </div>
-            <div class="label-box">
-              <input type="checkbox">
-              <div class="label" id="label-2">Work</div>
-            </div>
-            <div class="label-box">
-              <input type="checkbox">
-              <div class="label" id="label-3">CSE 110</div>
-            </div>
-            <div class="label-box">
-              <input type="checkbox">
-              <div class="label" id="label-4">Draft 2</div>
-            </div>
-            <div id="label-box-add">
-              <button id="label-add">+</button>
-            </div>
-        </menu> 
-        <article id="editor"> <!-- EDITOR COMPONENT-->
-          <textarea id="markdown-editor" name="journal-entry" placeholder="Start Typing Here"></textarea>
-        </article>
-      </article>
-    </main>
-    <!-- TAG POP MENU -->
-    <div id="tag-modal">
-      <form>
-        <h5>Create New Tag</h5>
-        <article id="tag-title">
-          <label for="title">Title</label><input type="text" id="title">
-        </article>
-        <input type="color">
-        <article id="input-accept">
-          <button type="button" class="cancel">x</button>
-          <button type="submit" class="confirm">✓</button>
-        </article>
-      </form>
-    </div>
-  </body>
-</html>
+ 
+       
+       <article id="event-list"> 
+         <template id="event-list-template">
+             <link rel="stylesheet" href="../styles/lightmode/Event-list.css">
+             <article class="eventlist">
+                 <h4 id="eventTitle">Event List</h4>
+                 <div id="displayEvents"></div>
+                 <button id="add-event">+</button>
+             </article>
+         </template>
+         <event-list-component></event-list-component>
+     </article>
+ 
+ 
+ 
+       
+ 
+ 
+ 
+       <article id="task-list"> <!-- TASKS COMPONENT -->
+         <template id="task-list_template">
+ 
+           <link class="lightmode" rel="stylesheet" href="../styles/lightmode/task-list.css">
+           <link class="darkmode" rel="stylesheet" href="../styles/darkmode/task-list.css" disabled>
+ 
+           <!-- <link rel="stylesheet" href="../styles/task-test.css"> -->
+           <article id="tasklist">
+             <h4 id="title">Task List</h4>
+             <div id="list"></div>
+             <button id="add-button" class="addbtn">+</button>
+           </article>
+         </template>
+         <!-- Call the tasklist here VVVV -->
+         <task-list-component></task-list-component>
+         </template>
+         <!-- Call the tasklist here VVVV -->
+         <task-list-component></task-list-component>
+ 
+       </article>
+     </aside>
+     <main> <!-- MAIN CONTENT: TOOL BARS, INFO BARS, JOURNAL ENTRIES, CANVAS-->
+       <article id="navigation"> <!-- JOURNAL ENTRIES AREA -->
+         <menu id="tool-bar"> <!--TOOLBAR: OPEN SIDE BAR, SEARCH BAR, FILTER, NEW ENTRY -->
+           <li id="open-sidebar-button" class="button">
+             <button type="button">
+               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M11 5V19M6 8H8M6 11H8M6 14H8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               </svg>
+             </button>
+           </li>
+           <li id="search-bar"><input type="text" placeholder="Search"></li>
+           <li id="filter-button" class="button">
+             <button type="button">
+               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"/>
+               </svg> 
+             </button>
+             <!-- TODO: Added Existing Tags -->
+             <div id="dropdown-content">
+               <div id="tag-option">
+                 <input type="checkbox" value="CSE 190" checked>
+                 <div id="option" title="CSE 190">CSE 190</div>
+               </div>
+               <div id="tag-option">
+                 <input type="checkbox" value="CSE 110" checked>
+                 <div id="option" title="CSE 110">CSE 110</div>
+               </div>
+               <div id="tag-option">
+                 <input type="checkbox" value="Task" checked>
+                 <div id="option" title="Task">Task</div>
+               </div>
+               <div id="tag-option">
+                 <input type="checkbox" value="CSE 150b" checked>
+                 <div id="option" title="CSE 150b">CSE 150b</div>
+               </div>
+             </div>
+           </li>
+           <li id="new-entry-button" class="button">
+             <button type="button">
+               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                 <g>
+                   <path fill="none" d="M0 0L24 0 24 24 0 24z"/>
+                   <path d="M20 2c.552 0 1 .448 1 1v3.757l-2 2V4H5v16h14v-2.758l2-2V21c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1V3c0-.552.448-1 1-1h16zm1.778 6.808l1.414 1.414L15.414 18l-1.416-.002.002-1.412 7.778-7.778zM13 12v2H8v-2h5zm3-4v2H8V8h8z"/>
+                 </g>
+               </svg>
+             </button>
+           </li>
+         </menu>
+         <journal-entries-component></journal-entries-component>
+       </article>
+       <article id="canvas"><!-- CANVAS AREA -->
+         <menu> <!--TOOL BAR: DELETE/DISCARD, MODE DISPLAY, FAVORITE, EDIT/CONFIRM-->
+           <li id="discard-button" class="button">
+             <button type="button" id="testing">
+               <svg id="trashcan" class="view-mode" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M4 6H20L18.4199 20.2209C18.3074 21.2337 17.4512 22 16.4321 22H7.56786C6.54876 22 5.69264 21.2337 5.5801 20.2209L4 6Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M7.34491 3.14716C7.67506 2.44685 8.37973 2 9.15396 2H14.846C15.6203 2 16.3249 2.44685 16.6551 3.14716L18 6H6L7.34491 3.14716Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M2 6H22" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M10 11V16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M14 11V16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               </svg> 
+               <svg id="cross" class="edit-mode" style="display:none" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                   <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-467.000000, -1039.000000)" fill="#000000">
+                     <path d="M489.396,1061.4 C488.614,1062.18 487.347,1062.18 486.564,1061.4 L479.484,1054.32 L472.404,1061.4 C471.622,1062.18 470.354,1062.18 469.572,1061.4 C468.79,1060.61 468.79,1059.35 469.572,1058.56 L476.652,1051.48 L469.572,1044.4 C468.79,1043.62 468.79,1042.35 469.572,1041.57 C470.354,1040.79 471.622,1040.79 472.404,1041.57 L479.484,1048.65 L486.564,1041.57 C487.347,1040.79 488.614,1040.79 489.396,1041.57 C490.179,1042.35 490.179,1043.62 489.396,1044.4 L482.316,1051.48 L489.396,1058.56 C490.179,1059.35 490.179,1060.61 489.396,1061.4 L489.396,1061.4 Z M485.148,1051.48 L490.813,1045.82 C492.376,1044.26 492.376,1041.72 490.813,1040.16 C489.248,1038.59 486.712,1038.59 485.148,1040.16 L479.484,1045.82 L473.82,1040.16 C472.257,1038.59 469.721,1038.59 468.156,1040.16 C466.593,1041.72 466.593,1044.26 468.156,1045.82 L473.82,1051.48 L468.156,1057.15 C466.593,1058.71 466.593,1061.25 468.156,1062.81 C469.721,1064.38 472.257,1064.38 473.82,1062.81 L479.484,1057.15 L485.148,1062.81 C486.712,1064.38 489.248,1064.38 490.813,1062.81 C492.376,1061.25 492.376,1058.71 490.813,1057.15 L485.148,1051.48 L485.148,1051.48 Z" id="cross" sketch:type="MSShapeGroup"></path>
+                   </g>
+                 </g>
+               </svg>
+             </button>
+           </li>
+           <li id="mode-info"><p>View Mode</p></li>
+           <li id="favorite-button" class="toggle">
+             <input type="checkbox">
+             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.2691 4.41115C11.5006 3.89177 11.6164 3.63208 11.7776 3.55211C11.9176 3.48263 12.082 3.48263 12.222 3.55211C12.3832 3.63208 12.499 3.89177 12.7305 4.41115L14.5745 8.54808C14.643 8.70162 14.6772 8.77839 14.7302 8.83718C14.777 8.8892 14.8343 8.93081 14.8982 8.95929C14.9705 8.99149 15.0541 9.00031 15.2213 9.01795L19.7256 9.49336C20.2911 9.55304 20.5738 9.58288 20.6997 9.71147C20.809 9.82316 20.8598 9.97956 20.837 10.1342C20.8108 10.3122 20.5996 10.5025 20.1772 10.8832L16.8125 13.9154C16.6877 14.0279 16.6252 14.0842 16.5857 14.1527C16.5507 14.2134 16.5288 14.2807 16.5215 14.3503C16.5132 14.429 16.5306 14.5112 16.5655 14.6757L17.5053 19.1064C17.6233 19.6627 17.6823 19.9408 17.5989 20.1002C17.5264 20.2388 17.3934 20.3354 17.2393 20.3615C17.0619 20.3915 16.8156 20.2495 16.323 19.9654L12.3995 17.7024C12.2539 17.6184 12.1811 17.5765 12.1037 17.56C12.0352 17.5455 11.9644 17.5455 11.8959 17.56C11.8185 17.5765 11.7457 17.6184 11.6001 17.7024L7.67662 19.9654C7.18404 20.2495 6.93775 20.3915 6.76034 20.3615C6.60623 20.3354 6.47319 20.2388 6.40075 20.1002C6.31736 19.9408 6.37635 19.6627 6.49434 19.1064L7.4341 14.6757C7.46898 14.5112 7.48642 14.429 7.47814 14.3503C7.47081 14.2807 7.44894 14.2134 7.41394 14.1527C7.37439 14.0842 7.31195 14.0279 7.18708 13.9154L3.82246 10.8832C3.40005 10.5025 3.18884 10.3122 3.16258 10.1342C3.13978 9.97956 3.19059 9.82316 3.29993 9.71147C3.42581 9.58288 3.70856 9.55304 4.27406 9.49336L8.77835 9.01795C8.94553 9.00031 9.02911 8.99149 9.10139 8.95929C9.16534 8.93081 9.2226 8.8892 9.26946 8.83718C9.32241 8.77839 9.35663 8.70162 9.42508 8.54808L11.2691 4.41115Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+           </li>
+           <li id="toggle-mode-button" class="button">
+             <button type="button">
+               <svg id="pencil" class="view-mode" viewBox="0 0 24 24" id="_24x24_On_Light_Edit" data-name="24x24/On Light/Edit" xmlns="http://www.w3.org/2000/svg">
+                 <rect id="view-box" width="24" height="24" fill="none"/>
+                 <path id="Shape" d="M.75,17.5A.751.751,0,0,1,0,16.75V12.569a.755.755,0,0,1,.22-.53L11.461.8a2.72,2.72,0,0,1,3.848,0L16.7,2.191a2.72,2.72,0,0,1,0,3.848L5.462,17.28a.747.747,0,0,1-.531.22ZM1.5,12.879V16h3.12l7.91-7.91L9.41,4.97ZM13.591,7.03l2.051-2.051a1.223,1.223,0,0,0,0-1.727L14.249,1.858a1.222,1.222,0,0,0-1.727,0L10.47,3.91Z" transform="translate(3.25 3.25)" fill="#141124"/>
+               </svg>
+               <svg id="checkmark" class="edit-mode" style="display:none" viewBox="0 -3 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                   <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-516.000000, -1037.000000)" fill="#000000">
+                     <path d="M545.34,1042.62 C545.34,1042.62 528.282,1060.01 528.014,1060.29 C527.216,1061.1 525.924,1061.1 525.126,1060.29 C525.126,1060.29 518.588,1053.62 518.568,1053.6 C517.832,1052.78 517.852,1051.51 518.629,1050.71 C519.426,1049.9 520.719,1049.9 521.517,1050.71 L526.569,1055.87 L542.452,1039.67 C543.249,1038.86 544.542,1038.86 545.34,1039.67 C546.137,1040.48 546.137,1041.8 545.34,1042.62 L545.34,1042.62 Z M546.783,1038.2 C545.188,1036.57 542.603,1036.57 541.008,1038.2 L526.569,1052.92 L522.96,1049.24 C521.365,1047.62 518.779,1047.62 517.185,1049.24 C515.59,1050.87 515.59,1053.51 517.185,1055.13 L523.682,1061.76 C525.277,1063.39 527.862,1063.39 529.457,1061.76 L546.783,1044.09 C548.378,1042.46 548.378,1039.82 546.783,1038.2 L546.783,1038.2 Z" id="checkmark" sketch:type="MSShapeGroup"></path>
+                   </g>
+                 </g>
+               </svg>
+             </button>
+           </li>
+         </menu>
+         <menu id="label-bar"> <!--TAG BAR: EXISTING TAGS, ADD TAGS-->
+             <div class="label-box">
+               <input type="checkbox">
+               <div class="label" id="label-1">Task</div>
+             </div>
+             <div class="label-box">
+               <input type="checkbox">
+               <div class="label" id="label-2">Work</div>
+             </div>
+             <div class="label-box">
+               <input type="checkbox">
+               <div class="label" id="label-3">CSE 110</div>
+             </div>
+             <div class="label-box">
+               <input type="checkbox">
+               <div class="label" id="label-4">Draft 2</div>
+             </div>
+             <div id="label-box-add">
+               <button id="label-add">+</button>
+             </div>
+         </menu> 
+         <article id="editor"> <!-- EDITOR COMPONENT-->
+           <textarea id="markdown-editor" name="journal-entry" placeholder="Start Typing Here"></textarea>
+         </article>
+       </article>
+     </main>
+     <!-- TAG POP MENU -->
+     <!-- <div id="tag-modal">
+       <form>
+         <h5>Create New Tag</h5>
+         <article id="tag-title">
+           <label for="title">Title</label><input type="text" id="title">
+         </article>
+         <input type="color">
+         <article id="input-accept">
+           <button type="button" class="cancel">x</button>
+           <button type="submit" class="confirm">✓</button>
+         </article>
+       </form>
+     </div> -->
+   </body>
+ </html>

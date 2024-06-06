@@ -27,17 +27,22 @@
     margin: 2%
 }
 #event-entry {
-    /* padding: 1px 2.5% 1px 2.5%; */
+/*     padding: 1px 2.5% 1px 2.5%;*/
     position: relative;
     border-radius: 5px;
-    width: 100%;
+    /* width: 100%; */
     height: 30px;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
     margin-bottom: 2%;
+
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100%; 
 }
 
 #title {
+    margin-left: 0%;
     flex-basis: 100%;
     position: relative;
     overflow: hidden;
@@ -49,9 +54,10 @@
 }
 
 #time {
+    margin-right: 0%;
     text-align: right;
     align-content: center;
-    font-size: small;
+    /* font-size: small; */
 }
 
 .eventlist > #add-event {
@@ -72,14 +78,14 @@
     background-color: rgb(75,75,75);
 }
 
-.event-type1 {
+.event-passed {
   background-color: rgba(211, 211, 211, 0.429);
 
   color: rgba(0, 0, 0, 0.308);
   text-decoration: line-through;
   /* background-color: #ffb3ba ; */
 }
-.event-type2 {
+.event-ToBe {
     background-color: 	#ffdfba;
 }
 
@@ -99,7 +105,7 @@
  All adjustments on modal can be done on the same block since display is none
  nothing will be shown until display is not none (ie block)
 */
-#modal {
+#modal_add_event, .modal_check_current_event {
     display: none; /* Initially hidden */
     position: fixed; /* Fixed position to stay in place when scrolling */
     z-index: 1000; /* Ensure modal is on top of other content */
@@ -115,12 +121,12 @@
     flex-direction: column;
 }
 
-#modal > h5{
+#modal_add_event > h5, .modal_check_current_event > h5 {
     margin: 0;
     text-align: center;
 }
 
-#modal > form {
+#modal_add_event > form, .modal_check_current_event > form {
     height: 100%;
     width: 100%;
     display: grid;
@@ -133,7 +139,8 @@
     overflow: hidden;
 }
 
-#modal > form > article {
+#modal_add_event > form > article,
+.modal_check_current_event > form > article {
   display: grid;
   /* Each input section will be a grid itself to spread their parts correctly */
 }
@@ -143,7 +150,7 @@
     justify-content: left;
 }
 
-#input-info > textarea {
+#input-info > #info {
     /* User cannot resize the box, always same width and height */
     resize: none;
 }

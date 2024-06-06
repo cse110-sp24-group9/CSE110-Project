@@ -7,32 +7,19 @@
     <title>Document</title>
   </header>
   <body>
-    <template id="Event-list_template">
-        <div id="event-entry" class="event-type1">
-            <div id="title">Meeting with the professor</div>
-            <div id="time">5:00pm</div>
-        </div> 
-          <div id="event-entry" class="event-type2">
-            <div id="title"><span>Meeting with the professor</span></div>
-            <div id="time"><span>5:30pm</span></div>
-          </div>
-          <div id="event-entry" class="event-type3">
-            <div id="title"><span>Meeting with the professor</span></div>
-            <div id="time"><span>6:00pm</span></div>
-          </div>
-          <div id="event-entry" class="event-type4">
-            <div id="title"><span>Meeting with the professor</span></div>
-            <div id="time"><span>6:00pm</span></div>
-          </div>
-          <div id="event-entry" class="event-type5">
-            <div id="title"><span>Meeting with the professor</span></div>
-            <div id="time"><span>6:00pm</span></div>
-          </div>
-          <div id="event-entry" class="empty"></div>
-          <div id="add-box">+</div>
-          <script src="../components/Event-list.js"></script>
+    <template id="event-list-template">
+          <script src="../components/event-list-component.js"></script>
+          <link rel="stylesheet" href="../styles/Event-list.css">
+    <article class="eventlist">
+      <div class="header">
+        <h1 id="eventTitle">Event List</h1>
+         <button class="addEventsButton">
+            +
+        </button>
+      </div>
+      <div class="list" id="displayEvents">
+      </div>
+    </article>
     </template>
-    
-
   </body>
 </html>
