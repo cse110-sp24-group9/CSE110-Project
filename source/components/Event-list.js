@@ -164,8 +164,16 @@
                 <label for="tag">Tag</label>
                 <select id="tag">
                     <option value="" selected disabled hidden>Select tag</option>
+                    <option value="Front_End">Front_End</option>
+                    <option value="Back_End">Back_End</option>
                     <option value="Meeting">Meeting</option>
-                    <option value="Workshop">Workshop</option>
+                    <option value="Planning">Planning</option>
+                    <option value="Documentation">Documentation</option>
+                    <option value="Design">Design</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Low_Priority">Low_Priority</option>
+                    <option value="Medium_Priority">Medium_Priority</option>
+                    <option value="High_Priority">High_Priority</option>
                    
                 </select>
               </article>
@@ -236,8 +244,16 @@
                 <label for="tag">Tag</label>
                 <select id="tag">
                     <option value="${tag}" selected disabled hidden>${tag}</option>
+                    <option value="Front_End">Front_End</option>
+                    <option value="Back_End">Back_End</option>
                     <option value="Meeting">Meeting</option>
-                    <option value="Workshop">Workshop</option>
+                    <option value="Planning">Planning</option>
+                    <option value="Documentation">Documentation</option>
+                    <option value="Design">Design</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Low_Priority">Low_Priority</option>
+                    <option value="Medium_Priority">Medium_Priority</option>
+                    <option value="High_Priority">High_Priority</option>
                    
                 </select>
               </article>
@@ -281,13 +297,13 @@
                 let eventTime = new Date(year, month, day, hour, min);
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
-                <div id="event-entry" class="event-ToBe" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
                 </div> 
                 `;
                 else newListElement.innerHTML = `
-                <div id="event-entry" class="event-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
                 </div> 
@@ -348,13 +364,13 @@
                 let eventTime = new Date(year, month, day, hour, min);
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
-                <div id="event-entry" class="event-ToBe" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
                 </div> 
                 `;
                 else newListElement.innerHTML = `
-                <div id="event-entry" class="event-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
+                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
                 <div id="title">${title.value}</div>
                 <div id="time">${time.value}</div>
                 </div> 
