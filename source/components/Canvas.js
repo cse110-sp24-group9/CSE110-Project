@@ -17,10 +17,6 @@ const editorToolbar = document.querySelector(".editor-toolbar")
 const editorBox = document.querySelector("#editor")
 editorToolbar.style.display = 'none'
 
-const favButton = document.querySelector("favorite-button");
-
-
-
 
 function hideElements(elementContainer){
   for(let i = 0; i < elementContainer.length; i++){
@@ -52,16 +48,85 @@ function activateEditMode(){
     simplemde.togglePreview();
 }
 
+function extractTitle(journalEntry) {
+  const titlePattern = /^# [\w\W]*\n/;
+
+  const match = journalEntry.match(titlePattern);
+
+  return match ? match[0].trim().substring(2).trim() : "title";
+}
+
+function getPreviewText(text) {
+  const titlePattern = /^# [\w\W]*\n/;
+  const wordPattern = /\b\w+\b/g;
+
+  const match = text.match(titlePattern);
+
+  if (match) {
+      const textAfterTitle = text.substring(match[0].length);
+      const words = textAfterTitle.match(wordPattern);
+      if (words && words.length > 10) {
+          return words.slice(0, 10).join(' ');
+      } else if (words) {
+          return words.join(' ');
+      }
+  }
+
+  const words = text.match(wordPattern);
+  if (words && words.length > 10) {
+      return words.slice(0, 10).join(' ');
+  } else if (words) {
+      return words.join(' ');
+  }
+
+  return '';
+}
+
 toggleModeButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive()){
     activateEditMode();
   }else if(confirm("Save Changes?")){
+
     let textContent = simplemde.value();
+    
+    let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+    let checkedTags = [];
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+          let label = checkbox.nextElementSibling;
+          if (label && label.classList.contains("label")) {
+              checkedTags.push(label.title);
+          }
+      }
+    });
+
     let time = new Date().valueOf();
+
+    let favButton = document.querySelector("#favorite-button  input[type='checkbox']");
+    let starred = false;
+    if(favButton.checked) {
+      starred = true;
+    }
     
-    console.log(textContent);
+    let title = extractTitle(textContent);
+
+    let preview_text = getPreviewText(textContent);
+
+    let emoji = "\u{1F60A}";
     
+    let obj = {
+      "title": title,
+      "tags": checkedTags,
+      "favorite": starred,
+      "time": time,
+      "preview-text": preview_text,
+      "text": textContent,
+      "emotion": emoji
+    }
+  
     activateViewMode();
+    // console.log(obj);
+    return obj;
   } 
 });
 
@@ -90,7 +155,7 @@ editorBox.addEventListener('dblclick', () => {
     }
 })
 
-document.getElementById('label-add').addEventListener('click', function() {
+/* document.getElementById('label-add').addEventListener('click', function() {
     let labelBox = document.createElement('div');
     labelBox.className = 'label-box';
     labelBox.innerHTML = `
@@ -111,14 +176,14 @@ document.getElementById('label-add').addEventListener('click', function() {
 document.getElementById('label-add').addEventListener('click', function() {
 
 
-});
+}); */
 
 
 
-// Tag pop up test code
+/* // Tag pop up test code
 var btn = document.getElementById("label-add");
 var modal = document.getElementById("tag-modal");
 
 btn.onclick = function() {
   modal.style.display = "flex";
-}
+} */
