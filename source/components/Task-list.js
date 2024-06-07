@@ -111,6 +111,12 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['checkbox'] = check_box.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                            break;
                         }
                     }
                 });
@@ -119,6 +125,12 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['title'] = event.target.value.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                            break;
                         }
                     }
                 });
