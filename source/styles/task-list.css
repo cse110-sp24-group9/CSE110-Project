@@ -1,10 +1,10 @@
 /* Organzied, Rewritten, and commented by Drew Lara  */
 #tasklist {
-  width: 98%;
-  height: 98%;
-  padding: 1%;
-  display: flex;
-  flex-direction: column;
+    width: 98%;
+    height: 98%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
   }
   
   #tasklist > #title {
@@ -12,21 +12,21 @@
   }
   
   #tasklist > #list {
-  flex-grow: 1;
-  overflow: hidden auto;  /* Responsible for showing scroll bar*/
-  position: relative;
-  justify-items: center;
-  align-items: center;
+    flex-grow: 1;
+    overflow: hidden auto;  /* Responsible for showing scroll bar*/
+    position: relative;
+    justify-items: center;
+    align-items: center;
   
   }
   
   #tasklist > #add-button {
-      height: 30px;
-      margin: 2%;
-      flex-shrink: 0;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    height: 30px;
+    margin: 2%;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
   #tasklist > #add-button:hover{
@@ -35,13 +35,13 @@
   }
   
   .task-entry {
-  overflow: hidden;
-  width: 96%;
-  height: 25px;
-  margin: 2%;
-  display: flex;
-  position: relative;
-  gap: 2%;
+    overflow: hidden;
+    width: 96%;
+    height: 25px;
+    margin: 2%;
+    display: flex;
+    position: relative;
+    gap: 2%;
   }
   
   .task-entry:hover,
@@ -53,28 +53,28 @@
   
   /* Styling of the titles for tasks */
   .task-entry > input[type="text"] {
-  flex-grow: 1;
-  padding: 0; 
-  font-size: inherit;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  border: none;
-  border-bottom: 2px solid black;
-  overflow: hidden;
-  /* 
-  Author Jason Boenjamin, Henry Tiet
-  added transition */
-  transition: text-decoration 
-  0.3s ease;
-  cursor:grab;
+    flex-grow: 1;
+    padding: 0; 
+    font-size: inherit;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    border-bottom: 2px solid black;
+    overflow: hidden;
+    /* 
+    Author Jason Boenjamin, Henry Tiet
+    added transition */
+    transition: text-decoration 
+    0.3s ease;
+    cursor:grab;
   }
   
   /* Styling of the remove button */
   .task-entry > button {
-      position: absolute;
-      right: 0px;
-      opacity: 0;
-      border-radius: 100%;
-      cursor: pointer;
+    position: absolute;
+    right: 0px;
+    opacity: 0;
+    border-radius: 100%;
+    cursor: pointer;
   }
   
   /* Responsible for containing both the checkmark and checkbox */
@@ -92,18 +92,18 @@
   }
   /* Responsible for hiding and styling the ACTUAL checkbox */
   .checkbox > input[type="checkbox"] {
-  z-index: 1;
-  cursor: pointer;
-  position: absolute;
-  opacity: 0%;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  margin: 0%;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0%;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    margin: 0%;
   }
   /* Responsible for showing the checkmark when checked*/
   .checkbox input[type="checkbox"]:checked ~ .checkmark {
-  opacity: 100%;
+    opacity: 100%;
   }
   
   /* Responsible for showing preview of checkmark */
@@ -112,21 +112,21 @@
   }
   /* Style the actual checkmark */
   .checkmark {
-  z-index: 0;
-  margin: auto;
-  width: 20%;
-  height: 50%;
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
-  opacity: 0;
+    z-index: 0;
+    margin: auto;
+    width: 20%;
+    height: 50%;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    opacity: 0;
   }
   
   .strikethrough {
-  text-decoration: line-through;
-   /*  
-  Author : Jason Boenjamin, Henry Tiet
-  added transition 
-   */
-  transition: text-decoration 1.3s ease;
+    text-decoration: line-through;
+    /*  
+    Author : Jason Boenjamin, Henry Tiet
+    added transition 
+    */
+    transition: text-decoration 1.3s ease;
   }

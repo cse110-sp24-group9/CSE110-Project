@@ -101,7 +101,7 @@ menu > li.toggle:active {
   flex-direction: column;
   position: absolute;
   background-color: #f1f1f1;
-  width: 6em;
+  width: 8em;
   height: auto;
   max-height: 8em;
   overflow: hidden auto;

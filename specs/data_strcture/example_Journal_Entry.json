@@ -4,5 +4,6 @@
     "favorite": true,
     "time": "number",
     "preview-text": "str",
+    "text": "str",
     "emotion": "enum"
 }
