@@ -229,3 +229,41 @@ input[type="checkbox"]:checked + .label {
     text-align: center;
     margin: 0;
 }
+
+/* Emotion Menu */
+#emotion-modal {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed position to stay in place when scrolling */
+    z-index: 1; /* Ensure modal is on top of other content */
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    width: auto;
+    transform: translate(-50%, -50%); /* Center the modal exactly */
+    overflow: auto; /* Allow scrolling if content exceeds modal size */
+    background-color: #fefefe; /* Light background color */
+    padding: 5px; /* Padding inside the modal */
+    border: 1px solid #888; /* Border around the modal */
+    flex-direction: column;
+}
+
+#emotion-modal > form{
+    flex-direction: row;
+}
+
+#emotion-modal > form > button{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(235,235,235);
+    cursor: pointer;
+    font-size: xxx-large;
+}
+
+#emotion-modal > form > button:hover{
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#emotion-modal > form > button:active{
+    background-color: rgb(180, 180, 180);
+    border-radius: 5px;
+}

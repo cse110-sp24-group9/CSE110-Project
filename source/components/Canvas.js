@@ -16,6 +16,9 @@ const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
 const editorBox = document.querySelector("#editor")
 editorToolbar.style.display = 'none'
+// ADDED BY JESUS
+const emotion = document.getElementById("emotion-modal")
+// Done
 
 
 function hideElements(elementContainer){
@@ -55,9 +58,11 @@ toggleModeButton.addEventListener('click', () => {
     let editor_elem = document.querySelector(".editor-preview");
     let content = editor_elem.querySelector("p");
     console.log(editor_elem);
-
     console.log(content);
     activateViewMode();
+    // Added by Jesus
+    emotion.style.display = "flex";
+    // Done
   } 
 });
 
