@@ -171,6 +171,19 @@ export default class JournalEntries extends HTMLElement {
         this.#entries = [];
         this.#shadow.getElementById('info-b').textContent = "0 Entries Total";
     }
+
+    /**
+     * @property {Function} saveEntries
+     * @returns {Array}
+     * @summary returns array of Journal Entry objects to save in database
+     */
+    saveEntries(){
+        const listOfEntryObjects = [];
+        for(let entry of this.#entries){
+            listOfEntryObjects.push(entry[0]);
+        }
+        return listOfEntryObjects;
+    }
 }
 customElements.define('journal-entries-component', JournalEntries);
 
