@@ -25,7 +25,13 @@
          * @summary the button to add a Task
          */
         #addTaskButton
-    
+        /**
+         * @type {Array} (added by Jason)
+         * @private
+         * @summary the array to hold task objects
+         */
+        tasks = [];
+
         /**
          * Documented by Henry Tiet
          * Constructs the shadow tree with fixed nodes of add task 
@@ -33,7 +39,7 @@
          */
         constructor(){
             super();
-            console.log("custom component");
+
             this.#shadow = this.attachShadow({mode: "open"});
             /**
              * @type {HTMLTemplateElement}
@@ -48,13 +54,12 @@
             /**
              * @type {HTMLButtonElement}
              */
-            console.log(tmpl.id);
+
             this.#addTaskButton = this.#shadow.querySelector('.addbtn');     
             /**
              * @type {HTMLDivElement}
              */
             this.#task_list = this.#shadow.querySelector("#list");
-            console.log(this.#task_list)
             this.#setupButtons();
         }
     
@@ -69,6 +74,32 @@
              * initializes the add task button from previous js file
              */
             this.#addTaskButton.addEventListener('click', () => {
+                const newTaskData = {title: '', checkbox: false};
+                const newListElement = this.createTaskElement(newTaskData);
+                this.#task_list.appendChild(newListElement);
+                this.tasks.push(newTaskData);
+            });
+        }
+
+        /**
+         * Created by Jason
+         * @param {list of task by day} tasks 
+         */
+        loadTasks(tasks){
+            this.tasks = tasks;
+            this.#task_list.innerHTML = '';
+            tasks.forEach(taskData =>{
+                const newTaskElement = this.createTaskElement(taskData);
+                this.#task_list.appendChild(newTaskElement);
+            });
+        }
+
+        /**
+         * Created by Jason
+         * @param {data of tasklist} taskData 
+         * @returns newListElement
+         */
+        createTaskElement(taskData){
                 var newListElement = document.createElement('article');
                 newListElement.className = 'task-entry';
                 newListElement.innerHTML = `
@@ -79,21 +110,22 @@
                 <input type="text" class="task-text" readonly="true">
                 <button class="minusbtn">-</button>
                 `;
-                this.#task_list.appendChild(newListElement);
-                
                 /**
                  * Documented by Jason
                  * Initializes the minus button to remove tasks
                  */
-                const minusbtn = newListElement.querySelector('.minusbtn')
-                minusbtn.addEventListener('click', function() {
+                const minusbtn = newListElement.querySelector('.minusbtn');
+                minusbtn.addEventListener('click', ()=> {
                     newListElement.remove();
+                    const index = this.tasks.indexOf(taskData);
+                    if(index > -1){
+                        this.tasks.splice(index,1);
+                    }
                 });
-    
+
                 /* Author : Henry Tiet
                     Adjusting class calls
                 */
-                // const checkbox = newListElement.querySelector('input[type=checkbox]');
                 const checkbox = newListElement.querySelector('.task-checkbox');
                 const textEntry = newListElement.querySelector('.task-text');
                 
@@ -102,13 +134,15 @@
                  * adds an event listener to do the strikethrough through each tasked checked
                  * switched the parameter from 'input' to 'change' and used the .classlist to add
                  */
-                checkbox.addEventListener('change', function() {
+                checkbox.addEventListener('change', () => {
+                    taskData.checkbox = checkbox.checked;
                     if(checkbox.checked) {
                       textEntry.classList.add('strikethrough');
                     } else {
                       textEntry.classList.remove('strikethrough');
                     }
                 });
+
                 /**
                  * Documented by Drew
                  * Allows user to edit tasklist title by double clicking
@@ -129,12 +163,19 @@
                     textEntry.readOnly = true;
                     textEntry.style.backgroundColor='';
                     textEntry.style.cursor = 'grab';
-                })
+                    taskData.title = textEntry.value;
+                });
     
-              });
-            
+             return newListElement;
         }
-        
-    }    
 
-customElements.define('task-list-component',TaskListItem);
+        /**
+         * created by Jason
+         * @returns list of tasks
+         */
+        save(){
+            return this.tasks;
+        }
+    }
+
+    customElements.define('task-list-component', TaskListItem);
