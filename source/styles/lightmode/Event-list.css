@@ -83,27 +83,42 @@
     background-color: rgb(75,75,75);
 }
 
-.event-passed {
-  background-color: rgba(211, 211, 211, 0.429);
-
-  color: rgba(0, 0, 0, 0.308);
-  text-decoration: line-through;
-  /* background-color: #ffb3ba ; */
-}
-.event-ToBe {
-    background-color: 	#ffdfba;
+.Front_End, .Documentation, .Medium_Priority{
+    background-color: #ffb3ba;
 }
 
-.event-type3 {
+.Back_End, .Design, .Low_Priority {
+    background-color: #ffdfba;
+}
+.Meeting, .Testing  {
     background-color: #ffffba;
 }
-.event-type4 {
+.Planning, .High_Priority {
     background-color: #bcffba;
 }
-.event-type5 {
-    background-color: #baf2ff;
+
+
+.Front_End-passed, .Documentation-passed, .Medium_Priority-passed{
+    background-color: #ffb3bb50;
+    color: rgba(0, 0, 0, 0.308);
+    text-decoration: line-through;
 }
 
+.Back_End-passed, .Design-passed, .Low_Priority-passed {
+    background-color: #ffdfba50 ;
+    color: rgba(0, 0, 0, 0.308);
+    text-decoration: line-through;
+}
+.Meeting-passed, .Testing-passed  {
+    background-color: #ffffba50;
+    color: rgba(0, 0, 0, 0.308);
+    text-decoration: line-through;
+}
+.Planning-passed, .High_Priority-passed {
+    background-color: #bcffba50;
+    color: rgba(0, 0, 0, 0.308);
+    text-decoration: line-through;
+}
 
 
 /*

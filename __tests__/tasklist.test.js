@@ -112,19 +112,19 @@ describe('Task List Testing', () => {
      * Author: Henry Tiet
      * Checking if edits work
      */
-    // it('Edit middle task', async () => {
+    it('Edit middle task', async () => {
 
-    //     const textEditHandle =  await page.evaluateHandle(() => {
-    //         const taskComponent = document.querySelector('task-list-component');
-    //         const shadowRoot = taskComponent.shadowRoot;
-    //         const taskList = shadowRoot.querySelectorAll('.task-entry');
-    //         return taskList[1].querySelector('.task-text');
-    //     });
-    //     await textEditHandle.focus();
-    //     await textEditHandle.type('Testing');
-    //     const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle)
-    //     expect(newText).toBe('Testing');
-    // }, 10000);
+        const textEditHandle =  await page.evaluateHandle(() => {
+            const taskComponent = document.querySelector('task-list-component');
+            const shadowRoot = taskComponent.shadowRoot;
+            const taskList = shadowRoot.querySelectorAll('.task-entry');
+            return taskList[1].querySelector('.task-text');
+        });
+        await textEditHandle.click({ clickCount: 2 });
+        await textEditHandle.type('Testing');
+        const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle)
+        expect(newText).toBe('Testing');
+    }, 10000);
     
      /**
      * Author: Jason Boenjamin
@@ -154,13 +154,14 @@ describe('Task List Testing', () => {
      * Author: Jason Boenjamin
      * Edit already edited task
      */
-    // it('Edit already edited task', async () => {
-    //     const textEditHandle = await page.$('task-list-component >>> .task-text');
-    //     await textEditHandle.focus();
-    //     await textEditHandle.type(' More Testing');
-    //     const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle);
-    //     expect(newText).toBe('Test Task More Testing');
-    // }, 10000);
+    it('Edit already edited task', async () => {
+        const textEditHandle = await page.$('task-list-component >>> .task-text');
+        await textEditHandle.click({ clickCount: 2 });
+        await textEditHandle.click();
+        await textEditHandle.type(' More Testing');
+        const newText = await page.evaluate(textEdit => textEdit.value, textEditHandle);
+        expect(newText).toBe('Test Task More Testing');
+    }, 10000);
 
     /**
      * Author: Brendon He
@@ -189,29 +190,36 @@ describe('Task List Testing', () => {
      * Checking to make sure delete does not affect other tasks
      * Edited by Jason
      */
-//     it('Delete Second Tasks, Check to see if 3rd task becomes second', async () => {
-//         //find and click the add tasks button 3 times so we have 3 tasks
-//         const addbtn = await page.$('task-list-component >>> .addbtn');
-//         await addbtn.click();
-//         await addbtn.click();
-//         await addbtn.click();
+    it('Delete Second Tasks, Check to see if 3rd task becomes second', async () => {
+        //find and click the add tasks button 3 times so we have 3 tasks
+        const addbtn = await page.$('task-list-component >>> .addbtn');
+        await addbtn.click();
+        await addbtn.click();
+        await addbtn.click();
 
-//         //from there, type something in all 3 tasks
+        //from there, type something in all 3 tasks
 
-//         const taskTexts = await page.$$('task-list-component >>> .task-text');
-//         await taskTexts[0].type("1st Task");
-//         await taskTexts[1].type("2nd Task");
-//         await taskTexts[2].type("3rd Task");
+        const taskTexts = await page.$$('task-list-component >>> .task-text');
+        await taskTexts[0].click({ clickCount: 2 });
+        await taskTexts[0].type("1st Task");
+
+        console.log("task List 1=",taskTexts[0].value);
+        await taskTexts[1].click({ clickCount: 2 });
+        await taskTexts[1].type("2nd Task");
+
+        await taskTexts[2].click({ clickCount: 2 });
+        await taskTexts[2].type("3rd Task");
+        console.log("task List 3=",taskTexts[0].value);
         
-//         //from here, delete the 2nd task
-//         const deletebtn = await page.$$('task-list-component >>> .minusbtn');
-//         await deletebtn[1].click();
-//         //finally, check if the 1st and 3rd tasks were preserved, and if there are the correct # of tasks
-//         const newTasks = await page.$$('task-list-component >>> .task-text');
-//         expect(await (await newTasks[0].getProperty('value')).jsonValue()).toBe("1st Task");
-//         expect(await (await newTasks[1].getProperty('value')).jsonValue()).toBe("3rd Task");
-//         expect(newTasks.length).toBe(2);
-// }, 10000);
+        //from here, delete the 2nd task
+        const deletebtn = await page.$$('task-list-component >>> .minusbtn');
+        await deletebtn[1].click();
+        //finally, check if the 1st and 3rd tasks were preserved, and if there are the correct # of tasks
+        const newTasks = await page.$$('task-list-component >>> .task-text');
+        expect(await (await newTasks[0].getProperty('value')).jsonValue()).toBe("1st Task");
+        expect(await (await newTasks[1].getProperty('value')).jsonValue()).toBe("3rd Task");
+        expect(newTasks.length).toBe(2);
+}, 10000);
 
 
     /**
