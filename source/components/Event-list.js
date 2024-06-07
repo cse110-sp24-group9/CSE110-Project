@@ -92,12 +92,6 @@
               // event.composedPath()[0]; is used to get the actual clicked element even if it is inside a shadow DOM.
               const clickedElement = event.composedPath()[0];
       
-              // testing
-              // Log the tag name, id, and class of the clicked element
-              // console.log('Clicked element tag name:', clickedElement.tagName);
-              // console.log('Clicked element id:', clickedElement.id || 'No ID');
-              // console.log('Clicked element classes:', clickedElement.classList.value || 'No Classes');
-      
               // Select elements inside the shadow DOM
               const modals = this.shadowRoot.querySelectorAll('.modal_check_current_event, #modal_add_event');
               const addEventButton = this.shadowRoot.querySelector('#add-event');
@@ -294,7 +288,8 @@
                 let day=date.value.substring(8,10);
                 let hour = time.value.substring(0,2);
                 let min = time.value.substring(3,5);
-                let eventTime = new Date(year, month, day, hour, min);
+                let eventTime = new Date(year, month - 1 , day, hour, min);
+
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
                 <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
@@ -350,6 +345,7 @@
               else if(title.value=='') alert("Missing Title");
               else if(time.value=='') alert("Missing Time");
               else if(tag.value=='') alert("Missing Tag");
+              else if(date.value.length!=10) alert("Date must be in format of DD/MM/YYYY. There can only be 4 digits for the year");
                 else {
                   modal.style.display = "none";
                   let newListElement = document.createElement('article');
@@ -361,7 +357,8 @@
                 let day=date.value.substring(8,10);
                 let hour = time.value.substring(0,2);
                 let min = time.value.substring(3,5);
-                let eventTime = new Date(year, month, day, hour, min);
+                let eventTime = new Date(year, month - 1, day, hour, min);
+
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
                 <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
@@ -384,7 +381,11 @@
                   info.value='';
                }
             });
-        }
+
+
+      }
+      
     }
+
     
     customElements.define('event-list-component',EventListItem);
