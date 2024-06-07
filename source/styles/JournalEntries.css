@@ -58,12 +58,12 @@ svg {
 
 /* Journal-List section */
 #journal-list {
-  flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
-  flex-direction: row;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
 }
 .journal-entry {
     flex-shrink: 0;
@@ -169,14 +169,14 @@ svg {
 
 /* Info Bar Section  */
 #info-bar{
-  flex-shrink: 0;
-  height: 40px;
-  width: 100%;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  font-size: small;
-  font-style: italic;
-  color:gray;
-  background-color: #F2F2F4;
+    flex-shrink: 0;
+    height: 40px;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    font-size: small;
+    font-style: italic;
+    color:gray;
+    background-color: #F2F2F4;
 }
