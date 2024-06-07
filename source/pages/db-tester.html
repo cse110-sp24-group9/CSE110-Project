@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DB Tester</title>
+  </head>
+  <body>
+	<script type="module">
+        async function addDefault(db_ins){
+            await db_ins.saveDayObject({time: new Date().valueOf(), title: "yes it saved"});
+        }
+        async function getDefault(db_ins){
+            return await db_ins.getDayObject(1717730603851);
+        }
+        import dbInstance from "../scripts/db.js"
+        const db = new dbInstance();
+        db.init().then((val)=>{
+            console.log("opended good");
+            addDefault(db).then(console.log("done adding element"));
+            getDefault(db).then((value)=>{
+                console.log("got value of : " + JSON.stringify(value));
+            })
+        })
+        
+    </script>
+  </body>
+</html>
