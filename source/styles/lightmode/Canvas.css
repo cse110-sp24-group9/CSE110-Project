@@ -250,6 +250,11 @@ input[type="checkbox"]:checked + .label {
     flex-direction: row;
 }
 
+#emotion-modal > h3{
+    margin: 0;
+    text-align: center;
+}
+
 #emotion-modal > form > button{
     border: none;
     border-radius: 5px;
