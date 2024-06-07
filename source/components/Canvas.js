@@ -15,10 +15,11 @@ const viewIcons = document.getElementsByClassName("view-mode")
 const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
 const editorBox = document.querySelector("#editor")
-const textarea = document.querySelector(".CodeMirror");
 editorToolbar.style.display = 'none'
 
-let textareaContent = "";
+const favButton = document.querySelector("favorite-button");
+
+
 
 
 function hideElements(elementContainer){
@@ -51,19 +52,25 @@ function activateEditMode(){
     simplemde.togglePreview();
 }
 
-textarea.addEventListener("input", () => {
-  textareaContent = textarea.textContent;
-})
-
 toggleModeButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive()){
     activateEditMode();
   }else if(confirm("Save Changes?")){
-    console.log(textareaContent);
+    let textContent = simplemde.value();
+    let time = new Date().valueOf();
+    
+    console.log(textContent);
     
     activateViewMode();
   } 
 });
+
+/* favButton.addEventListener('change', () => {
+  checkbox = favoriteButton.querySelector("input[type='checkbox']");
+  if(checkbox.checked) {
+
+  }
+}) */
 
 discardButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive() 
