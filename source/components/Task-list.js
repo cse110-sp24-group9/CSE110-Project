@@ -73,12 +73,56 @@
              * Documented and added by Jason
              * initializes the add task button from previous js file
              */
-            this.#addTaskButton.addEventListener('click', () => {
+            this.#addTaskButton.addEventListener('click', this.createTask);
+        }
+
+        /**
+         * Documented and Authored by Andrew
+         * @param {Object} object the object that needs to be loaded into the page, by default is undefined
+         */
+        createTask(object = undefined){
+            if(!object){
                 const newTaskData = {title: '', checkbox: false};
                 const newListElement = this.createTaskElement(newTaskData);
                 this.#task_list.appendChild(newListElement);
-                this.tasks.push(newTaskData);
-            });
+                this.tasks.push([newTaskData,newListElement]);
+                const check_box = newListElement.querySelector(".task-checkbox");
+                check_box.addEventListener('change',()=>{
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['checkbox'] = check_box.checked;
+                        }
+                    }
+                });
+                const text_input = newListElement.querySelector('.task-text');
+                text_input.addEventListener('input', (event) => {
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['title'] = event.target.value.checked;
+                        }
+                    }
+                });
+            }else{
+                const newListElement = this.createTaskElement(object);
+                this.#task_list.appendChild(newListElement);
+                this.tasks.push([object,newListElement]);
+                const check_box = newListElement.querySelector(".task-checkbox");
+                check_box.addEventListener('change',()=>{
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['checkbox'] = check_box.checked;
+                        }
+                    }
+                });
+                const text_input = newListElement.querySelector('.task-text');
+                text_input.addEventListener('input', (event) => {
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['title'] = event.target.value.checked;
+                        }
+                    }
+                });
+            }
         }
 
         /**
@@ -86,11 +130,9 @@
          * @param {list of task by day} tasks 
          */
         loadTasks(tasks){
-            this.tasks = tasks;
             this.#task_list.innerHTML = '';
             tasks.forEach(taskData =>{
-                const newTaskElement = this.createTaskElement(taskData);
-                this.#task_list.appendChild(newTaskElement);
+                this.createTask(taskData);
             });
         }
 
@@ -170,11 +212,11 @@
         }
 
         /**
-         * created by Jason
+         * created by Jason, edited by Andrew
          * @returns list of tasks
          */
         save(){
-            return this.tasks;
+           return this.tasks.map((entry) => entry[0]);
         }
     }
 
