@@ -95,6 +95,9 @@
             const textEntry = newListElement.querySelector('.task-text');
             textEntry.value = taskData['title'];
             checkbox.checked = taskData['checkbox'];
+            if(checkbox.checked) {
+                textEntry.classList.add('strikethrough');
+            }
             
             /**
              * Documented by Jason
