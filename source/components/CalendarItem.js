@@ -55,6 +55,10 @@ export default class CalendarItem extends HTMLElement{
      */
     #prevNextIcon
     /**
+     * @type {number}
+     */
+    current_utc_time_stamp;
+    /**
      * This event is responsible for informing the front end that a new day has been selected
      * This event contains a detail with the utc string of the day selected
      * @event CalendarItem#day-changed-event
@@ -76,6 +80,7 @@ export default class CalendarItem extends HTMLElement{
      */
     constructor(){
         super();
+        this.current_utc_time_stamp = new Date(currYear,currMonth,currentDay);
         this.#shadow = this.attachShadow({mode: "open"});
         /**
          * @type {HTMLTemplateElement}
@@ -133,6 +138,7 @@ export default class CalendarItem extends HTMLElement{
                     composed: true,
                     detail: {time: new Date(currYear,currMonth,-i+1).valueOf()}
                 });
+                this.current_utc_time_stamp = new Date(currYear,currMonth,-i+1).valueOf();
                 this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
@@ -164,6 +170,7 @@ export default class CalendarItem extends HTMLElement{
                     composed: true,
                     detail: {time: new Date(currYear,currMonth,i).valueOf()}
                 });
+                this.current_utc_time_stamp = new Date(currYear,currMonth,i).valueOf();
                 this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
@@ -188,6 +195,7 @@ export default class CalendarItem extends HTMLElement{
                     composed: true,
                     detail: {time: new Date(currYear,currMonth+1,i - lastDayofMonth + 1).valueOf()}
                 });
+                this.current_utc_time_stamp = new Date(currYear,currMonth+1,i - lastDayofMonth + 1).valueOf();
                 this.#dispatchCustomEvent(event);
             }
             spanList.push(dayEle);
