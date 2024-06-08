@@ -27,6 +27,7 @@
     
         /**
          * Documented by Henry Tiet
+         * Created by Henry and Brendon
          * Constructs the shadow tree with fixed nodes of add task 
          * and the list
          */
@@ -130,6 +131,7 @@
 
         /*
          * Documented by Jason
+         * Created by Brendon
          * Converted the old Javascript into a template
          * Pulled old code and incorporated shadow dom into a template
         */ 
@@ -186,6 +188,7 @@
 
         /**
          * Documented by Henry Tiet
+         * Created by Brendon
          * Sets up add button to add NEW events
          */
         setUpaddEventButton(){
@@ -201,6 +204,7 @@
 
         /**
          * Documented by Henry
+         * Created by Brendon
          * Sets up edit button for existing events. Based off of add button, however creates a new hidden 
          * modal that allows editing of existing elements
          * Called in setUpCancelAndConfirm as new elements are made
@@ -319,6 +323,7 @@
 
         /**
          * Documented by Henry
+         * Created by Henry and Brendon
          * Sets up modal for new and existing events. Grabs modal and form elements to display and edit
          */
         setUpCancelAndConfirm(){
