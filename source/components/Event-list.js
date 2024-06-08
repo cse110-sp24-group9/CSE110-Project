@@ -304,7 +304,7 @@
                       "time_start": time_start.value,
                       "time_end": time_end.value,
                       "tag": tag.value,
-                      "information": info.value
+                      "info": info.value
                     };
                     pair[0] = event;
                   }
@@ -325,12 +325,18 @@
                   </div> 
                   `;
                 }
+                this.sortEvents();
                 editModal.remove();
               }
             });
             deleteButton.addEventListener('click', () => {
               editModal.remove();
               newListElement.remove();
+              for (let pair of this.listOfEvents) {
+                if(pair[1] === newListElement) {
+                  this.listOfEvents.splice(pair, 1);
+                }
+              }
             });
             this.#shadow.append(editModal);
             
@@ -345,102 +351,153 @@
          * Sets up modal for new and existing events. Grabs modal and form elements to display and edit
          */
         addNewEvent(object = undefined){
-            let cancel = this.#shadow.querySelector('.event-cancel');
-            let confirm = this.#shadow.querySelector('.event-confirm');
-            let modal = this.#shadow.querySelector('#modal_add_event');
-            let title = this.#shadow.querySelector('#title');
-            let time_start = this.#shadow.querySelector('#time_start');
-            let time_end = this.#shadow.querySelector('#time_end');
-            let tag = this.#shadow.querySelector('#tag');
-            let info = this.#shadow.querySelector('#info');
-            cancel.addEventListener('click', () => {
-                modal.style.display = "none";
-                title.value ='';
-                time_start.value='';
-                time_end.value='';
-                tag.value='';
-                info.value='';
-            }); 
-            //confirm currently does not store all the data, make sure to store all the data
-            //date and info not saved
-            confirm.addEventListener('click', () => {
-              if(title.value=='') alert("Missing Title");
-              else if(time_start.value=='') alert("Missing Start Time");
-              else if(time_end.value=='') alert("Missing End Time");
-              else if(time_start.value>time_end.value) alert("End Time cannot be before Start Time");
-              else if(tag.value=='') alert("Missing Tag");
-                else {
+            if(!object){
+              let cancel = this.#shadow.querySelector('.event-cancel');
+              let confirm = this.#shadow.querySelector('.event-confirm');
+              let modal = this.#shadow.querySelector('#modal_add_event');
+              let title = this.#shadow.querySelector('#title');
+              let time_start = this.#shadow.querySelector('#time_start');
+              let time_end = this.#shadow.querySelector('#time_end');
+              let tag = this.#shadow.querySelector('#tag');
+              let info = this.#shadow.querySelector('#info');
+              cancel.addEventListener('click', () => {
                   modal.style.display = "none";
-                  let newListElement = document.createElement('article');
-                  newListElement.className = 'element-entry';
-                //please tell me theres a better way of doing this
-                
-                let curDate = new Date();
-                let eventTime = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
-                console.log(time_end.value);
-                eventTime.setHours(time_end.value.substring(0,2));
-                eventTime.setMinutes(time_end.value.substring(3,5));
-                
-                let event = {
-                  "title": title.value,
-                  "time_start": time_start.value,
-                  "time_end": time_end.value,
-                  "tag": tag.value,
-                  "information": info.value
-                };
-                // [eventObj, Event HTML Element]
-                this.listOfEvents.push([event, newListElement]);
-                
-                  
-
-                //push event-data to db
-                //call function that loads all events from db into eventlist list
-                if(eventTime>curDate)
-                newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
-                <div id="entry-title">${title.value}</div>
-                <div id="time">${time_start.value}-${time_end.value}</div>
-                </div> 
-                `;
-                else newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
-                <div id="entry-title">${title.value}</div>
-                <div id="time">${time_start.value}-${time_end.value}</div>
-                </div> 
-                `;
-                  this.editEvent(newListElement);
-                  // DB: append to db later
-                  this.#event_list.appendChild(newListElement);
                   title.value ='';
                   time_start.value='';
                   time_end.value='';
                   tag.value='';
                   info.value='';
-               }
-            });
+              }); 
+              //confirm currently does not store all the data, make sure to store all the data
+              //date and info not saved
+              confirm.addEventListener('click', () => {
+                if(title.value=='') alert("Missing Title");
+                else if(time_start.value=='') alert("Missing Start Time");
+                else if(time_end.value=='') alert("Missing End Time");
+                else if(time_start.value>time_end.value) alert("End Time cannot be before Start Time");
+                else if(tag.value=='') alert("Missing Tag");
+                  else {
+                    modal.style.display = "none";
+                    let newListElement = document.createElement('article');
+                    newListElement.className = 'element-entry';
+                  //please tell me theres a better way of doing this
+                  
+                  let curDate = new Date();
+                  let eventTime = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
+                  console.log(time_end.value);
+                  eventTime.setHours(time_end.value.substring(0,2));
+                  eventTime.setMinutes(time_end.value.substring(3,5));
+                  
+                  let event = {
+                    "title": title.value,
+                    "time_start": time_start.value,
+                    "time_end": time_end.value,
+                    "tag": tag.value,
+                    "info": info.value
+                  };
+                  // [eventObj, Event HTML Element]
+                  this.listOfEvents.push([event, newListElement]);
+                  
+
+                  //push event-data to db
+                  //call function that loads all events from db into eventlist list
+                  if(eventTime>curDate)
+                  newListElement.innerHTML = `
+                  <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                  <div id="entry-title">${title.value}</div>
+                  <div id="time">${time_start.value}-${time_end.value}</div>
+                  </div> 
+                  `;
+                  else newListElement.innerHTML = `
+                  <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                  <div id="entry-title">${title.value}</div>
+                  <div id="time">${time_start.value}-${time_end.value}</div>
+                  </div> 
+                  `;
+                  
+                  // add edit-onclick functionality to new element
+                  this.editEvent(newListElement);
+                  this.#event_list.appendChild(newListElement);
+
+                  // resets modal input
+                  title.value ='';
+                  time_start.value='';
+                  time_end.value='';
+                  tag.value='';
+                  info.value='';
+                  this.sortEvents();
+                }
+              });
+            } else {
+              let newListElement = document.createElement('article');
+              newListElement.innerHTML = `
+                  <div id="event-entry" class="${object["tag"]}" tag="${object["tag"]}" time_start= "${object["time_start"]}" time_end ="${object["time_end"]}" title = "${object["title"]}" info = "${object["info"]}">
+                  <div id="entry-title">${object["title"]}</div>
+                  <div id="time">${object["time_start"]}-${object["time_end"]}</div>
+                  </div> 
+                  `;
+              this.editEvent(newListElement);
+              this.#event_list.appendChild(newListElement);
+            }
         }
       
 
       /**
-      * Created by Jason 
-      */
-      loadEvents(){
+       * Created by Jason
+       * @param {Array<Object>} prevListOfEvents 
+       */
+      loadEvents(prevListOfEvents){
           this.#event_list.innerHTML = '';
-          this.listofEvents = [];
-          listOfEvents.forEach(event =>{
+          this.listOfEvents = [];
+          prevListOfEvents.forEach(event =>{
               this.addNewEvent(event);
           });
+          window.dispatchEvent(new Event('data-updated', {
+            bubbles: true,
+            composed: true,
+            cancelable: false
+          }));
       }
 
+      //use flat map
       /**
        * @property {Function} save
        * @returns {Array<Object>}
        * @summary returns array of Event objects to save in database
        */
       save(){
-        return this.listOfEvents;
+        return this.listOfEvents.map((event) => structuredClone(event[0]));
       }
-      
+
+      /**
+      * @property {Function} sortEvents
+      * @returns {Array<Object>}
+      * @summary sorts list of events 
+      */
+      sortEvents() {
+        // if (this.listOfEvents.length < 2) return;
+        this.listOfEvents.sort((a, b) => {
+          let timeA_start = a[0]["time_start"].split(':'); //17:04 -> [17, 04]
+          let timeB_start = b[0]["time_start"].split(':');
+
+          //check hour
+          if (timeA_start[0] > timeB_start[0]) return 1;
+          else if (timeA_start[0] == timeB_start[0]) {
+            // same hour -> check minutes
+            if (timeA_start[1] > timeB_start[1]) return 1;
+            else return -1;
+          }
+          else return -1;
+        });
+
+        this.#event_list.innerHTML = '';
+        this.listOfEvents.forEach(eventPair => {
+          this.#event_list.appendChild(eventPair[1]);
+        });
+
+        // Return the sorted list of events
+        return this.listOfEvents.map(eventEntry => eventEntry[0]);
+      }
      }
 
     
