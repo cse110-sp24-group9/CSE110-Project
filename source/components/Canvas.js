@@ -123,6 +123,8 @@ toggleModeButton.addEventListener('click', () => {
     let curMin = curDate.getMinutes();
     calendar_date.setHours(curHours);
     calendar_date.setMinutes(curMin);
+    calendar_date.setSeconds(curDate.getSeconds());
+    calendar_date.setMilliseconds(curDate.getMilliseconds());
     let time = calendar_date.valueOf();
 
     let favButton = document.querySelector("#favorite-button  input[type='checkbox']");
