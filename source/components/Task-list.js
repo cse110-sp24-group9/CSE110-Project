@@ -91,6 +91,11 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['checkbox'] = check_box.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
                         }
                     }
                 });
@@ -99,9 +104,32 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['title'] = event.target.value.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
                         }
                     }
                 });
+                const remove_button = newListElement.querySelector('.minusbtn');
+                remove_button.addEventListener('click',()=>{
+                    let index = -1;
+                    for(let i = 0; i < this.tasks.length; i++){
+                        if(this.tasks[i][1] === newListElement){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index >= 0){
+                        this.tasks.splice(i,1);
+                        this.dispatchEvent(new Event('data-updated', {
+                            bubbles: true,
+                            composed: true,
+                            cancelable: false
+                        }));
+                    }
+                })
             }else{
                 const newListElement = this.createTaskElement(object);
                 this.#task_list.appendChild(newListElement);
@@ -134,6 +162,24 @@
                         }
                     }
                 });
+                const remove_button = newListElement.querySelector('.minusbtn');
+                remove_button.addEventListener('click',()=>{
+                    let index = -1;
+                    for(let i = 0; i < this.tasks.length; i++){
+                        if(this.tasks[i][1] === newListElement){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index >= 0){
+                        this.tasks.splice(i,1);
+                        this.dispatchEvent(new Event('data-updated', {
+                            bubbles: true,
+                            composed: true,
+                            cancelable: false
+                        }));
+                    }
+                })
             }
         }
 
