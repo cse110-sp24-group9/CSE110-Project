@@ -277,7 +277,7 @@
          * @returns list of tasks
          */
         save(){
-           return this.tasks.map((entry) => structuredClone(entry[1]));
+           return this.tasks.map((entry) => structuredClone(entry[0]));
         }
 }
 
