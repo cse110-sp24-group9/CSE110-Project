@@ -27,7 +27,7 @@
         /**
          * @type {Array} (added by Jason)
          * @private
-         * @summary the array to hold the list of events
+         * @summary the array of tuples that holds [eventObj, eventElement]
          */
         listOfEvents = [];
 
@@ -46,7 +46,7 @@
              * @type {HTMLTemplateElement}
              */
     
-            const tmpl =  document.getElementById('event-list-template');
+            const tmpl = document.getElementById('event-list-template');
             /**
              * Documented by Henry
              * Appends the template to shadow
@@ -176,7 +176,6 @@
                     <option value="Low_Priority">Low_Priority</option>
                     <option value="Medium_Priority">Medium_Priority</option>
                     <option value="High_Priority">High_Priority</option>
-                   
                 </select>
               </article>
               <article id="input-info">
@@ -218,8 +217,7 @@
          * @param {*} newListElement existing element to pass
          */
         editEvent(newListElement){
-          newListElement.addEventListener('dblclick', () => {
-            
+          newListElement.addEventListener('dblclick', () => {            
             // Remove any existing edit modals before creating a new one
             this.closeAllModals(); // Close all other modals (added by jason)
                   
@@ -293,25 +291,40 @@
               else{
                 //please tell me theres a better way of doing this
                 
-                // let curDate = new Date();
                 let curDate = new Date();
                 let eventTime = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
                 console.log(time_end.value);
                 eventTime.setHours(time_end.value.substring(0,2));
                 eventTime.setMinutes(time_end.value.substring(3,5));
-                if(eventTime>curDate)
-                newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
-                <div id="entry-title">${title.value}</div>
-                <div id="time">${time_start.value}-${time_end.value}</div>
-                </div> 
-                `;
-                else newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
-                <div id="entry-title">${title.value}-${time_end.value}</div>
-                <div id="time">${time_start.value}-${time_end.value}</div>
-                </div> 
-                `;
+
+                for (let pair of this.listOfEvents) {
+                  if(pair[1] === newListElement) {
+                    let event = {
+                      "title": title.value,
+                      "time_start": time_start.value,
+                      "time_end": time_end.value,
+                      "tag": tag.value,
+                      "information": info.value
+                    };
+                    pair[0] = event;
+                  }
+                }
+                if(eventTime>curDate){
+                  newListElement.innerHTML = `
+                  <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                  <div id="entry-title">${title.value}</div>
+                  <div id="time">${time_start.value}-${time_end.value}</div>
+                  </div> 
+                  `;
+                }
+                else{ 
+                  newListElement.innerHTML = `
+                  <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                  <div id="entry-title">${title.value}-${time_end.value}</div>
+                  <div id="time">${time_start.value}-${time_end.value}</div>
+                  </div> 
+                  `;
+                }
                 editModal.remove();
               }
             });
@@ -331,7 +344,7 @@
          * Created by Henry and Brendon
          * Sets up modal for new and existing events. Grabs modal and form elements to display and edit
          */
-        addNewEvent(){
+        addNewEvent(object = undefined){
             let cancel = this.#shadow.querySelector('.event-cancel');
             let confirm = this.#shadow.querySelector('.event-confirm');
             let modal = this.#shadow.querySelector('#modal_add_event');
@@ -368,34 +381,18 @@
                 eventTime.setHours(time_end.value.substring(0,2));
                 eventTime.setMinutes(time_end.value.substring(3,5));
                 
-                // let event = {
-                //   "title": title.value,
-                //   "time_start": time_start.value,
-                //   "time_end": time_end.value,
-                //   "tag": tag.value,
-                //   "information": info.value
-                // };
+                let event = {
+                  "title": title.value,
+                  "time_start": time_start.value,
+                  "time_end": time_end.value,
+                  "tag": tag.value,
+                  "information": info.value
+                };
+                // [eventObj, Event HTML Element]
+                this.listOfEvents.push([event, newListElement]);
                 
-                
-                // createTask(object = undefined){
-                //   if(!object){
-                //       const newTaskData = {title: '', checkbox: false};
-                //       const newListElement = this.createTaskElement(newTaskData);
-                //       this.#task_list.appendChild(newListElement);
-                //       this.tasks.push([newTaskData,newListElement]);
-                //       const check_box = newListElement.querySelector(".task-checkbox");
-                //       check_box.addEventListener('change',()=>{
-                //           for(let entry of this.tasks){
-                //               if(entry[1] === newListElement){
-                //                   entry[0]['checkbox'] = check_box.checked;
-                //                   this.dispatchEvent(new Event('data-updated', {
-                //                       bubbles: true,
-                //                       composed: true,
-                //                       cancelable: false
-                //                   }));
-                //               }
-                //           }
-                //       });
+                  
+
                 //push event-data to db
                 //call function that loads all events from db into eventlist list
                 if(eventTime>curDate)
@@ -423,14 +420,26 @@
             });
         }
       
+
       /**
-     * @property {Function} save
-     * @returns {Array<Object>}
-     * @summary returns array of Event objects to save in database
-     */
-    //   save(){
-    //     return this.listOfEvents;
-    //   }
+      * Created by Jason 
+      */
+      loadEvents(){
+          this.#event_list.innerHTML = '';
+          this.listofEvents = [];
+          listOfEvents.forEach(event =>{
+              this.addNewEvent(event);
+          });
+      }
+
+      /**
+       * @property {Function} save
+       * @returns {Array<Object>}
+       * @summary returns array of Event objects to save in database
+       */
+      save(){
+        return this.listOfEvents;
+      }
       
      }
 
