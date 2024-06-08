@@ -50,6 +50,7 @@
 }
 
 #time {
+    /* flex-shrink: 0; Prevent time from shrinking */
     text-align: right;
     align-content: center;
     font-size: small;

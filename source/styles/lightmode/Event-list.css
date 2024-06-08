@@ -15,8 +15,8 @@
 } */
 
 .eventlist{
-    width: 99%;
-    height: 99%;
+    width: 98%;
+    height: 98%;
     padding: 1%;
     display: flex;
     flex-direction: column;
@@ -26,19 +26,18 @@
     flex-grow: 1;
     margin: 2%
 }
+/* .element-entry{
+    width: 100%;
+} */
 #event-entry {
-/*     padding: 1px 2.5% 1px 2.5%;*/
+    padding: 1px 2.5% 1px 2.5%;
     position: relative;
     border-radius: 5px;
-    /* width: 100%; */
+    width: 95%;
     height: 30px;
-    /* display: flex;
-    flex-direction: row; */
-    margin-bottom: 2%;
-
-    display: grid;
-    grid-template-columns: 70% 30%;
-    width: 100%; 
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
 }
 
 #eventTitle {
@@ -46,9 +45,8 @@
     padding: 0;
 }
 
-#title {
-    margin-left: 0%;
-    flex-basis: 100%;
+#entry-title {
+    flex-grow: 1;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
@@ -58,11 +56,12 @@
     align-content: center;
 }
 
+
 #time {
-    margin-right: 0%;
+    flex-shrink: 0;
     text-align: right;
     align-content: center;
-    /* font-size: small; */
+    font-size: small;
 }
 
 .eventlist > #add-event {
@@ -182,6 +181,15 @@
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
+    /* Make Cancel left half and accept right half */
+}
+#edit-accept {
+    /* NEED TO CHANGE VALUE OF HEIGHT */
+    margin-top: 2px;
+    height: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
     /* Make Cancel left half and accept right half */
 }
 .close {

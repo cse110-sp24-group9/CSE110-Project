@@ -26,7 +26,7 @@ body {
 }
 
 #title {
-    flex-basis: 100%;
+    flex-grow: 1;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
