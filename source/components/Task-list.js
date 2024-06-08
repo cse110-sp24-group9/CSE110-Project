@@ -262,7 +262,7 @@
 
         /**
          * Created by Jason
-         * @param {list of task by day} tasks 
+         * @param {Array<Object>} tasks 
          */
         loadTasks(tasks){
             this.#task_list.innerHTML = '';
@@ -274,7 +274,7 @@
 
         /**
          * created by Jason, edited by Andrew
-         * @returns list of tasks
+         * @returns {Array<Object>}
          */
         save(){
             return this.tasks.map((entry) => structuredClone(entry[0]));

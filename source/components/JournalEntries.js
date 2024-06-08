@@ -172,7 +172,7 @@ export default class JournalEntries extends HTMLElement {
 
     /**
      * @property {Function} save
-     * @returns {Array}
+     * @returns {Array<Object>}
      * @summary returns array of Journal Entry objects to save in database
      */
     save(){
