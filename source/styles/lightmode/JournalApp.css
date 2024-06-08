@@ -238,6 +238,8 @@ main > #canvas > #editor {
 }
 
 /* Responsible for making editor text area fill up area and make info bar go to bottom*/
-.CodeMirror {
-  flex-grow: 1;
+.EasyMDEContainer, .CodeMirror {
+  display: flex !important;
+  height: 100% !important;
+  flex-direction: column !important;
 }

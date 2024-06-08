@@ -1,4 +1,4 @@
-var simplemde = new SimpleMDE({
+var simplemde = new EasyMDE({
      element: document.getElementById("markdown-editor"),
      toolbar: ["bold", "italic", "strikethrough", "heading",
                 "|","unordered-list", "ordered-list", "quote", "code",
@@ -6,6 +6,19 @@ var simplemde = new SimpleMDE({
                 "|", "side-by-side", "fullscreen", "guide"],
     shortcuts: {"togglePreview": null}
 });
+const color_map = {
+  "Front End": "#ffb3ba",
+  "Back End": "#ffdfba",
+  "Meeting": "#ffffba",
+  "Planning": "#bcffba",
+  "Documentation": "#ffb3ba",
+  "Design": "#ffdfba",
+  "Testing": "#ffffba",
+  "High Priority": "#bcffba",
+  "Medium Priority": "#ffb3ba",
+  "Low Priority": "#ffdfba"
+}
+
 let curr_entry = undefined;
 
 simplemde.togglePreview();
@@ -17,6 +30,8 @@ const modeDisplay = document.querySelector("#mode-info > p")
 const editorToolbar = document.querySelector(".editor-toolbar")
 const editorBox = document.querySelector("#editor")
 editorToolbar.style.display = 'none'
+// Added by Jesus
+const emotion = document.getElementById("emotion-modal");
 
 
 function hideElements(elementContainer){
@@ -83,6 +98,8 @@ function getPreviewText(text) {
   return '';
 }
 
+
+
 toggleModeButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive()){
     activateEditMode();
@@ -94,13 +111,12 @@ toggleModeButton.addEventListener('click', () => {
     let checkedTags = [];
     checkboxes.forEach(function(checkbox) {
       if (checkbox.checked) {
-          let label = checkbox.nextElementSibling;
-          if (label && label.classList.contains("label")) {
-              checkedTags.push(label.title);
-          }
+          let label = checkbox.value;
+          // console.log('label + color: ' + label + " : " + color_map[label]);
+          checkedTags.push([label,color_map[label]]);
       }
     });
-
+    console.log(checkedTags);
     let time = new Date().valueOf();
 
     let favButton = document.querySelector("#favorite-button  input[type='checkbox']");
@@ -113,9 +129,7 @@ toggleModeButton.addEventListener('click', () => {
 
     let preview_text = getPreviewText(textContent);
 
-    let emoji = "\u{1F60A}";
-    
-    let obj = {
+    /* let obj = {
       "title": title,
       "tags": checkedTags,
       "favorite": starred,
@@ -123,11 +137,58 @@ toggleModeButton.addEventListener('click', () => {
       "preview-text": preview_text,
       "text": textContent,
       "emotion": emoji
-    }
-  
+    } */
+    // keep obj we need that refernce 
     activateViewMode();
     // console.log(obj);
-    return obj;
+
+    // emoji - Jesus Andrew Charlie
+    emotion.querySelectorAll("button").forEach((entry)=>{
+      entry.addEventListener('click', (e)=>{
+        e.preventDefault();
+        emotion.close(entry.value);
+      })
+    });
+    let obj = {
+      "title": title,
+      "tags": checkedTags,
+      "favorite": starred,
+      "time": curr_entry != undefined ? curr_entry['time'] : time,
+      "preview-text": preview_text,
+      "text": textContent,
+      "emotion": ''
+    }
+    emotion.addEventListener('close', (e) =>{
+      console.log(emotion.returnValue);
+      //in here we do the save operation because at this point the object is final
+      obj['emotion'] = emotion.returnValue;
+      console.log(JSON.stringify(obj));
+      let old_entries = document.querySelector('journal-entries-component').save();
+      let new_entries = [];
+      let found = false;
+      for(let old_obj of old_entries){
+        if(old_obj['time'] === obj['time']){
+          new_entries.push(obj);
+          found = true;
+        }else{
+          new_entries.push(old_obj);
+        }
+      }
+      if(!found){
+        new_entries.push(obj);
+      }
+      document.querySelector('journal-entries-component').clearEntries();
+      for(let new_obj of new_entries){
+        document.querySelector('journal-entries-component').addEntry(new_obj);
+      }
+      window.dispatchEvent(new Event('data-updated',{
+        bubbles: true,
+        cancelable: false,
+        composed: true
+      }));
+      curr_entry = undefined;
+    });
+    emotion.showModal();
   } 
 });
 
@@ -169,7 +230,7 @@ discardButton.addEventListener('click', () => {
       curr_entry = undefined
       console.log('before reseting the editor');
       // reset the editor
-      console.log(simplemde.value("This text will appear in the editor"));
+      simplemde.value("");
       let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
       checkboxes.forEach(checkbox => {
         checkbox.checked = false;
@@ -179,14 +240,58 @@ discardButton.addEventListener('click', () => {
   if(!simplemde.isPreviewActive() 
         && confirm("Are you sure you want to discard your Journal Entry?")
    ){
-    activateViewMode()
+    if(curr_entry){
+      // defualts the view back to curr_entry
+      /**
+       * @type {string}
+       */
+      let text = curr_entry['content'];
+      /**
+       * @type {Array<Object>}
+       */
+      let tag_list = curr_entry['tags']; // [title, color] 
+
+      simplemde.value(text);
+
+      let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+      console.log(checkboxes);
+      checkboxes.forEach(checkbox => {
+        let tag_flat = tag_list.map((value) => value[0]);
+        if(checkbox.value in tag_flat) {
+          checkbox.checked = true;
+        }
+      });
+    }else{
+      // clears the screen back to default
+      simplemde.value("");
+      let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      })
+    }
+    activateViewMode();
   }
 })
 
 editorBox.addEventListener('dblclick', () => {
     if(simplemde.isPreviewActive()){
-        activateEditMode()
+        activateEditMode();
     }
+})
+
+document.querySelector('journal-entries-component').addEventListener('journal-clicked', (event)=>{
+    curr_entry = event.detail.entry;
+    // charile clear the screen for the editor and load the curr entry
+    let tag_list = curr_entry['tags'];
+    let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+    console.log(checkboxes);
+    checkboxes.forEach(checkbox => {
+      let tag_flat = tag_list.map((value) => value[0]);
+      if(checkbox.value in tag_flat) {
+        checkbox.checked = true;
+      }
+    });
+    simplemde.value(curr_entry['content']);
 })
 
 /* document.getElementById('label-add').addEventListener('click', function() {
