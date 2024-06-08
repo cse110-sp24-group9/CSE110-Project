@@ -24,7 +24,13 @@
          * @summary the button to add a Task
          */
         #addEventButton
-    
+        /**
+         * @type {Array} (added by Jason)
+         * @private
+         * @summary the array to hold the list of events
+         */
+        listOfEvents = [];
+
         /**
          * Documented by Henry Tiet
          * Created by Henry and Brendon
@@ -63,7 +69,7 @@
             console.log(modal);
             this.#setUpModal();
             this.setUpaddEventButton();
-            this.setUpCancelAndConfirm();
+            this.addNewEvent();
 
             //added by jason
             // when user clicks off modal, closes event
@@ -150,11 +156,11 @@
               <article id="input-title">
                 <label for="title">Title</label><input type="text" id="title">
               </article>
-              <article id="input-date">
-                <label for="date">Date</label><input type="date" id="date">
+              <article id="input-start">
+                <label for="time_start">Start Time</label><input type="time" id="time_start">
               </article>
-              <article id="input-time">
-                <label for="time">Time</label><input type="time" id="time">
+              <article id="input-end">
+                <label for="time_end">End Time</label><input type="time" id="time_end">
               </article>
               <article id="input-tag">
                 <label for="tag">Tag</label>
@@ -207,11 +213,11 @@
          * Created by Brendon
          * Sets up edit button for existing events. Based off of add button, however creates a new hidden 
          * modal that allows editing of existing elements
-         * Called in setUpCancelAndConfirm as new elements are made
+         * Called in addNewEvent as new elements are made
          * 
          * @param {*} newListElement existing element to pass
          */
-        setUpEdit(newListElement){
+        editEvent(newListElement){
           newListElement.addEventListener('dblclick', () => {
             
             // Remove any existing edit modals before creating a new one
@@ -222,8 +228,8 @@
             let entry = newListElement.querySelector("#event-entry");
             console.log(entry);
             let info = (entry.getAttribute('info'));
-            let time = (entry.getAttribute('time'));
-            let date =(entry.getAttribute('date'));
+            let time_start = (entry.getAttribute('time_start'));
+            let time_end =(entry.getAttribute('time_end'));
             let tag = (entry.getAttribute('tag'));
             let title=(entry.getAttribute('title'));
             editModal.innerHTML=`
@@ -232,11 +238,11 @@
               <article id="input-title">
                 <label for="title">Title</label><input type="text" id="title" value= "${title}">
               </article>
-              <article id="input-date">
-                <label for="date">Date</label><input type="date" id="date" value= "${date}">
+              <article id="input-start">
+                <label for="time_start">Start Time</label><input type="time" id="time_start" value="${time_start}">
               </article>
-              <article id="input-time">
-                <label for="time">Time</label><input type="time" id="time" value= "${time}">
+              <article id="input-end">
+                <label for="time_end">End Time</label><input type="time" id = "time_end" value="${time_end}">
               </article>
               <article id="input-tag">
                 <label for="tag">Tag</label>
@@ -259,10 +265,10 @@
                 <label for="info">Information</label>
                 <input type="text" id="info" value= "${info}">
               </article>
-              <article id="input-accept" class="input-accept">
+              <article id="edit-accept" class="edit-accept">
+                <button type="button" class="edit-delete">Delete</button>
                 <button type="button" class="edit-cancel">Cancel</button>
                 <button type="button" class="edit-confirm">Save</button>
-                <button type="button" class="edit-delete">Delete</button>
               </article>
             </form>
             `;
@@ -275,36 +281,35 @@
             });
             confirmButton.addEventListener('click', () => {
               let title = editModal.querySelector('#title');
-              let date = editModal.querySelector('#date');
-              let time = editModal.querySelector('#time');
+              let time_start = editModal.querySelector('#time_start');
+              let time_end = editModal.querySelector('#time_end');
               let tag = editModal.querySelector('#tag');
               let info = editModal.querySelector('#info');
-              if(date.value=='') alert("Invalid Date");
-              else if(title.value=='') alert("Missing Title");
-              else if(time.value=='') alert("Missing Time");
+              if(title.value=='') alert("Missing Title");
+              else if(time_start.value=='') alert("Invalid Start Time");
+              else if(time_end.value=='') alert("Invalid End Time");
+              else if(time_start.value>time_end.value) alert("End Time cannot be before Start Time");
               else if(tag.value=='') alert("Missing Tag");
-              else if(date.value.length!=10) alert("Date must be in format of DD/MM/YYYY. There can only be 4 digits for the year");
               else{
                 //please tell me theres a better way of doing this
+                
+                // let curDate = new Date();
                 let curDate = new Date();
-                let year=date.value.substring(0,4);
-                let month=date.value.substring(5,7);
-                let day=date.value.substring(8,10);
-                let hour = time.value.substring(0,2);
-                let min = time.value.substring(3,5);
-                let eventTime = new Date(year, month - 1 , day, hour, min);
-
+                let eventTime = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
+                console.log(time_end.value);
+                eventTime.setHours(time_end.value.substring(0,2));
+                eventTime.setMinutes(time_end.value.substring(3,5));
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
-                <div id="title">${title.value}</div>
-                <div id="time">${time.value}</div>
+                <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                <div id="entry-title">${title.value}</div>
+                <div id="time">${time_start.value}-${time_end.value}</div>
                 </div> 
                 `;
                 else newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
-                <div id="title">${title.value}</div>
-                <div id="time">${time.value}</div>
+                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                <div id="entry-title">${title.value}-${time_end.value}</div>
+                <div id="time">${time_start.value}-${time_end.value}</div>
                 </div> 
                 `;
                 editModal.remove();
@@ -326,71 +331,108 @@
          * Created by Henry and Brendon
          * Sets up modal for new and existing events. Grabs modal and form elements to display and edit
          */
-        setUpCancelAndConfirm(){
+        addNewEvent(){
             let cancel = this.#shadow.querySelector('.event-cancel');
             let confirm = this.#shadow.querySelector('.event-confirm');
             let modal = this.#shadow.querySelector('#modal_add_event');
             let title = this.#shadow.querySelector('#title');
-            let date = this.#shadow.querySelector('#date');
-            let time = this.#shadow.querySelector('#time');
+            let time_start = this.#shadow.querySelector('#time_start');
+            let time_end = this.#shadow.querySelector('#time_end');
             let tag = this.#shadow.querySelector('#tag');
             let info = this.#shadow.querySelector('#info');
             cancel.addEventListener('click', () => {
                 modal.style.display = "none";
                 title.value ='';
-                date.value='';
-                time.value='';
+                time_start.value='';
+                time_end.value='';
                 tag.value='';
                 info.value='';
             }); 
             //confirm currently does not store all the data, make sure to store all the data
             //date and info not saved
             confirm.addEventListener('click', () => {
-              if(date.value=='') alert("Invalid Date");
-              else if(title.value=='') alert("Missing Title");
-              else if(time.value=='') alert("Missing Time");
+              if(title.value=='') alert("Missing Title");
+              else if(time_start.value=='') alert("Missing Start Time");
+              else if(time_end.value=='') alert("Missing End Time");
+              else if(time_start.value>time_end.value) alert("End Time cannot be before Start Time");
               else if(tag.value=='') alert("Missing Tag");
-              else if(date.value.length!=10) alert("Date must be in format of DD/MM/YYYY. There can only be 4 digits for the year");
                 else {
                   modal.style.display = "none";
                   let newListElement = document.createElement('article');
                   newListElement.className = 'element-entry';
                 //please tell me theres a better way of doing this
+                
                 let curDate = new Date();
-                let year=date.value.substring(0,4);
-                let month=date.value.substring(5,7);
-                let day=date.value.substring(8,10);
-                let hour = time.value.substring(0,2);
-                let min = time.value.substring(3,5);
-                let eventTime = new Date(year, month - 1, day, hour, min);
-
+                let eventTime = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
+                console.log(time_end.value);
+                eventTime.setHours(time_end.value.substring(0,2));
+                eventTime.setMinutes(time_end.value.substring(3,5));
+                
+                // let event = {
+                //   "title": title.value,
+                //   "time_start": time_start.value,
+                //   "time_end": time_end.value,
+                //   "tag": tag.value,
+                //   "information": info.value
+                // };
+                
+                
+                // createTask(object = undefined){
+                //   if(!object){
+                //       const newTaskData = {title: '', checkbox: false};
+                //       const newListElement = this.createTaskElement(newTaskData);
+                //       this.#task_list.appendChild(newListElement);
+                //       this.tasks.push([newTaskData,newListElement]);
+                //       const check_box = newListElement.querySelector(".task-checkbox");
+                //       check_box.addEventListener('change',()=>{
+                //           for(let entry of this.tasks){
+                //               if(entry[1] === newListElement){
+                //                   entry[0]['checkbox'] = check_box.checked;
+                //                   this.dispatchEvent(new Event('data-updated', {
+                //                       bubbles: true,
+                //                       composed: true,
+                //                       cancelable: false
+                //                   }));
+                //               }
+                //           }
+                //       });
+                //push event-data to db
+                //call function that loads all events from db into eventlist list
                 if(eventTime>curDate)
                 newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
-                <div id="title">${title.value}</div>
-                <div id="time">${time.value}</div>
+                <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                <div id="entry-title">${title.value}</div>
+                <div id="time">${time_start.value}-${time_end.value}</div>
                 </div> 
                 `;
                 else newListElement.innerHTML = `
-                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" date= "${date.value}" time ="${time.value}" title = "${title.value}" info = "${info.value}">
-                <div id="title">${title.value}</div>
-                <div id="time">${time.value}</div>
+                <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
+                <div id="entry-title">${title.value}</div>
+                <div id="time">${time_start.value}-${time_end.value}</div>
                 </div> 
                 `;
-                  this.setUpEdit(newListElement);
+                  this.editEvent(newListElement);
+                  // DB: append to db later
                   this.#event_list.appendChild(newListElement);
                   title.value ='';
-                  date.value='';
-                  time.value='';
+                  time_start.value='';
+                  time_end.value='';
                   tag.value='';
                   info.value='';
                }
             });
-
-
-      }
+        }
       
-    }
+      /**
+     * @property {Function} save
+     * @returns {Array<Object>}
+     * @summary returns array of Event objects to save in database
+     */
+    //   save(){
+    //     return this.listOfEvents;
+    //   }
+      
+     }
 
     
     customElements.define('event-list-component',EventListItem);
