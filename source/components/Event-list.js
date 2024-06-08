@@ -326,6 +326,13 @@
                   `;
                 }
                 this.sortEvents();
+                
+                console.log('eventList 1');
+                window.dispatchEvent(new Event('data-updated', {
+                  bubbles: true,
+                  composed: true,
+                  cancelable: false
+                }));
                 editModal.remove();
               }
             });
@@ -337,6 +344,12 @@
                   this.listOfEvents.splice(pair, 1);
                 }
               }
+              console.log('eventList 2');
+              window.dispatchEvent(new Event('data-updated', {
+                bubbles: true,
+                composed: true,
+                cancelable: false
+              }));
             });
             this.#shadow.append(editModal);
             
@@ -402,13 +415,13 @@
                   //push event-data to db
                   //call function that loads all events from db into eventlist list
                   if(eventTime>curDate)
-                  newListElement.innerHTML = `
+                  newListElement.innerHTML += `
                   <div id="event-entry" class="${tag.value}" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
                   <div id="entry-title">${title.value}</div>
                   <div id="time">${time_start.value}-${time_end.value}</div>
                   </div> 
                   `;
-                  else newListElement.innerHTML = `
+                  else newListElement.innerHTML += `
                   <div id="event-entry" class="${tag.value}-passed" tag="${tag.value}" time_start= "${time_start.value}" time_end ="${time_end.value}" title = "${title.value}" info = "${info.value}">
                   <div id="entry-title">${title.value}</div>
                   <div id="time">${time_start.value}-${time_end.value}</div>
@@ -418,7 +431,12 @@
                   // add edit-onclick functionality to new element
                   this.editEvent(newListElement);
                   this.#event_list.appendChild(newListElement);
-
+                  console.log('3');
+                  window.dispatchEvent(new Event('data-updated', {
+                    bubbles: true,
+                    composed: true,
+                    cancelable: false
+                  }));
                   // resets modal input
                   title.value ='';
                   time_start.value='';
@@ -430,13 +448,14 @@
               });
             } else {
               let newListElement = document.createElement('article');
-              newListElement.innerHTML = `
+              newListElement.innerHTML += `
                   <div id="event-entry" class="${object["tag"]}" tag="${object["tag"]}" time_start= "${object["time_start"]}" time_end ="${object["time_end"]}" title = "${object["title"]}" info = "${object["info"]}">
                   <div id="entry-title">${object["title"]}</div>
                   <div id="time">${object["time_start"]}-${object["time_end"]}</div>
                   </div> 
                   `;
               this.editEvent(newListElement);
+              this.listOfEvents.push([object, newListElement]);
               this.#event_list.appendChild(newListElement);
             }
         }
@@ -489,7 +508,7 @@
           }
           else return -1;
         });
-
+        console.log(this.listOfEvents);
         this.#event_list.innerHTML = '';
         this.listOfEvents.forEach(eventPair => {
           this.#event_list.appendChild(eventPair[1]);
