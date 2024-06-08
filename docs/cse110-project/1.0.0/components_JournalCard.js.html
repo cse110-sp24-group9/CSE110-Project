@@ -73,7 +73,7 @@ export default class JournalCard extends HTMLElement {
         }
         this.#shadow.querySelector('#favorite').innerText = data['favorite'] ? '★' : '';
         this.#shadow.querySelector('#title span').innerText = data['title'];
-        this.#shadow.querySelector('#emotion').innerText = '😄';
+        this.#shadow.querySelector('#emotion').innerText = data['emotion'];
         this.#shadow.querySelector('#preview span').innerText = data['preview-text'];
         const time_string =  new Date(data['time']).toLocaleString('en-US', {hour: "numeric", hour12: true, minute: "numeric"});
         this.#shadow.querySelector('#time span').innerText = time_string;
