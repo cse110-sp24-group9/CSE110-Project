@@ -6,7 +6,7 @@
       - Drew Lara
      */
      
-      export default class TaskListItem extends HTMLElement{
+    export default class TaskListItem extends HTMLElement {
         /**
          * @type {ShadowRoot}
          * @private
@@ -25,7 +25,13 @@
          * @summary the button to add a Task
          */
         #addTaskButton
-    
+        /**
+         * @type {Array} (added by Jason)
+         * @private
+         * @summary the array to hold task objects
+         */
+        tasks = [];
+
         /**
          * Documented by Henry Tiet
          * Constructs the shadow tree with fixed nodes of add task 
@@ -33,7 +39,7 @@
          */
         constructor(){
             super();
-            console.log("custom component");
+
             this.#shadow = this.attachShadow({mode: "open"});
             /**
              * @type {HTMLTemplateElement}
@@ -48,14 +54,194 @@
             /**
              * @type {HTMLButtonElement}
              */
-            console.log(tmpl.id);
+
             this.#addTaskButton = this.#shadow.querySelector('.addbtn');     
             /**
              * @type {HTMLDivElement}
              */
             this.#task_list = this.#shadow.querySelector("#list");
-            console.log(this.#task_list)
             this.#setupButtons();
+        }
+
+        /**
+         * Created by Jason
+         * @param {Object} taskData 
+         * @returns newListElement
+         */
+        createTaskElement(taskData){
+            let newListElement = document.createElement('article');
+            newListElement.className = 'task-entry';
+            newListElement.innerHTML = `
+            <div class="checkbox">
+                <input type="checkbox" class="task-checkbox">
+                <div class="checkmark"></div>
+            </div>
+            <input type="text" class="task-text" readonly="true">
+            <button class="minusbtn">-</button>
+            `;
+            /**
+             * Documented by Jason
+             * Initializes the minus button to remove tasks
+             */
+            const minusbtn = newListElement.querySelector('.minusbtn');
+            minusbtn.addEventListener('click', ()=> {
+                newListElement.remove();
+            });
+
+            /* Author : Henry Tiet
+                Adjusting class calls
+            */
+            const checkbox = newListElement.querySelector('.task-checkbox');
+            const textEntry = newListElement.querySelector('.task-text');
+            textEntry.value = taskData['title'];
+            checkbox.checked = taskData['checkbox'];
+            if(checkbox.checked) {
+                textEntry.classList.add('strikethrough');
+            }
+            
+            /**
+             * Documented by Jason
+             * adds an event listener to do the strikethrough through each tasked checked
+             * switched the parameter from 'input' to 'change' and used the .classlist to add
+             */
+            checkbox.addEventListener('change', () => {
+                if(checkbox.checked) {
+                    textEntry.classList.add('strikethrough');
+                } else {
+                    textEntry.classList.remove('strikethrough');
+                }
+            });
+
+            /**
+             * Documented by Drew
+             * Allows user to edit tasklist title by double clicking
+             * on text area,
+             * tasklist will show up as selected
+             */
+            textEntry.addEventListener('dblclick', () => {
+                textEntry.readOnly = false;
+                textEntry.style.backgroundColor ='white';
+                textEntry.style.cursor = 'text';
+            })
+            /**
+             * Documented by Drew
+             * Once user is done editing tasklist title,
+             * show tasklist item as unselected
+             */
+            textEntry.addEventListener('focusout', () => {
+                textEntry.readOnly = true;
+                textEntry.style.backgroundColor='';
+                textEntry.style.cursor = 'grab';
+            });
+
+            return newListElement;
+        }
+
+        /**
+         * Documented and Authored by Andrew
+         * @param {Object} object the object that needs to be loaded into the page, by default is undefined
+         */
+        createTask(object = undefined){
+            if(!object){
+                const newTaskData = {title: '', checkbox: false};
+                const newListElement = this.createTaskElement(newTaskData);
+                this.#task_list.appendChild(newListElement);
+                this.tasks.push([newTaskData,newListElement]);
+                const check_box = newListElement.querySelector(".task-checkbox");
+                check_box.addEventListener('change',()=>{
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['checkbox'] = check_box.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                        }
+                    }
+                });
+                const text_input = newListElement.querySelector('.task-text');
+                text_input.addEventListener('input', (event) => {
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['title'] = event.target.value;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                        }
+                    }
+                });
+                const remove_button = newListElement.querySelector('.minusbtn');
+                remove_button.addEventListener('click',()=>{
+                    let index = -1;
+                    for(let i = 0; i < this.tasks.length; i++){
+                        if(this.tasks[i][1] === newListElement){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index >= 0){
+                        this.tasks.splice(index,1);
+                        this.dispatchEvent(new Event('data-updated', {
+                            bubbles: true,
+                            composed: true,
+                            cancelable: false
+                        }));
+                    }
+                })
+            }else{
+                const newListElement = this.createTaskElement(object);
+                this.#task_list.appendChild(newListElement);
+                this.tasks.push([object,newListElement]);
+                const check_box = newListElement.querySelector(".task-checkbox");
+                check_box.addEventListener('change',()=>{
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['checkbox'] = check_box.checked;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                            break;
+                        }
+                    }
+                });
+                const text_input = newListElement.querySelector('.task-text');
+                text_input.addEventListener('input', (event) => {
+                    for(let entry of this.tasks){
+                        if(entry[1] === newListElement){
+                            entry[0]['title'] = event.target.value;
+                            this.dispatchEvent(new Event('data-updated', {
+                                bubbles: true,
+                                composed: true,
+                                cancelable: false
+                            }));
+                            break;
+                        }
+                    }
+                });
+                const remove_button = newListElement.querySelector('.minusbtn');
+                remove_button.addEventListener('click',()=>{
+                    let index = -1;
+                    for(let i = 0; i < this.tasks.length; i++){
+                        if(this.tasks[i][1] === newListElement){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index >= 0){
+                        this.tasks.splice(index,1);
+                        this.dispatchEvent(new Event('data-updated', {
+                            bubbles: true,
+                            composed: true,
+                            cancelable: false
+                        }));
+                    }
+                })
+            }
         }
     
         /*
@@ -68,73 +254,31 @@
              * Documented and added by Jason
              * initializes the add task button from previous js file
              */
-            this.#addTaskButton.addEventListener('click', () => {
-                var newListElement = document.createElement('article');
-                newListElement.className = 'task-entry';
-                newListElement.innerHTML = `
-                <div class="checkbox">
-                    <input type="checkbox" class="task-checkbox">
-                    <div class="checkmark"></div>
-                </div>
-                <input type="text" class="task-text" readonly="true">
-                <button class="minusbtn">-</button>
-                `;
-                this.#task_list.appendChild(newListElement);
-                
-                /**
-                 * Documented by Jason
-                 * Initializes the minus button to remove tasks
-                 */
-                const minusbtn = newListElement.querySelector('.minusbtn')
-                minusbtn.addEventListener('click', function() {
-                    newListElement.remove();
-                });
-    
-                /* Author : Henry Tiet
-                    Adjusting class calls
-                */
-                // const checkbox = newListElement.querySelector('input[type=checkbox]');
-                const checkbox = newListElement.querySelector('.task-checkbox');
-                const textEntry = newListElement.querySelector('.task-text');
-                
-                /**
-                 * Documented by Jason
-                 * adds an event listener to do the strikethrough through each tasked checked
-                 * switched the parameter from 'input' to 'change' and used the .classlist to add
-                 */
-                checkbox.addEventListener('change', function() {
-                    if(checkbox.checked) {
-                      textEntry.classList.add('strikethrough');
-                    } else {
-                      textEntry.classList.remove('strikethrough');
-                    }
-                });
-                /**
-                 * Documented by Drew
-                 * Allows user to edit tasklist title by double clicking
-                 * on text area,
-                 * tasklist will show up as selected
-                 */
-                textEntry.addEventListener('dblclick', () => {
-                    textEntry.readOnly = false;
-                    textEntry.style.backgroundColor ='white';
-                    textEntry.style.cursor = 'text';
-                })
-                /**
-                 * Documented by Drew
-                 * Once user is done editing tasklist title,
-                 * show tasklist item as unselected
-                 */
-                textEntry.addEventListener('focusout', () => {
-                    textEntry.readOnly = true;
-                    textEntry.style.backgroundColor='';
-                    textEntry.style.cursor = 'grab';
-                })
-    
-              });
-            
+            this.#addTaskButton.addEventListener('click', ()=>{
+                this.createTask();
+            });
         }
-        
-    }    
 
-customElements.define('task-list-component',TaskListItem);
+
+        /**
+         * Created by Jason
+         * @param {list of task by day} tasks 
+         */
+        loadTasks(tasks){
+            this.#task_list.innerHTML = '';
+            this.tasks = [];
+            tasks.forEach(taskData =>{
+                this.createTask(taskData);
+            });
+        }
+
+        /**
+         * created by Jason, edited by Andrew
+         * @returns list of tasks
+         */
+        save(){
+            return this.tasks.map((entry) => structuredClone(entry[0]));
+        }
+}
+
+customElements.define('task-list-component', TaskListItem);
