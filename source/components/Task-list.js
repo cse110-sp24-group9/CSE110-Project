@@ -277,12 +277,12 @@
          * @returns list of tasks
          */
         save(){
-            let ret_list = [];
-            for(let i = 0; i < ret_list.length; i++){
-                ret_list[i] = structuredClone(this.tasks[i][0]);
-            }
-            return ret_list;
-        //    return this.tasks.map((entry) => structuredClone(entry[0]));
+            // let ret_list = [];
+            // for(let i = 0; i < this.tasks.length; i++){
+            //     ret_list.push(structuredClone(this.tasks[i][0]));
+            // }
+            // return ret_list;
+            return this.tasks.map((entry) => structuredClone(entry[0]));
         }
 }
 
