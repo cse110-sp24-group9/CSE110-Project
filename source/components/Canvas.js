@@ -117,7 +117,13 @@ toggleModeButton.addEventListener('click', () => {
       }
     });
     console.log(checkedTags);
-    let time = new Date().valueOf();
+    let calendar_date = new Date(document.querySelector('calendar-component').current_utc_time_stamp);
+    let curDate = new Date();
+    let curHours= curDate.getHours();
+    let curMin = curDate.getMinutes();
+    calendar_date.setHours(curHours);
+    calendar_date.setMinutes(curMin);
+    let time = calendar_date.valueOf();
 
     let favButton = document.querySelector("#favorite-button  input[type='checkbox']");
     let starred = false;

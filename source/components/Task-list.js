@@ -33,7 +33,8 @@
         tasks = [];
 
         /**
-         * Documented by Henry Tiet
+         * Created by Brendon
+         * Documented by Henry Tiet 
          * Constructs the shadow tree with fixed nodes of add task 
          * and the list
          */
@@ -64,7 +65,8 @@
         }
 
         /**
-         * Created by Jason
+         * Created by Brendon
+         * Edited by Jason to work with DB
          * @param {Object} taskData 
          * @returns newListElement
          */
@@ -81,6 +83,7 @@
             `;
             /**
              * Documented by Jason
+             * Created by Brendon
              * Initializes the minus button to remove tasks
              */
             const minusbtn = newListElement.querySelector('.minusbtn');
@@ -152,6 +155,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['checkbox'] = check_box.checked;
+                            console.log('task-list dispatch 1');
                             window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
@@ -165,6 +169,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['title'] = event.target.value;
+                            console.log('task-list dispatch 2');
                             window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
@@ -184,6 +189,7 @@
                     }
                     if(index >= 0){
                         this.tasks.splice(index,1);
+                        console.log('task-list dispatch 3');
                         window.dispatchEvent(new Event('data-updated', {
                             bubbles: true,
                             composed: true,
@@ -246,6 +252,7 @@
     
         /*
          * Documented by Jason
+         * Created by Brendon
          * Converted the old Javascript into a template
          * Pulled old code and incorporated shadow dom into a template
         */ 
@@ -258,7 +265,15 @@
                 this.createTask();
             });
         }
-
+        
+        /**
+         * Created by Jason
+         * Clears tasks
+         */
+        clearTasks(){
+            this.#task_list.innerHTML = '';
+            this.tasks = [];
+        }
 
         /**
          * Created by Jason

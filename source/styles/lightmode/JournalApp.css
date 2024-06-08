@@ -216,10 +216,6 @@ main > #canvas {
   position: relative;
 }
 
-main > #canvas > #label-bar{
-  width: 5px;
-}
-
 
 
 main > #canvas > menu > #mode-info {

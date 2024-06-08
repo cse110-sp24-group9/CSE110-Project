@@ -26,7 +26,7 @@
      <script type="module" src="../components/Event-list.js"></script>
      <script type="module" src="../components/Toolbar.js"></script>
      <script type="module" src="../components/Canvas.js"></script>
-     <script src="../scripts/JournalApp.js"></script>
+     <script type="module" src="../scripts/JournalApp.js"></script>
      <title>Journal App</title>
    </head>
    <body>
@@ -316,11 +316,11 @@
           <div class="label-box">
             <input type="checkbox" value="Medium Priority">
             <div class="label" id="label-1" title="Medium Priority">Medium Priority</div>
-          </li>
-          <li class="label-box">
+          </div>
+          <div class="label-box">
             <input type="checkbox" value="Low Priority">
             <div class="label" id="label-2" title="Low Priority">Low Priority</div>
-          </li>
+          </div>
          </menu> 
          <article id="editor"> <!-- EDITOR COMPONENT-->
            <textarea id="markdown-editor" name="journal-entry" placeholder="Start Typing Here"></textarea>

@@ -452,11 +452,6 @@
           prevListOfEvents.forEach(event =>{
               this.addNewEvent(event);
           });
-          window.dispatchEvent(new Event('data-updated', {
-            bubbles: true,
-            composed: true,
-            cancelable: false
-          }));
       }
 
       //use flat map
@@ -467,6 +462,11 @@
        */
       save(){
         return this.listOfEvents.map((event) => structuredClone(event[0]));
+      }
+
+      clearEvents(){
+        this.#event_list.innerHTML = '';
+        this.listOfEvents = [];
       }
 
       /**
