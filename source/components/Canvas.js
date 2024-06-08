@@ -139,7 +139,7 @@ toggleModeButton.addEventListener('click', () => {
       "emotion": emoji
     } */
     // keep obj we need that refernce 
-    activateViewMode();
+    
     // console.log(obj);
 
     // emoji - Jesus Andrew Charlie
@@ -155,14 +155,50 @@ toggleModeButton.addEventListener('click', () => {
       "favorite": starred,
       "time": curr_entry != undefined ? curr_entry['time'] : time,
       "preview-text": preview_text,
-      "text": textContent,
-      "emotion": ''
+      "content": textContent,
+      "emotion": curr_entry != undefined ? curr_entry['emotion'] : ''
     }
-    emotion.addEventListener('close', (e) =>{
-      console.log(emotion.returnValue);
-      //in here we do the save operation because at this point the object is final
-      obj['emotion'] = emotion.returnValue;
-      console.log(JSON.stringify(obj));
+    if(!curr_entry){
+      emotion.addEventListener('close', (e) =>{
+        console.log(emotion.returnValue);
+        //in here we do the save operation because at this point the object is final
+        obj['emotion'] = emotion.returnValue;
+        console.log(JSON.stringify(obj));
+        let old_entries = document.querySelector('journal-entries-component').save();
+        let new_entries = [];
+        let found = false;
+        for(let old_obj of old_entries){
+          if(old_obj['time'] === obj['time']){
+            new_entries.push(obj);
+            found = true;
+          }else{
+            new_entries.push(old_obj);
+          }
+        }
+        if(!found){
+          new_entries.push(obj);
+        }
+        document.querySelector('journal-entries-component').clearEntries();
+        for(let new_obj of new_entries){
+          document.querySelector('journal-entries-component').addEntry(new_obj);
+        }
+        window.dispatchEvent(new Event('data-updated',{
+          bubbles: true,
+          cancelable: false,
+          composed: true
+        }));
+        curr_entry = undefined;
+        // clear editor
+        simplemde.value("");
+        let checkboxes_unSelect = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+        checkboxes_unSelect.forEach(checkbox => {
+          checkbox.checked = false;
+        })
+        activateViewMode();
+      });
+      emotion.showModal();
+    }else
+    {
       let old_entries = document.querySelector('journal-entries-component').save();
       let new_entries = [];
       let found = false;
@@ -187,9 +223,16 @@ toggleModeButton.addEventListener('click', () => {
         composed: true
       }));
       curr_entry = undefined;
-    });
-    emotion.showModal();
-  } 
+      // clear editor
+      console.log('before clearing');
+      simplemde.value("");
+      let checkboxes_unSelect = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+      checkboxes_unSelect.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      activateViewMode();
+    }
+  }  
 });
 
 /* favButton.addEventListener('change', () => {
@@ -257,7 +300,7 @@ discardButton.addEventListener('click', () => {
       console.log(checkboxes);
       checkboxes.forEach(checkbox => {
         let tag_flat = tag_list.map((value) => value[0]);
-        if(checkbox.value in tag_flat) {
+        if(tag_flat.includes(checkbox.value)) {
           checkbox.checked = true;
         }
       });
@@ -287,11 +330,23 @@ document.querySelector('journal-entries-component').addEventListener('journal-cl
     console.log(checkboxes);
     checkboxes.forEach(checkbox => {
       let tag_flat = tag_list.map((value) => value[0]);
-      if(checkbox.value in tag_flat) {
+      console.log(tag_flat);
+      if(tag_flat.includes(checkbox.value)) {
         checkbox.checked = true;
       }
     });
     simplemde.value(curr_entry['content']);
+})
+
+document.querySelector('#new-entry-button').addEventListener('click', (event)=>{
+    curr_entry = undefined;
+    activateEditMode();
+    simplemde.value("");
+    let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    })
+    activateViewMode();
 })
 
 /* document.getElementById('label-add').addEventListener('click', function() {
