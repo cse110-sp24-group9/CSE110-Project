@@ -57,7 +57,7 @@ export default class JournalEntries extends HTMLElement {
         const journal_list = this.#shadow.querySelector("#journal-list");
         journal_list.appendChild(card_ele);
         card_ele.addEventListener('click', (e)=>{
-            hoist.#submitJournalClickEvent(entry['time']);
+            hoist.#submitJournalClickEvent(entry);
             console.log("Element with time of: " + entry['time']);
         });
         this.#entries.push([entry,card_ele])
@@ -144,16 +144,16 @@ export default class JournalEntries extends HTMLElement {
     /**
      * @private 
      * @property {Function} submitJournalClickEvent
-     * @param {number} time_stamp 
+     * @param {Object} entry_object
      * @returns {void}
      * @fires  JournalEntries#journal-clicked
      */
-    #submitJournalClickEvent(time_stamp){
+    #submitJournalClickEvent(entry_object){
         let event = new CustomEvent('journal-clicked', {
             bubbles: true,
             cancelable: false,
             composed: true,
-            detail: {time: time_stamp}
+            detail: {entry: structuredClone(entry_object)}
         });
         this.dispatchEvent(event);
     }
