@@ -12,12 +12,12 @@
  
      <link class="lightmode" rel="stylesheet" href="../styles/lightmode/JournalApp.css"> <!--RESPONSIBLE FOR STYLING WHOLE APPLICATION LAYOUT-->
      <link class="darkmode" rel="stylesheet" href="../styles/darkmode/JournalApp.css" disabled> 
- 
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+
      <link class="lightmode" rel="stylesheet" href="../styles/lightmode/Canvas.css"> <!--RESPONSIBLE FOR STYLING CANVAS AREA-->
      <link class="darkmode" rel="stylesheet" href="../styles/darkmode/Canvas.css" disabled>
- 
- 
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
  
      <!-- <script type="module" src="../components/JournalApp.js"></script> -->
      <script type="module" src="../components/CalendarItem.js"></script>
@@ -25,7 +25,6 @@
      <script type="module" src="../components/JournalEntries.js"></script>
      <script type="module" src="../components/Event-list.js"></script>
      <script type="module" src="../components/Toolbar.js"></script>
-     <script type="module" src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
      <script type="module" src="../components/Canvas.js"></script>
      <script src="../scripts/JournalApp.js"></script>
      <title>Journal App</title>
@@ -282,40 +281,40 @@
            </li>
          </menu>
          <menu id="label-bar"> <!--TAG BAR: EXISTING TAGS, ADD TAGS-->
-          <li class="label-box">
-            <input type="checkbox">
+          <div class="label-box">
+            <input type="checkbox" value="Front End">
             <div class="label" id="label-1" title="Front End">Front End</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Back End">
             <div class="label" id="label-2" title="Back End">Back End</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Meeting">
             <div class="label" id="label-3" title="Meeting">Meeting</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Planning">
             <div class="label" id="label-4" title="Planning">Planning</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Documentation">
             <div class="label" id="label-1" title="Documentation">Documentation</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Design">
             <div class="label" id="label-2" title="Design">Design</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Testing">
             <div class="label" id="label-3" title="Testing">Testing</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox" value="High Priority" checked>
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="High Priority">
             <div class="label" id="label-4" title="High Priority">High Priority</div>
-          </li>
-          <li class="label-box">
-            <input type="checkbox">
+          </div>
+          <div class="label-box">
+            <input type="checkbox" value="Medium Priority">
             <div class="label" id="label-1" title="Medium Priority">Medium Priority</div>
           </li>
           <li class="label-box">
@@ -342,5 +341,16 @@
          </article>
        </form>
      </div> -->
+     <!-- Emotion Modal: Jesus Andrew Charlie -->
+     <dialog id="emotion-modal">
+      <h3>How do you feel?</h6>
+      <form>
+        <button value="😡">😡</button>
+        <button value="🙁">🙁</button>
+        <button value="😐">😐</button>
+        <button value="🙂">🙂</button>
+        <button value="😁">😁</button>   
+      </form>
+    </dialog>
    </body>
  </html>

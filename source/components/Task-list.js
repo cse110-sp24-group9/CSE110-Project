@@ -152,7 +152,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['checkbox'] = check_box.checked;
-                            this.dispatchEvent(new Event('data-updated', {
+                            window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
                                 cancelable: false
@@ -165,7 +165,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['title'] = event.target.value;
-                            this.dispatchEvent(new Event('data-updated', {
+                            window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
                                 cancelable: false
@@ -184,7 +184,7 @@
                     }
                     if(index >= 0){
                         this.tasks.splice(index,1);
-                        this.dispatchEvent(new Event('data-updated', {
+                        window.dispatchEvent(new Event('data-updated', {
                             bubbles: true,
                             composed: true,
                             cancelable: false
@@ -200,7 +200,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['checkbox'] = check_box.checked;
-                            this.dispatchEvent(new Event('data-updated', {
+                            window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
                                 cancelable: false
@@ -214,7 +214,7 @@
                     for(let entry of this.tasks){
                         if(entry[1] === newListElement){
                             entry[0]['title'] = event.target.value;
-                            this.dispatchEvent(new Event('data-updated', {
+                            window.dispatchEvent(new Event('data-updated', {
                                 bubbles: true,
                                 composed: true,
                                 cancelable: false
@@ -234,7 +234,7 @@
                     }
                     if(index >= 0){
                         this.tasks.splice(index,1);
-                        this.dispatchEvent(new Event('data-updated', {
+                        window.dispatchEvent(new Event('data-updated', {
                             bubbles: true,
                             composed: true,
                             cancelable: false
