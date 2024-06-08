@@ -38,14 +38,14 @@ menu {
   width: auto;
   margin: 0;
   padding: 0 5px 0 5px;
-  flex-shrink: 0;
   list-style: none;
   display: flex;
-  gap: 5px;
+  overflow: auto hidden;
   flex-direction: row;
   /* background-color: #F2F2F4 */
   background-color: rgb(235,235,235);
   align-items: center;
+  overflow: hidden;
 }
 
 /* Responsible for making each button a perfect square based on height of tool bar */
@@ -134,7 +134,9 @@ aside {
   left: 0;
   height: 100%;
   width: 250px; */
-  flex-shrink: 0;
+  flex: 0 0 235px;
+  max-width: 235px;
+  min-width:235px;
   border-right: 1px solid black;
   display: flex;
   flex-direction: column;  
@@ -173,9 +175,9 @@ aside > #event-list{
 
 /* Responsible for styling main area (NOT SIDEBAR)*/
 main {
-  flex-grow: 1;
   display: flex;
   flex-direction: row;
+  flex: 1 0 auto;
 }
 
 /* Fixed size for the tool bar in main page */
@@ -187,7 +189,7 @@ main > article > menu {
 /* Helps add the border between entry list and canvas
 NOTE: This helps avoid borders from overlapping  */
 main > #navigation {
-  flex-grow: 1;
+  flex-shrink: 0;
   border-right: 1px solid black;
 }
 
@@ -208,15 +210,17 @@ main > #navigation > menu > #search-bar > input[type="text"]{
 }
 
 main > #canvas {
-  flex-grow: 2; /* Responsible for making the canvas area take up as much space as possible*/
+  flex-grow: 1; /* Responsible for making the canvas area take up as much space as possible*/
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-main > #canvas > #label-bar {
-  height: 40px;
-  display: flex;
+main > #canvas > #label-bar{
+  width: 5px;
 }
+
+
 
 main > #canvas > menu > #mode-info {
   flex-grow: 1; /* Responsible for making information bar fill up space in canvas toolbar */

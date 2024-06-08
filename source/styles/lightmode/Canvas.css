@@ -8,13 +8,8 @@
 }
 
 #label-bar {
-    flex-shrink: 0;
-    height: 4vh;
-    display: flex;
     background-color: rgb(244, 244, 244);
-    overflow: auto hidden;
     position: relative;
-    width: 100%;
 }
 
 #editor-container {
@@ -79,7 +74,7 @@ svg {
 .label-box {
     display: flex;
     position: relative;
-    width: 70px;
+    width: 100px;
     height: 100%;
     justify-content: center;
     align-content: center;
