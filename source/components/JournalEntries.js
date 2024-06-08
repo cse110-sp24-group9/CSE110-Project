@@ -48,19 +48,19 @@ export default class JournalEntries extends HTMLElement {
         this.#initFilterHandler();
     };
     /**
-     * @param {string} entry the json object to be loaded into a journal card
+     * @param {Object} entry the json object to be loaded into a journal card
      */
     addEntry(entry){
         let hoist = this;
         const card_ele = document.createElement('journal-card-component');
-        card_ele.data = JSON.parse(entry);
-        const journal_list = this.#shadow.querySelector("#journal-list")
+        card_ele.data = entry;
+        const journal_list = this.#shadow.querySelector("#journal-list");
         journal_list.appendChild(card_ele);
         card_ele.addEventListener('click', (e)=>{
-            hoist.#submitJournalClickEvent(JSON.parse(entry)['time']);
-            console.log("Element with time of: " + JSON.parse(entry)['time']);
-        })
-        this.#entries.push([JSON.parse(entry),card_ele])
+            hoist.#submitJournalClickEvent(entry['time']);
+            console.log("Element with time of: " + entry['time']);
+        });
+        this.#entries.push([entry,card_ele])
         console.log(this.#entries[this.#entries.length-1]);
         this.#shadow.getElementById('info-b').textContent = this.#entries.length + " Entries Total"
     }
