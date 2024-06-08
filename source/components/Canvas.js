@@ -6,6 +6,7 @@ var simplemde = new SimpleMDE({
                 "|", "side-by-side", "fullscreen", "guide"],
     shortcuts: {"togglePreview": null}
 });
+let curr_entry = undefined;
 
 simplemde.togglePreview();
 const toggleModeButton = document.querySelector("#toggle-mode-button > button");
@@ -141,6 +142,39 @@ discardButton.addEventListener('click', () => {
   if(simplemde.isPreviewActive() 
         && confirm("Are you sure you want to delete your Journal Entry?")
    ){
+      if(curr_entry){
+        // delete entry from component, by fetching all items and then removing the one with the same time stamp
+        // then clear the component, then load them back into it and call the data-changed event
+        /**
+         * @type {Array<Object>}
+         */
+          let entry_list = document.querySelector('journal-entries-component').save();
+          let good_list = [];
+          for(let obj of entry_list){
+            if(obj['time'] === curr_entry['time']){
+                continue;
+            }
+            good_list.push(obj);
+          }
+          document.querySelector('journal-entries-component').clearEntries();
+          for(let obj of good_list){
+            document.querySelector('journal-entries-component').addEntry(obj);
+          }
+          window.dispatchEvent(new Event('data-updated',{
+            bubbles: true,
+            composed: true,
+            cancelable: false
+          }));
+      }
+      curr_entry = undefined
+      console.log('before reseting the editor');
+      // reset the editor
+      console.log(simplemde.value("This text will appear in the editor"));
+      let checkboxes = document.querySelectorAll("#label-bar .label-box input[type='checkbox']");
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      })
+
   }
   if(!simplemde.isPreviewActive() 
         && confirm("Are you sure you want to discard your Journal Entry?")
