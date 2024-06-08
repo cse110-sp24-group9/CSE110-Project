@@ -80,7 +80,7 @@ export default class CalendarItem extends HTMLElement{
      */
     constructor(){
         super();
-        this.current_utc_time_stamp = new Date(currYear,currMonth,currentDay);
+        this.current_utc_time_stamp = new Date(currYear,currMonth,currentDay).valueOf();
         this.#shadow = this.attachShadow({mode: "open"});
         /**
          * @type {HTMLTemplateElement}
@@ -97,7 +97,8 @@ export default class CalendarItem extends HTMLElement{
         //tells page that calendar should be ready to test
         this.#dispatchCustomEvent(new CustomEvent('hydrated',{
             bubbles: true,
-            composed: true
+            composed: true,
+            cancelable: false
         }));
     }
     /**

@@ -18,7 +18,7 @@ describe('Task List Testing', () => {
     beforeAll(async () => {
       console.log('Navigating to Tasklist page...');
       page = await browser.newPage();
-      await page.goto('http://localhost:3000/pages/JournalApp.html', { waitUntil: 'networkidle2' });
+      await page.goto('http://localhost:3000/pages/task-list.html', { waitUntil: 'networkidle2' });
       console.log('Page loaded');
     },60000);
 
