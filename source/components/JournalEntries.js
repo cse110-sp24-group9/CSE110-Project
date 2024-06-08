@@ -178,7 +178,7 @@ export default class JournalEntries extends HTMLElement {
     saveEntries(){
         const listOfEntryObjects = [];
         for(let entry of this.#entries){
-            listOfEntryObjects.push(entry[0]);
+            listOfEntryObjects.push(structuredClone(entry[0]));
         }
         return listOfEntryObjects;
     }
