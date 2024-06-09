@@ -17,7 +17,7 @@ The DevDaily is designed to help software developers track their daily activitie
   - Clicking on a specific date updates the page content for that day
 - Journal Entries
   - Create, edit, and delete entries
-  - Favorite entries or attac colored static tags
+  - Favorite entries and attach colored static tags
   - Uses a Markdown editor
   - Tracks emotion using static emojis after creating an entry
   - Search entries using the search bar
