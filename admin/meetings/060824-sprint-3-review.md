@@ -51,4 +51,4 @@ Deeply worked alongside backend to specifically incorporate the database with HT
 - Testing
 - Make the code and the app prettier
 - README
-- Presentation slides
+- Presentation slide
