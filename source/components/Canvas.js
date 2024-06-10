@@ -167,7 +167,7 @@ toggleModeButton.addEventListener('click', () => {
       "emotion": curr_entry != undefined ? curr_entry['emotion'] : ''
     }
     if(!curr_entry){
-      emotion.addEventListener('close', (e) =>{
+      emotion.addEventListener('close', function close_handler(e){
         console.log(emotion.returnValue);
         //in here we do the save operation because at this point the object is final
         obj['emotion'] = emotion.returnValue;
@@ -203,6 +203,7 @@ toggleModeButton.addEventListener('click', () => {
           checkbox.checked = false;
         })
         activateViewMode();
+        this.removeEventListener('close', close_handler);
       });
       emotion.showModal();
     }else
