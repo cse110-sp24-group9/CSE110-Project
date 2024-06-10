@@ -149,7 +149,9 @@ svg {
 
 #label-bar {
     display: flex;
-    gap: 2em;
+    gap: 1em;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .label {
@@ -159,7 +161,10 @@ svg {
     background-color: #ffb3bb50;
     color: #00000090;
     margin: auto;
+    /* white-space: nowarp; */
+    /* overflow: hidden; */
 }
+
 
 #emotion {
     justify-content: center;

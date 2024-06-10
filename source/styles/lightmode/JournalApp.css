@@ -191,6 +191,7 @@ NOTE: This helps avoid borders from overlapping  */
 main > #navigation {
   flex-shrink: 0;
   border-right: 1px solid black;
+  width: 20vw;
 }
 
 main > #navigation > menu > #search-bar {
