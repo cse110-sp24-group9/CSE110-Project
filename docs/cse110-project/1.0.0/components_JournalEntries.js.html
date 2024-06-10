@@ -76,12 +76,13 @@ export default class JournalEntries extends HTMLElement {
     #initSearchHandler(){
         // Get list of entries and subscribe to Search bar text input
         // Each element of array is of the form: [JSON object, journal-card-component element]
-        const listOfEntries = this.#entries;
+        // const listOfEntries = this.#entries;
         const searchInput = document.querySelector('#search-bar').querySelector('input[type="text"]');
-
+        let hoist = this;
         // Dynamically listen to input and HIDE entries that do NOT match user input
         function handleInputEvent(event) {
-            const userInput = event.target.value;
+            const listOfEntries = hoist.#entries;
+            const userInput = event.target.value; 
             for (let pair of listOfEntries) {
                 const currTitle = pair[0]['title'].toLowerCase();
                 const currEle = pair[1];
