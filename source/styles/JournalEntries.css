@@ -149,14 +149,14 @@ svg {
 
 #label-bar {
     display: flex;
-    gap: 1em;
+    gap: 0.5em;
     overflow-x: auto;
     white-space: nowrap;
 }
 
 .label {
     text-align: center;
-    width: 70px;
+    width: auto;
     border-radius: 5px ;
     background-color: #ffb3bb50;
     color: #00000090;
@@ -164,7 +164,9 @@ svg {
     /* white-space: nowarp; */
     /* overflow: hidden; */
 }
-
+#label-bar::-webkit-scrollbar {
+    display: none;
+}
 
 #emotion {
     justify-content: center;
