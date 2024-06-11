@@ -93,3 +93,5 @@ Once you click the link, you will be directed to the web application where you c
 
 ### Side-Bar: 
 - Toggle the side-bar (calendar, event list, task list) by clicking on the side-bar button on the top left to collapse or re-open the side-bar.
+
+# Jason was here!
