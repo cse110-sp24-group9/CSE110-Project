@@ -93,3 +93,13 @@ Once you click the link, you will be directed to the web application where you c
 
 ### Side-Bar: 
 - Toggle the side-bar (calendar, event list, task list) by clicking on the side-bar button on the top left to collapse or re-open the side-bar.
+
+
+# Videos
+
+### Public Video
+[Public](https://www.youtube.com/watch?v=Bu-LyDCJ42k&ab_channel=JasonBoenjamin)
+
+### Private Video
+[Private](https://www.youtube.com/watch?v=imXPpvY3fPk&ab_channel=JasonBoenjamin)
+
