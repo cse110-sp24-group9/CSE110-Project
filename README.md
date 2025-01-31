@@ -97,9 +97,9 @@ Once you click the link, you will be directed to the web application where you c
 
 # Videos
 
-### Public Video
-[Public](https://www.youtube.com/watch?v=Bu-LyDCJ42k&ab_channel=JasonBoenjamin)
+### Technical Video
+[Technical](https://www.youtube.com/watch?v=imXPpvY3fPk&ab_channel=JasonBoenjamin)
 
-### Private Video
-[Private](https://www.youtube.com/watch?v=imXPpvY3fPk&ab_channel=JasonBoenjamin)
+### Demo Video
+[Demo](https://www.youtube.com/watch?v=Bu-LyDCJ42k&ab_channel=JasonBoenjamin)
 
